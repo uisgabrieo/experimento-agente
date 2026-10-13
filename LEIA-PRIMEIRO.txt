@@ -1,0 +1,178 @@
+TCC-V2 - INSTRUMENTO AUDITADO E COLETA 2
+=========================================
+
+Esta pasta substitui o "instrumento-v2.zip" de 06/10. Nao use aquele.
+A pasta tcc (coleta 1) e C:\execucoes NAO sao alterados por nada daqui.
+
+Todos os comandos sao para o PowerShell. Copie uma linha por vez.
+
+
+PARTE 1 - COLETA 1 (o que voce tem hoje). Faca hoje.
+----------------------------------------------------
+
+1.1 Backup (nada e apagado; so copia)
+
+  $destino = "$HOME\Desktop\BACKUP-TCC-2026-10-12"
+  robocopy "$HOME\Desktop\tcc" "$destino\tcc" /E /XD venv .venv __pycache__ .pytest_cache /R:1 /W:1
+  robocopy "C:\execucoes" "$destino\execucoes" /E /R:1 /W:1
+  tar -a -c -f "$HOME\Desktop\BACKUP-TCC-2026-10-12.zip" -C "$HOME\Desktop" "BACKUP-TCC-2026-10-12"
+
+  Confira: git -C "$destino\tcc" log --oneline -1
+  Deve mostrar: 54910fc Conclusao da coleta: tres repeticoes completas
+  Suba o arquivo BACKUP-TCC-2026-10-12.zip para o Google Drive ou um pendrive.
+  (Nao use Compress-Archive: ele pula a pasta .git.)
+
+1.2 Colocar esta pasta na Area de Trabalho
+
+  Expand-Archive -Path "$HOME\Downloads\tcc-v2.zip" -DestinationPath "$HOME\Desktop"
+  Test-Path "$HOME\Desktop\tcc-v2\orquestrador.py"
+
+  Deve responder True. (Se o zip estiver em outra pasta, troque o caminho.
+  Nao use "Extrair tudo" do Windows: ele cria tcc-v2\tcc-v2.)
+
+1.3 Reavaliar a coleta 1 com o instrumento auditado (nao gasta cota)
+
+  cd "$HOME\Desktop\tcc-v2"
+  & "$HOME\Desktop\tcc\venv\Scripts\Activate.ps1"
+
+  (Se aparecer erro de "execucao de scripts desabilitada", rode
+  Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass e repita a linha
+  anterior. Vale so para esta janela.)
+
+  python -m pytest validacao_oraculo -q -p no:cacheprovider
+
+  Deve terminar com: 42 passed
+
+  python reavaliar_v1.py --todas
+
+  Leva de 30 a 60 minutos. No final aparecem duas tabelas e estas linhas:
+    Commits conferidos contra estados.csv: 54/54
+    Medicoes com instrumento invalido: 0
+  As tabelas devem ser iguais as da mensagem do Claude. Se algum numero for
+  diferente, pare e mande o arquivo reavaliacao-v1\resumo.txt.
+
+  Guarde o resultado junto com o backup:
+
+  $destino = "$HOME\Desktop\BACKUP-TCC-2026-10-12"
+  robocopy "$HOME\Desktop\tcc-v2\reavaliacao-v1" "$destino\reavaliacao-v1" /E /R:1 /W:1
+
+1.4 Registrar esta pasta no Git
+
+  git init
+  git add -A
+  git commit -m "Instrumento v2 auditado"
+  git tag INSTRUMENTO-V2
+
+  (Se o Git pedir nome e e-mail, rode git config --global user.name "Seu Nome"
+  e git config --global user.email "seu@email", e repita o commit.)
+
+1.5 Nunca mais rode o orquestrador.py da pasta tcc. Nao apague C:\execucoes.
+
+
+PARTE 2 - COLETA 2 (rodar do zero, em paralelo com a escrita)
+-------------------------------------------------------------
+
+A coleta 2 roda de dentro da pasta tcc-v2, com a mesma venv da coleta 1.
+Toda vez que abrir uma janela nova do PowerShell, rode antes:
+
+  cd "$HOME\Desktop\tcc-v2"
+  & "$HOME\Desktop\tcc\venv\Scripts\Activate.ps1"
+
+(Se esquecer, o orquestrador recusa comecar e avisa; nada e gasto.)
+
+2.1 Conferir o agente (uma vez). Gasta uma fracao minima da cota.
+
+  claude --version
+  notepad "$HOME\.claude\settings.json"
+
+  No settings.json devem estar effortLevel "medium" e, em "env",
+  DISABLE_AUTOUPDATER "1", como na coleta 1. Se estiver diferente, deixe
+  assim antes do passo 2.3. Depois do 2.3, nao mude nada ate o fim da coleta 2.
+
+  python orquestrador.py --verificar-agente
+
+  Deve terminar sem FALHA e mostrar uma linha "modelos: ...". Copie essa
+  linha para o seu caderno de registro.
+
+2.2 Ensaio sem cota (agente falso; nada vai para a coleta)
+
+  python orquestrador.py --simulado --repeticoes 1
+
+  Leva de 1 a 5 minutos e deve terminar com "Repeticoes 1 a 1 concluidas.".
+  A aplicacao falsa nao importa ("importa=nao"); isso e esperado no ensaio.
+
+2.3 Congelar (uma vez, antes da primeira repeticao real)
+
+  git add -A
+  git commit -m "Coleta 2 congelada"
+  git tag EXPERIMENTO-V2-CONGELADO
+  python -m pip freeze > requirements-congelado.txt
+  python manifesto.py
+
+  (Se o commit disser "nothing to commit", tudo bem: siga para o tag.)
+
+2.4 Evitar que o PC durma durante as execucoes (deixe na tomada)
+
+  powercfg /change standby-timeout-ac 0
+  powercfg /change hibernate-timeout-ac 0
+
+  Se o PC desligar ou a janela fechar no meio, nada se perde: rode a linha
+  de retomada (2.5); edicoes pela metade sao descartadas automaticamente.
+
+2.5 Rodar
+
+  python orquestrador.py --inicio 1 --repeticoes 10
+
+  Quando a cota acabar, o programa para e mostra uma linha comecando com
+  "python orquestrador.py --continuar ...". Quando a cota renovar, rode
+  EXATAMENTE essa linha. Nada se perde e nada e refeito a toa.
+
+  Se aparecer "ERRO: a area da repeticao N ja existe", voce esqueceu o
+  --continuar. Nada foi apagado; rode com --continuar.
+
+2.6 Backup depois de cada sessao
+
+  $destino = "$HOME\Desktop\BACKUP-TCC-2026-10-12"
+  robocopy "$HOME\Desktop\tcc-v2" "$destino\tcc-v2" /E /XD __pycache__ .pytest_cache /XF .orquestrador.trava /R:1 /W:1
+  robocopy "C:\execucoes-v2" "$destino\execucoes-v2" /E /R:1 /W:1
+
+  A segunda linha copia coleta\, o manifesto e o requirements-congelado.txt.
+  De vez em quando, suba a pasta BACKUP-TCC-2026-10-12 para o Drive.
+
+2.7 Regra de decisao (ja registrada em metodologia\protocolo-execucao.md)
+
+  Ate 07/11/2026, 23h59:
+  - 5 ou mais repeticoes completas da coleta 2 -> o TCC usa a coleta 2;
+  - menos de 5 -> o TCC usa a coleta 1 reavaliada; a coleta 2 vai para
+    o apendice.
+  Repeticao completa = M0 a M5, E1 e E2 congelados e medidos, todos com
+  instrumento valido. Para contar, na pasta tcc-v2:
+
+  python contar_completas.py
+
+  A ultima linha mostra "Repeticoes completas: N".
+
+
+O QUE NAO FAZER
+---------------
+- Nao rodar dois orquestradores ao mesmo tempo (uma janela so). Se tentar,
+  o segundo recusa e avisa.
+- Nao editar nada dentro de tcc-v2 depois do tag EXPERIMENTO-V2-CONGELADO.
+- Nao trocar effortLevel, modelo ou versao do Claude Code durante a coleta 2.
+- Nao apagar coleta\, C:\execucoes-v2, a pasta tcc ou C:\execucoes.
+- Nao juntar dados da coleta 1 com os da coleta 2.
+
+
+ARQUIVOS DESTA PASTA
+--------------------
+reavaliar_v1.py          reavalia a coleta 1 (Parte 1)
+orquestrador.py          conduz a coleta 2 (Parte 2)
+medir.py                 medidor v2 (configuracao fixa, supressoes contadas)
+oracle\                  suite auditada (55, 64 e 80 testes) e oraculo
+validacao_oraculo\       42 cenarios que validam o oraculo
+config\                  configuracao fixa de Pylint, Bandit e coverage
+artefatos\               especificacao v2, E1, E2, classificacao
+metodologia\             protocolo da coleta 2 e relatorio da auditoria
+orq\                     agente e funcoes de medicao do orquestrador
+manifesto.py             registra versoes e hashes antes da coleta 2
+contar_completas.py      conta as repeticoes completas (regra de decisao)

@@ -1,0 +1,5 @@
+# Configuracao fixa do instrumento: os padroes do Pylint 4.0.8.
+# Usada com --rcfile, impede que arquivos de configuracao deixados na pasta
+# avaliada (.pylintrc, pyproject.toml, setup.cfg) mudem a medicao ou o
+# relatorio entregue ao agente.
+[MAIN]

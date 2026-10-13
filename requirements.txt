@@ -1,0 +1,20 @@
+# Versoes fixadas da coleta 1 (manifesto de 09/09/2026), mantidas na coleta 2.
+# Antes de congelar a versao 2, registre o ambiente completo com:
+#     python -m pip freeze > requirements-congelado.txt
+
+# Dependencias da aplicacao produzida pelo agente.
+fastapi==0.115.5
+uvicorn==0.32.1
+SQLAlchemy==2.0.36
+pydantic==2.13.4
+
+# Suite de testes e oraculo.
+pytest==9.1.1
+hypothesis==6.168.0
+httpx==0.28.1
+coverage==7.16.0
+
+# Analise estatica.
+pylint==4.0.8
+radon==6.0.1
+bandit==1.9.4

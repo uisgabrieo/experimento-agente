@@ -1,0 +1,4 @@
+# Configuracao fixa do instrumento: os padroes do coverage 7.16.0.
+# Usada com --rcfile, impede que um .coveragerc, setup.cfg ou pyproject.toml
+# deixado na pasta avaliada exclua arquivos ou linhas da medicao.
+[run]

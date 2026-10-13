@@ -1,0 +1,20 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+.coverage
+.coverage.*
+.pytest_cache/
+.hypothesis/
+
+# Dados e saidas: ficam fora do commit congelado do instrumento.
+coleta/
+simulacao/
+reavaliacao-v1/
+manifesto-experimento.json
+requirements-congelado.txt
+*.tmp
