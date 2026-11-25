@@ -1,0 +1,24 @@
+I read the full source against the frozen spec. Here's what I found.
+
+## Verification performed
+
+I re-derived the spec mapping module by module rather than trusting the clean reports:
+
+- **Schema (§2.1)** — all 8 tables and every mandated column present in `app/modelos.py`, names exact; extra columns (`criado_em`) are permitted by the section.
+- **Temporal conventions (§4.1)** — `app/tempo.py` implements half-open intervals (`sobrepoem` uses strict `<` on both sides, so touching intervals don't overlap), Monday-00:00-UTC weeks (`inicio_semana`), per-week hour splitting (`horas_por_semana`), and civil-day coverage with positive duration (`dias_cobertos`). Boundary cases are handled in the permissive direction the spec demands: exactly 11h of rest passes (`DESCANSO_MINIMO_HORAS - EPSILON_HORAS`), exactly 44h/week passes, exactly 6 consecutive days passes (`sequencia_excedente` triggers only on `len > maximo`).
+- **INV1–INV8** — `app/regras.py`. The adjacent-pair shortcut in `validar_inv1_inv2` is sound: sorting by start means any overlap surfaces in some adjacent pair, and absent overlaps the intervals are also sorted by end, so the minimum gap is adjacent.
+- **Atomicity (RF25, RF34)** — `servicos.transacao` commits on success and rolls back the whole transaction on `ErroDeNegocio`. `aprovar_troca` swaps, flushes, then revalidates both professionals, so a violation leaves neither plantão altered; `aceitar_convocacao` leaves the substitution in `convocado`.
+- **Queue invariant (INV6)** — `convocar_proximo` promotes position 1 then `reindexar_fila` renumbers the remaining `aguardando` rows 1..n, which is equivalent to "decrement by one" given contiguity; `validar_inv6` asserts it afterwards in all three mutating paths.
+- **Filters (§4.4)** — `repositorio.listar_turnos` (`data_fim > de`, `data_inicio < ate`) and `tempo.dentro_do_periodo` agree and match the spec in all four de/ate combinations.
+- **RF37/RF38** — four exception handlers in `main.py` guarantee `detail` on every 4xx path including unrouted 404s and 405s; `/saude` returns the literal object.
+
+## Result
+
+**No changes made.** Pylint is 10.00/10, complexity and security scans are empty, 55/55 behavioral tests pass, and the invariant list is empty — and my independent read found no divergence from the specification to correct. Dimensions are also within contract: 1921 lines in `app/` (target 1100–2600) across 21 modules (minimum 6).
+
+Two things I deliberately left alone, since changing them would alter behavior the spec doesn't mandate:
+
+- `limite` above 100 returns **422** rather than clamping to 100. §RF04 says "o máximo é 100" without specifying the over-limit response; rejecting is the standard FastAPI reading.
+- `validar_inv8`, `DadosInvalidos`, and the `ESTADOS_*`/`TIPOS_AUSENCIA` tuples are unreferenced. They're documentation-value definitions that pylint doesn't flag; removing them is churn with no correctness gain.
+
+One limitation worth stating plainly: the sandbox denied every `python` invocation, so I could not execute a runtime probe of the flows — this iteration's verification is static review plus the supplied test results, not a fresh run by me.

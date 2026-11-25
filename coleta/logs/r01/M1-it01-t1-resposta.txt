@@ -1,0 +1,28 @@
+Correções aplicadas, todas sem alterar comportamento funcional. Resumo por ocorrência do relatório:
+
+**`app/banco.py`**
+- `R0903`: `# pylint: disable=too-few-public-methods` na `Base` (DeclarativeBase não tem métodos públicos por natureza).
+- `C0103`: `SessionLocal` → `SESSAO_LOCAL`.
+- `W0718` + `B110` (bandit): o `try/except Exception: pass` virou `if not DATABASE_URL.startswith("sqlite"): return` + `with suppress(sqlite3.Error, AttributeError)`. Sem `except` amplo e sem `try/except/pass`.
+- `C0415`/`W0611`/`R0401` (ciclo `banco → modelos`): `criar_tabelas()` foi movida para `app/modelos.py` (onde `Base` e os mapeamentos já existem) e `main.py` passou a importá-la de lá. O import local desapareceu e o ciclo foi eliminado.
+
+**`app/esquemas.py`**
+- `C0115` (20x): docstring em todas as classes.
+- `C0325`: `if not (A <= x <= B)` → `if not A <= x <= B`.
+- Os validadores duplicados de `nome`/`email` foram extraídos para funções reaproveitadas via `Annotated[... , AfterValidator(...)]` (aliases `Nome`, `NomeEspecialidade`, `Email`, `CargaSemanal`, `Id`). As restrições de `Field` continuam sendo aplicadas antes do validador, então as mesmas entradas continuam gerando 422.
+
+**`app/modelos.py`**
+- `C0116`: docstring em `tem_especialidade`.
+- `R0903` (7x): disable pontual em cada classe mapeada.
+
+**`app/repositorio.py`**
+- `C0116` (14x): docstrings. Os seis `obter_*` passaram a delegar a um helper `_obter(sessao, modelo, rotulo, chave)`, e `trocas_pendentes_do_plantao`/`trocas_do_plantao` foram unificados em `trocas_do_plantao(..., estado=None)` (chamada em `servicos.py` passa `C.TROCA_SOLICITADA`, mesmo resultado).
+- `E1102` (3x): `select(func.count())` → `select(count())` com `from sqlalchemy.sql.functions import count` — é a mesma classe que `func.count` resolve, gerando o mesmo `count(*)`, mas sem o falso positivo.
+- `R0913`/`R0917` em `listar_turnos`: disable pontual (a assinatura é o contrato dos filtros da seção 4.4).
+
+**`app/rotas/*`**
+- `C0116` (4x): docstrings nos endpoints de consulta; `R0913`/`R0917` em `listar_turnos` com disable pontual (os parâmetros são exigidos pelo FastAPI/RF10).
+
+Dimensão: `app/` ficou com **2589 linhas** (dentro de 1100–2600).
+
+Uma ressalva honesta: neste ambiente os comandos `python -m pylint`, `bandit` e `pytest` foram bloqueados por permissão (só `python --version` passou), então **não consegui reexecutar a verificação** — a revisão acima é estática. Se puder liberar/rodar `python -m pylint app`, `bandit -r app` e a suíte de 55 testes, confirmo o resultado.

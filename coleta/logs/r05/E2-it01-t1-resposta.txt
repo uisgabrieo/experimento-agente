@@ -1,0 +1,20 @@
+Implementação concluída. Resumo do que foi feito:
+
+**Novo módulo `app/seguranca.py`**
+- `chaves_configuradas()` lê `CHAVE_COORDENADOR` / `CHAVE_PROFISSIONAL` **a cada requisição** (não no import), mapeando chave → perfil. Nenhuma definida ⇒ autenticação desativada; só as variáveis definidas valem como chave.
+- `perfil_da_requisicao()`: sem `X-Auth-Key` ⇒ `NaoAutenticado` (401); chave desconhecida ⇒ `Proibido` (403). Ambas herdam de `ErroDeDominio`, então saem com `detail` pelos tratadores já existentes (RF37).
+- `exigir_coordenador()`: dependência que recusa o perfil `profissional` com 403 e libera `coordenador` ou `desativada`.
+- `MiddlewareDeAcesso` (BaseHTTPMiddleware): libera `/saude`, resolve o perfil, guarda em `request.state.perfil` e, **depois** da resposta, grava a auditoria. Falha de autenticação também é auditada (perfil `desconhecido`, já que não há chave válida — a spec só define os três valores para requisições autenticadas).
+- `registrar_auditoria()` grava apenas métodos de escrita (POST/PUT/PATCH/DELETE), em sessão própria, sem passar pelo middleware — logo não há recursão.
+
+**Demais mudanças**
+- `app/modelos.py`: tabela `auditoria` com `id, metodo, caminho, perfil, codigo_resposta, instante` (instante em `DataHoraUTC`, serializado em ISO 8601 UTC).
+- `app/esquemas.py`: `AuditoriaResposta`.
+- `app/servicos.py`: `listar_auditoria()` paginado.
+- `app/rotas.py`: `GET /auditoria` → `{itens, total}` com `dependencies=SO_COORDENADOR`; mesma dependência em `POST /profissionais`, `POST /turnos`, `DELETE /turnos/{id}`, `POST /trocas/{id}/aprovacao` e `POST /trocas/{id}/rejeicao`.
+- `app/main.py`: middleware registrado em `criar_app()`.
+- `verificacao/smoke.py`: consulta de `/auditoria` ao final.
+
+**Nota sobre a restrição de dimensão:** com o novo módulo o projeto passaria de 2810 linhas, acima do máximo de 2600. Compactei comentários de seção, docstrings e linhas em branco redundantes (nenhuma mudança de lógica — os diffs de `tempo.py`, `invariantes.py`, `esquemas.py`, `servicos.py` e `rotas.py` são só cosméticos, fora os trechos novos). Total atual: **2597 linhas em `app/`, 12 módulos**.
+
+**Verificação:** este ambiente recusa executar Python, então a conferência foi estática (leitura dos diffs e revisão de importações/ciclos — `seguranca` não importa `rotas`, sem ciclo). Não rodei o smoke nem testes.

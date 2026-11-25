@@ -1,0 +1,39 @@
+Implementação completa. Resumo do que foi entregue:
+
+## Estrutura (`app/`, 2527 linhas, 19 módulos)
+
+| Módulo | Papel |
+|---|---|
+| `config.py` | `DATABASE_URL` (padrão `sqlite:///./escala.db`) |
+| `db.py` | engine, sessão por requisição, `Base`, PRAGMA de FK |
+| `tempo.py` | convenções da seção 4.1: UTC, semana segunda→segunda, intervalos semiabertos, dias civis |
+| `models.py` | as 8 tabelas com os nomes exatos da seção 2.1 |
+| `schemas.py` | Pydantic v2; validações da seção 3 → 422 |
+| `regras.py` | INV1–INV8 isoladas e testáveis |
+| `servicos.py` | operações de domínio |
+| `erros.py` | todo 4xx com `detail` (RF37) |
+| `rotas/` | 8 roteadores por recurso |
+| `main.py` | objeto `app` |
+
+## Decisões centrais
+
+**Validação por conjunto, não por delta.** `regras.validar_escala` recebe o conjunto *completo* de plantões confirmados propostos para um profissional e verifica INV1/2/3/4/5/7 sobre ele. Isso dá a atomicidade de RF25 de graça: a aprovação de troca monta os dois conjuntos hipotéticos (cada um cedendo o próprio plantão e assumindo o turno do outro), valida ambos, e só então permuta.
+
+**Transação.** Nenhum serviço faz `commit` — só as rotas, no final. Qualquer violação levanta 409 antes disso e a transação inteira é descartada. É isso que garante o "nenhum plantão deve ser criado e a substituição permanece `convocado`" de RF34.
+
+**INV8** é recalculado do zero (`recalcular_horas_extras`) após cada alocação, cancelamento e troca, em vez de incrementado — elimina deriva acumulada.
+
+**INV6** é mantido por `renumerar_fila`, chamado após a convocação (RF22) e após o cancelamento (RF33).
+
+Horas são computadas em segundos inteiros internamente, evitando ruído de ponto flutuante nas comparações de 44h e 11h; a conversão para horas acontece só na saída.
+
+## Dois pontos de ambiguidade que resolvi, vale conferir
+
+- **RF36** retorna um array puro (`[{...}]`), não `{itens, total}` — a spec pede esse envelope explicitamente em RF04/RF10/RF23/RF29 e o omite aqui.
+- **RF23** `horas_periodo` soma a duração **integral** dos plantões que tocam o período, sem recortar nas bordas; a seção 4.4 define pertinência, não proporcionalidade.
+
+Também inclui regras não exigidas mas defensáveis: POST com `especialidade_id`/`turno_id` inexistente → 404, e inscrição duplicada na mesma fila → 409.
+
+## Não verificado por execução
+
+Não consegui rodar nada: toda invocação de `python`/`pip` neste ambiente foi bloqueada pelo gate de permissão (4 tentativas, Bash e PowerShell). O código foi revisado estaticamente — imports, ciclos entre módulos, resolução de relacionamentos SQLAlchemy e uso de cada símbolo — mas **não foi importado nem exercitado**. Se liberar a execução de `python`, rodo `uvicorn`/um smoke test do fluxo completo e corrijo o que aparecer.

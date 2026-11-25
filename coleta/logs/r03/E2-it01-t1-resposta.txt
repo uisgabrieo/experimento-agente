@@ -1,0 +1,18 @@
+Implementation is complete. Here's what changed:
+
+**Autenticação (`app/autenticacao.py`, novo)**
+- `X-Auth-Key` lido via `Header`; chaves resolvidas a cada requisição de `CHAVE_COORDENADOR`/`CHAVE_PROFISSIONAL` (`app/config.py`), tratando string vazia como não definida.
+- Nenhuma das duas definida → autenticação desativada, perfil `desativada`, comportamento anterior intacto. Ao menos uma definida → só as chaves das variáveis definidas valem; cabeçalho ausente dá **401**, chave desconhecida dá **403** (novos helpers `nao_autorizado`/`proibido` em `app/erros.py`, mantendo `detail`).
+- `app/main.py` inclui `saude.roteador` sem dependência e todos os outros roteadores com `Depends(exigir_autenticacao)`.
+- `PerfilCoordenador` adicionado em `POST /profissionais`, `POST /turnos`, `DELETE /turnos/{id}`, `POST /trocas/{id}/aprovacao` e `POST /trocas/{id}/rejeicao` — perfil profissional recebe 403; com autenticação desativada passam normalmente.
+
+**Auditoria (`app/auditoria.py` + `app/routers/auditoria.py`, novos)**
+- Tabela `auditoria` (`id, metodo, caminho, perfil, codigo_resposta, instante`) em `app/models.py`, criada por `create_all`; `instante` em UTC ingênuo, serializado em ISO 8601 com `Z`.
+- Middleware ASGI grava uma linha por requisição `POST/PUT/PATCH/DELETE`, com o código final da resposta — inclusive 401/403/404/409/422. `perfil` recebe `coordenador`/`profissional` conforme a chave, `desativada` quando a autenticação está desligada e `desconhecido` quando a chave é inválida ou ausente com autenticação ativa. Requisições a `/auditoria` não são auditadas.
+- Escrevi o middleware direto na interface ASGI em vez de `BaseHTTPMiddleware` porque assim a gravação só ocorre depois de a rota encerrar e liberar sua sessão — com `BaseHTTPMiddleware` a sessão da requisição ainda poderia estar aberta sobre a mesma conexão SQLite (`StaticPool` em memória). Falha na gravação faz rollback e não afeta a resposta.
+- `GET /auditoria` devolve `{itens, total}` com `limite`/`deslocamento`, restrita ao coordenador quando a autenticação está ativa e aberta quando desativada.
+
+Dois pontos para você decidir:
+
+1. **Não consegui executar nada** — este sandbox recusa qualquer invocação de `python` (inclusive `python -V` e `compileall`), então a verificação foi por revisão de código, não por execução. Escrevi e rodaria um roteiro cobrindo os dois modos (desativado/ativo), 401/403 por perfil e o conteúdo de `/auditoria`; se você liberar a execução, eu rodo.
+2. **Dimensão-alvo:** `app/` está em 2907 linhas brutas, acima do teto de 2600 da seção 2 (desconsiderando linhas em branco são ~2310, dentro da faixa). O código já estava em ~2600 brutas antes desta mudança, que somou ~310. Não comprimi documentação de módulos alheios à mudança para raspar linhas; se o seu critério de contagem é bruto, me diga e eu enxugo docstrings/comentários até caber.

@@ -1,0 +1,23 @@
+Feito. Os relatórios desta iteração vieram todos limpos — pylint 10.00/10, nenhuma ocorrência de complexidade ou segurança, 55/55 testes aprovados, `Invariantes violadas: []`. Não havia, portanto, problema funcional apontado para corrigir.
+
+Como "corrigir os problemas apontados" não tinha alvo, fiz uma auditoria estática do código contra a especificação e corrigi os três defeitos reais que encontrei — todos de qualidade, nenhum de comportamento:
+
+| Arquivo | Problema | Correção |
+|---|---|---|
+| `app/db.py:64` | `_argumentos_do_engine` reimplementava a detecção de SQLite/memória que `Configuracao` já expõe, deixando `config.is_sqlite_memoria` como código morto | Passa a usar `config.is_sqlite` e `config.is_sqlite_memoria`; parâmetro `url` redundante removido |
+| `app/esquemas.py:129` | `VinculoEspecialidadeResposta` nunca referenciado (a rota do RF06 devolve dict com campo extra `profissional`) | Classe removida — corpo da resposta intacto |
+| `app/erros.py:35` | `DadosInvalidos` nunca levantado; os 422 vêm todos do Pydantic via `RequestValidationError` | Classe removida |
+
+Também corrigi "um unica conexao" → "uma unica conexao" no comentário do `StaticPool`.
+
+Dimensão: 2560 linhas em `app/` (antes 2572), dentro de 1100–2600, com 11 módulos.
+
+**O que a auditoria verificou e considerou correto** (sem alterações):
+
+- **INV1/INV2** — a checagem só compara pares adjacentes, mas a consulta ordena por `Turno.data_inicio`, e nessa ordenação existir qualquer sobreposição implica existir uma adjacente; INV1 é avaliada antes de INV2, então INV2 opera sobre intervalos já disjuntos e ordenados. Correto.
+- **Convenções da seção 4.1** — semiabertura em `sobrepoe`, 11h exatas válidas via `< 11 - EPSILON`, 44h exatas válidas, semana ancorada na segunda 00:00 UTC, rateio de horas na virada de semana, e `dias_do_intervalo` contando os dois dias civis na travessia da meia-noite.
+- **Atomicidade do RF25/RF34** — `rollback()` precede o `Conflito` nos caminhos que já tinham feito `flush`; os caminhos que recusam antes do `flush` (inativo, duplicado, ausência sobreposta) não têm efeito pendente a desfazer, e a substituição permanece `convocado` em caso de falha.
+- **INV6** — a convocação mantém o convocado na posição 1 e desloca os `aguardando`, que seguem formando 1..n; nova inscrição usa o máximo apenas entre `aguardando`.
+- **RF37** — os quatro tratadores cobrem `ErroDeDominio`, `RequestValidationError` e ambos os `HTTPException`, sempre com `detail`.
+
+Uma ressalva: não consegui reexecutar a suíte para confirmar — este ambiente recusa execução de Python, então a verificação foi estática. As três remoções são de símbolos sem nenhuma referência no repositório (confirmado por busca) e a refatoração do `db.py` usa propriedades já existentes e testadas, então o comportamento HTTP é idêntico.

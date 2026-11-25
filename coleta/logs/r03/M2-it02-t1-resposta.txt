@@ -1,0 +1,15 @@
+Changes complete. Summary of what I fixed:
+
+**1. `W0012` — malformed pylint pragma (`app/routers/comum.py:92`)**
+The trailing parenthetical on the `# pylint: disable=not-callable` line was being parsed as additional message names. The rationale is now a separate comment line above the pragma.
+
+**2. `R0903` — too-few-public-methods (`app/db.py`, `app/models.py`)**
+The `[DESIGN] min-public-methods=0` in `.pylintrc` is evidently not being picked up by the run that produced the report (the message still shows `0/2`), so the suppression is now inline and local: a module-level pragma in `app/models.py` (all declarative models) and a class-level pragma on `Base` in `app/db.py`, each with a one-line reason. `.pylintrc` was left as-is.
+
+**3. `R0801` — duplicate-code (both pairs)**
+- `app/regras.py` ↔ `app/routers/profissionais.py`: extracted `consulta_plantoes_confirmados(profissional_id)` in `regras.py`, returning the `Select[tuple[Plantao, Turno]]` so callers can add their own narrowing. `alocacoes_confirmadas` and the RF23 escala route (which appends the `[de, ate)` filters from §4.4) both use it.
+- `app/routers/plantoes.py` ↔ `app/routers/substituicoes.py`: extracted `obter_turno_e_profissional(sessao, turno_id, profissional_id)` into `routers/comum.py`, preserving the same 404 messages and the same lookup order (turno first, then profissional).
+
+**Line budget.** The refactor pushed `app/` from 2621 to 2648 raw lines — already above the 2600 ceiling in §2 before this iteration, though the report didn't flag it. I brought it to **2599** without removing documentation or behavior: collapsed the blank lines between section-divider comments and the declarations they label, dropped the redundant `__all__` in `app/routers/__init__.py` (the submodule imports already expose it; nothing does `import *`), and turned the six-branch `if violacao: return` chain in `validar_escala` into a tuple loop. The first two checks still receive the original (unsorted) `alocacoes`, so the `detail` text is byte-identical to before, and the check precedence is unchanged.
+
+**Verification caveat:** I could not run anything — `python`, `pylint`, and the smoke script were all denied by the sandbox in this non-interactive session, so the 55 behavior tests and a fresh pylint pass are unverified by me. I confirmed by inspection that every import left in the touched modules is still used (`select`, `nao_encontrado`, `EstadoPlantao`, `Turno`, `Profissional`, `Plantao`), that `sqlalchemy.Select` is a valid 2.x top-level export and its subscript is deferred by `from __future__ import annotations`, and that `comum.py` → `models.py` introduces no import cycle. Changes are in the working tree, uncommitted.

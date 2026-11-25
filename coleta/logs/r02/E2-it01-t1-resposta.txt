@@ -1,0 +1,23 @@
+Implementado. Resumo do que mudei:
+
+**Novos módulos**
+
+- `app/auth.py` — autenticação por perfil. `CHAVE_COORDENADOR`/`CHAVE_PROFISSIONAL` são lidas **a cada requisição** (`estado_autenticacao()`), então ativar/desativar via ambiente funciona sem reimportar a app. Nenhuma definida → autenticação desativada e comportamento anterior preservado; ao menos uma definida → só as chaves efetivamente definidas valem. Cabeçalho ausente → `401` (`NaoAutenticado`), chave não reconhecida → `403` (`Proibido`), ambos passando pelo tratador existente que garante `detail` (RF37). Dependências: `autenticar` (global) e `exigir_coordenador`.
+- `app/auditoria.py` — middleware **ASGI puro** (não `BaseHTTPMiddleware`) que grava uma linha por requisição de escrita (`POST/PUT/PATCH/DELETE`), com o status final — sucesso, 4xx ou 5xx. Escolhi ASGI puro de propósito: assim a gravação ocorre depois que a app interna retorna, isto é, depois do encerramento da sessão da requisição — escrever antes disputaria bloqueio com a transação de leitura ainda aberta no SQLite. Grava em sessão própria (`SESSAO_LOCAL`), com rollback silencioso em falha para não quebrar a resposta. Caminhos `/auditoria` são ignorados em qualquer método.
+- `app/routers/auditoria.py` — `GET /auditoria` com `{itens, total}`, paginação padrão (`limite`/`deslocamento`) e filtros opcionais `perfil`, `metodo`, `de`, `ate`; restrita ao coordenador via `exigir_coordenador` (aberta quando a autenticação está desativada).
+
+**Alterações**
+
+- `models.py`: tabela `auditoria` (`id`, `metodo`, `caminho`, `perfil`, `codigo_resposta`, `instante`), instante em UTC *naive* como o resto do sistema.
+- `schemas.py`: `AuditoriaSaida` (instante serializado em ISO 8601 com `+00:00`).
+- `main.py`: `dependencies=[Depends(autenticar)]` na app + instalação do middleware.
+- `exigir_coordenador` aplicado a `POST /profissionais`, `POST /turnos`, `DELETE /turnos/{id}`, `POST /trocas/{id}/aprovacao`, `POST /trocas/{id}/rejeicao`.
+- `LEIA-ME.md` atualizado; `tests/test_auth_auditoria.py` cobre 401/403, perfil único definido, rotas de coordenador, perfis `desativada`/`desconhecido` e auditoria de escritas bem-sucedidas e recusadas.
+
+**Decisões que a mudança não especificava**
+
+- `perfil` registra `desconhecido` quando a autenticação está ativa mas a chave é ausente/inválida (casos 401/403), já que nesses casos não há perfil identificado.
+- `GET /saude` e os recursos de documentação do FastAPI (`/docs`, `/redoc`, `/openapi.json`) ficam livres do cabeçalho; todas as outras rotas, inclusive `GET /`, exigem.
+- Perfil é checado antes da validação do corpo, logo um `POST /profissionais` com perfil `profissional` e corpo inválido dá `403`, não `422`.
+
+**Não verificado:** o sandbox recusou a execução de `pytest`/`python` (`This command requires approval`), então não rodei a suíte — nem a existente nem os testes novos. Se você liberar a execução, eu rodo e corrijo o que aparecer.

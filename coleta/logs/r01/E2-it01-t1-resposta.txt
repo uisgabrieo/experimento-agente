@@ -1,0 +1,24 @@
+Implementei a mudança. Resumo do que foi feito:
+
+**Novos módulos**
+
+- `app/seguranca.py` — lê `CHAVE_COORDENADOR` / `CHAVE_PROFISSIONAL` a cada requisição (valor vazio conta como não definida, como já era feito com `DATABASE_URL`). Expõe `exigir_autenticacao` (retorna o perfil; `401` sem cabeçalho, `403` com chave desconhecida) e `exigir_coordenador`. Com as duas variáveis ausentes, ambas devolvem o perfil `desativada` e nada é bloqueado.
+- `app/auditoria.py` — intermediário HTTP registrado na borda da aplicação (`app/main.py:39`), logo acima do `ExceptionMiddleware`, de modo que ele observa o código final da resposta, inclusive os `401`, `403`, `409` e `422` gerados pelas dependências e regras. Grava `POST/PUT/PATCH/DELETE` em sessão própria e exclui os caminhos sob `/auditoria`.
+- `app/rotas/auditoria.py` — `GET /auditoria` com `{itens, total}` (`limite`/`deslocamento`), sob `exigir_coordenador`.
+
+**Alterações**
+
+- `app/modelos.py` — tabela `auditoria` (`id`, `metodo`, `caminho`, `perfil`, `codigo_resposta`, `instante`), com `instante` em UTC naive como as demais datas; `create_all` a cria em bancos já existentes.
+- `app/rotas/__init__.py` + `app/main.py` — cada roteador passou a ser declarado junto de suas dependências; todos recebem `exigir_autenticacao`, exceto o de `/saude`.
+- `exigir_coordenador` aplicado a `POST /profissionais`, `POST /turnos`, `DELETE /turnos/{id}`, `POST /trocas/{id}/aprovacao` e `POST /trocas/{id}/rejeicao`.
+- `app/esquemas.py` — `AuditoriaResposta`; `LEIA-ME.md` documenta as variáveis, as rotas restritas e a auditoria.
+
+**Decisões que a especificação não fixa**
+
+- Perfil registrado quando a autenticação está ativa mas a chave é ausente ou inválida: `desconhecido` (os três valores previstos não cobrem esse caso, que precisa ser auditado por ser `401`/`403` em operação de escrita).
+- Com a autenticação desativada, as restrições de coordenador também não se aplicam — é o que “as rotas existentes mantêm o comportamento anterior” exige.
+- Chave faltando em rota de coordenador retorna `401` (não `403`), pois a autenticação é avaliada antes da autorização.
+
+**Não verificado por execução:** as duas ferramentas de shell recusaram qualquer invocação de Python além de `python --version` nesta sessão (pedido de aprovação em ambiente não interativo), então não consegui rodar nada. Deixei em `verificar_mudanca.py` um roteiro que cobre os cenários (autenticação desativada, ativa, só uma variável definida, auditoria de 201/409/401/403, ausência de auto-registro); rode `python verificar_mudanca.py` — ele sai com código 1 e lista as falhas, se houver. A revisão que fiz do código foi estática.
+
+Uma observação sobre a dimensão-alvo: `app/` está com 2947 linhas brutas e 2284 linhas não vazias. O repositório já estava em ~2648 brutas / ~2100 não vazias antes desta mudança, ou seja, a faixa de 1100–2600 só fecha na contagem sem linhas em branco — e nessa métrica continua dentro do limite.

@@ -1,0 +1,18 @@
+Correções aplicadas (verificação estática apenas — o ambiente não executa Python):
+
+**1. `E1102: func.count is not callable` (5 ocorrências em `app/servicos.py`)**
+Troquei `select(func.count())` pela função tipada `sqlalchemy.sql.functions.count`, importada como `contagem_sql` (`app/servicos.py:16`). O SQL gerado é idêntico (`count(*)`). `func.max` em `app/servicos.py:671` foi mantido, pois não é sinalizado.
+
+**2. `R0801: duplicate-code` (2 blocos)**
+Extraí os trechos repetidos para `app/invariantes.py`, de onde ambos os módulos passam a consumir:
+- `consulta_de_plantoes_confirmados(profissional_id)` — consulta base usada por `plantoes_confirmados` e por `escala_do_profissional` (RF23), que agora só adiciona o filtro temporal e a ordenação.
+- `fila_de_substituicao(sessao, turno_id)` — fila `aguardando` ordenada por posição, usada por `verificar_fila_de_substituicao` (INV6), `fila_do_turno` (RF36) e `_convocar_proximo_substituto` (RF22).
+
+Com isso `joinedload` ficou sem uso em `servicos.py` e foi removido do import.
+
+**3. `R0401: Cyclic import (app.db -> app.modelos)`**
+`criar_esquema()` dependia de um import local de `modelos` dentro de `db.py`, fechando o ciclo. Movi a função para o fim de `app/modelos.py` (que já importa `db`), onde todas as tabelas da seção 2.1 estão registradas no `metadata` por construção; `app/main.py` passou a importá-la de `.modelos`. `db.py` agora não referencia `modelos` em nenhum ponto.
+
+Comportamento funcional inalterado: nenhuma rota, código HTTP, consulta resultante ou regra de invariante foi modificada — apenas desduplicação, troca de uma função SQL equivalente e realocação de `criar_esquema`. As dimensões seguem na faixa exigida (~2570 linhas em `app/`, 11 módulos).
+
+Como não pude rodar pylint nem a suíte de testes aqui, essas três correções não estão validadas por execução — recomendo rodar `pylint app` e os 55 testes para confirmar o 10.00/10.

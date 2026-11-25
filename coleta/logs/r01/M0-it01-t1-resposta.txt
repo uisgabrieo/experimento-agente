@@ -1,0 +1,27 @@
+Implementação completa em `app/` — 21 módulos, 2553 linhas (dentro da faixa 1100–2600).
+
+**Estrutura**
+
+| Módulo | Papel |
+|---|---|
+| `config.py` | `DATABASE_URL` (padrão `sqlite:///./escala.db`) |
+| `constantes.py` | estados, tipos e limites das invariantes |
+| `tempo.py` | convenções da seção 4.1: semiabertos, semana seg 00:00 UTC, dias civis, filtros 4.4 |
+| `banco.py` | engine/sessão SQLAlchemy 2.x, `Base`, PRAGMA de FK |
+| `modelos.py` | as 8 tabelas da seção 2.1 com exatamente os nomes de coluna exigidos (+`criado_em`) |
+| `esquemas.py` | Pydantic v2; validações da seção 3 → 422; datas sempre UTC/ISO 8601 |
+| `repositorio.py` | consultas (incluindo filtros `de`/`ate` da 4.4) |
+| `regras.py` | INV1–INV8 e verificações prévias (RF14/RF20/RF21) |
+| `servicos.py` | escritas transacionais |
+| `rotas/` | 8 roteadores por recurso |
+| `main.py` | objeto `app` + handlers que garantem `detail` em todo 4xx |
+
+**Como as invariantes são garantidas:** cada operação de escrita roda dentro de um `with transacao(sessao)` — grava a mutação, dá `flush`, revalida INV1–INV5/INV7 dos profissionais afetados, recalcula `horas_extras` (INV8) e confere INV6 na fila; qualquer violação faz `rollback` completo e vira 409 com o motivo em `detail`. Isso cobre a atomicidade exigida em RF25 (permuta) e RF34 (aceite de convocação): em caso de recusa nada é alterado. A cobertura mínima é tratada como meta operacional (4.2), não como invariante.
+
+**Decisões em pontos onde a spec é omissa**
+- RF36 (`GET /turnos/{id}/substituicoes`) retorna lista simples ordenada por `posicao` — é o único endpoint de listagem onde a spec não diz `{itens, total}`.
+- RF23 `horas_periodo` é a soma das horas **recortadas** em `[de, ate)`; os `itens` são os plantões `confirmado` com sobreposição ao período (coincide com o total quando os turnos estão inteiramente dentro da janela).
+- `turno_id`/`profissional_id`/`especialidade_id` inexistentes em POSTs → 404; `limite > 100` → 422.
+- RF07 é idempotente: 204 mesmo se o vínculo já não existir; 409 apenas quando há plantão `confirmado` em turno que exige a especialidade.
+
+**Não verificado por execução:** toda tentativa de rodar `python` (versão, import do app, smoke test com TestClient) foi barrada por falta de aprovação neste ambiente, então o código não foi executado nem testado aqui — a revisão foi só por leitura. Se quiser, aprove um `python -c "import app.main"` e eu rodo um smoke test dos fluxos de RF13–RF22 e RF25/RF34. Nada foi commitado.

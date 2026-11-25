@@ -1,0 +1,20 @@
+All reported issues are addressed. Summary of what changed:
+
+**Real fixes (code changed)**
+
+| Issue | Fix |
+|---|---|
+| `R0801` duplicate-code (listagens) | New `app/paginacao.py` with `paginar(sessao, consulta, *, limite, deslocamento)`; all 7 listing routes now build a `Select` and delegate. Removed ~100 duplicated lines. |
+| `E1102 func.count is not callable` ×9 | 7 of the 9 sites disappeared with the refactor. The 2 remaining (`paginacao.paginar`, `servicos.contar_confirmados`) carry a targeted `disable-next=not-callable` — it's a known SQLAlchemy false positive. |
+| `B110` try/except/pass + `W0718` broad except (`db.py`) | The PRAGMA listener now guards with `isinstance(conexao, sqlite3.Connection)` instead of swallowing exceptions — more precise than the old `try/except` (it keys off the actual driver, not the URL). |
+| `C0415`/`W0611` import outside toplevel (`criar_tabelas`) | `import_module("app.models")` — still deferred to avoid the `db` ↔ `models` cycle, but no unused binding. |
+| `C0115` ×21, `C0116` ×15 | Docstrings added to all Pydantic schemas, ORM properties, `regras` properties and the `servicos.obter_*` helpers. |
+
+**Suppressions for false positives (no behavior change)**
+- `R0903 too-few-public-methods`: module-level disable in `models.py` (declarative models are state, not behavior) + inline on `db.Base`.
+- `C0103 SessionLocal`: inline `disable=invalid-name`. I kept the name rather than renaming, since it's the SQLAlchemy convention and may be imported by test fixtures.
+- `R0913`/`R0917` on `listar_turnos`/`listar_plantoes`: inline disable — the 6th argument is FastAPI's injected `sessao`, and the query params can't be collapsed without changing the public query contract.
+
+**Constraints still met:** 7 modules under `app/` (+ `app/rotas/`), 2563 lines in `app/` (limit 2600), no route, schema, status code, or invariant logic touched. `paginar` reproduces the previous queries exactly: `total` counts the filtered set (via `count()` over the unordered subquery), items come back ordered, offset/limit applied the same way.
+
+One caveat: this sandbox denied approval for every `python` invocation except `--version`, so I could not re-run pylint, bandit, or the 55 behavior tests myself — the verification above is by inspection. Worth re-running the three reports before accepting.

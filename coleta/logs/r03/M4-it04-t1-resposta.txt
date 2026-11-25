@@ -1,0 +1,24 @@
+## Situação
+
+Os relatórios desta iteração 4 não apontaram nenhum problema: pylint 10.00/10, complexidade sem ocorrências, segurança sem ocorrências, 55/55 testes aprovados e `Invariantes violadas: []`. Não havia, portanto, correção pedida explicitamente — fiz então uma auditoria estática do código contra a especificação congelada.
+
+## Auditoria
+
+Conferi item por item e não encontrei desvio funcional:
+
+- **Restrições técnicas** — `app/main.py:40` expõe `app`; 20 módulos em `app/` (mínimo 6); `DATABASE_URL` com padrão `sqlite:///./escala.db` em `app/config.py:11`; datas em UTC ISO 8601 (`app/tempo.py`, `app/schemas.py:44`).
+- **Esquema 2.1** — as 8 tabelas e todas as colunas obrigatórias existem com os nomes exatos em `app/models.py`.
+- **Invariantes** — INV1/INV2 validadas por pares adjacentes sobre a lista ordenada (correto, pois a sobreposição é checada antes e, sem sobreposição, `data_fim` é monótona); INV2 aceita exatamente 11h e INV3 exatamente 44h via `TOLERANCIA` (`app/regras.py:195`, `app/regras.py:215`); INV3/INV8 reparticionam horas na virada de semana (`app/tempo.py:101`); INV7 usa dias civis com parcela positiva; INV6 renormalizada após cancelamento de plantão, saída da fila e aceite.
+- **RF25** — a permuta valida o estado final completo dos dois profissionais antes de qualquer escrita, logo é atômica de fato (`app/regras.py:306`).
+- **RF34** — `alocar` levanta 409 antes de gravar, mantendo a substituição em `convocado`.
+- **RF37** — ambos os tratadores (`StarletteHTTPException` e `RequestValidationError`) sempre emitem `detail`.
+
+## Correção aplicada
+
+`app/tempo.py` — removida a função `horas_na_janela`, código morto: nenhum chamador em `app/` (os recortes temporais de RF10/RF23/4.4 são feitos por filtros SQL `data_fim > de` / `data_inicio < ate`). Nenhum comportamento muda.
+
+Efeito colateral útil: o total em `app/` caiu de **2597** para **2586** linhas, ampliando a margem contra o teto de 2600 da dimensão-alvo — estava a 3 linhas do limite.
+
+## Ressalva
+
+Não consegui reexecutar os testes nem um smoke test: as chamadas a `python` neste ambiente foram recusadas pelo controle de permissões ("This command requires approval"). A verificação acima é estática; a remoção é de uma função sem nenhuma referência no código, o que torna a quebra dos 55 testes improvável, mas não a validei por execução.

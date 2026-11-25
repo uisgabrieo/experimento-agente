@@ -1,0 +1,17 @@
+app,repeticao,estado,iteracao,tentativa,data_hora,tipo,segundos,codigo_saida,sucesso,criterio,erro,commit,modelos,custo_usd,tokens_entrada,tokens_saida,tokens_cache_criacao,tokens_cache_leitura,num_turnos,subtipo,tamanho_instrucao
+app,1,M0,1,1,2026-10-13T10:06:47,geracao,0.1,0,sim,,,8b4758607b89,simulado,,,,,,,,17751
+app,1,M1,1,1,2026-10-13T10:07:25,correcao,0.1,0,sim,ciclo fixo 1/5,,e749f9e59576,simulado,,,,,,,,21246
+app,1,M2,2,1,2026-10-13T10:07:48,correcao,0.1,0,sim,ciclo fixo 2/5,,e749f9e59576,simulado,,,,,,,,20456
+app,1,M3,3,1,2026-10-13T10:08:02,correcao,0.1,0,sim,ciclo fixo 3/5,,8fc2e2ce1fa9,simulado,,,,,,,,20456
+app,1,M4,4,1,2026-10-13T10:08:19,correcao,0.1,0,sim,ciclo fixo 4/5,,8fc2e2ce1fa9,simulado,,,,,,,,20394
+app,1,M5,5,1,2026-10-13T10:08:31,correcao,0.1,0,sim,ciclo fixo 5/5,,8fc2e2ce1fa9,simulado,,,,,,,,20394
+app,1,E1,1,1,2026-10-13T10:08:46,evolucao-e1,0.1,0,sim,pendente: a aplicacao nao importa,,0c242b1cfcb2,simulado,,,,,,,,18079
+app,1,E1,2,1,2026-10-13T10:08:48,evolucao-e1,0.1,0,sim,pendente: a aplicacao nao importa,,157251a7f53e,simulado,,,,,,,,18849
+app,1,E1,3,1,2026-10-13T10:08:51,evolucao-e1,0.1,0,sim,pendente: a aplicacao nao importa,,f957d1ef0918,simulado,,,,,,,,18849
+app,1,E1,4,1,2026-10-13T10:08:54,evolucao-e1,0.1,0,sim,pendente: a aplicacao nao importa,,2bbac3434bbe,simulado,,,,,,,,18849
+app,1,E1,5,1,2026-10-13T10:08:57,evolucao-e1,0.1,0,sim,pendente: a aplicacao nao importa,,267e661e612b,simulado,,,,,,,,18849
+app,1,E2,1,1,2026-10-13T10:09:07,evolucao-e2,0.1,0,sim,pendente: a aplicacao nao importa,,27c930341ae8,simulado,,,,,,,,19916
+app,1,E2,2,1,2026-10-13T10:09:10,evolucao-e2,0.1,0,sim,pendente: a aplicacao nao importa,,7da924876cfe,simulado,,,,,,,,20686
+app,1,E2,3,1,2026-10-13T10:09:13,evolucao-e2,0.1,0,sim,pendente: a aplicacao nao importa,,b3f5d9e59dce,simulado,,,,,,,,20686
+app,1,E2,4,1,2026-10-13T10:09:15,evolucao-e2,0.1,0,sim,pendente: a aplicacao nao importa,,77ef9c3fcca6,simulado,,,,,,,,20686
+app,1,E2,5,1,2026-10-13T10:09:18,evolucao-e2,0.1,0,sim,pendente: a aplicacao nao importa,,114425753732,simulado,,,,,,,,20686

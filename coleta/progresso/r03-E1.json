@@ -1,0 +1,29 @@
+{
+  "origem": "88cf8cb04f2c8b0e4c5226f11f7415b240400715",
+  "iteracoes": [
+    {
+      "iteracao": 1,
+      "commit": "da8638b132ef68c28cac24ae49549567cddf564a",
+      "avaliado": true,
+      "aceito": true,
+      "criterio": "aceito: suite nova 100%, comportamento existente 100%, invariantes ok",
+      "relatorio": "RELATORIO DE VERIFICACAO - iteracao 1\n\nTestes do novo requisito: 9 aprovados / 9\n\nTestes do comportamento existente: 55 aprovados / 55\n\nInvariantes violadas: []",
+      "interacao": {
+        "tentativa": 1,
+        "tipo": "evolucao-e1",
+        "segundos": 149.45,
+        "codigo_saida": 0,
+        "erro": "",
+        "tamanho_instrucao": 18079,
+        "modelos": "claude-haiku-4-5-20251001,claude-opus-5",
+        "custo_usd": 1.5405354999999998,
+        "tokens_entrada": 54,
+        "tokens_saida": 9888,
+        "tokens_cache_criacao": 58661,
+        "tokens_cache_leitura": 1399801,
+        "num_turnos": 37,
+        "subtipo": "success"
+      }
+    }
+  ]
+}

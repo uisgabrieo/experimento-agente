@@ -1,0 +1,18 @@
+Mudança aplicada. Resumo do que mudou:
+
+**`app/modelos.py`** — `Turno.noturno`: `Boolean`, `nullable=False`, `default=False`, `server_default=text("0")`. Acrescentei também a propriedade `Turno.fator_horas` (1.2 se noturno, senão 1.0), mantendo `Turno.horas` como duração real.
+
+**`app/esquemas.py`** — `TurnoCriar.noturno: bool = False` (opcional) e `TurnoResposta.noturno: bool` (herdado por `TurnoDetalhe` e pelo `turno` de `PlantaoDetalhe`).
+
+**`app/servicos.py`**
+- `criar_turno` persiste `noturno`.
+- `listar_turnos` recebe `noturno: bool | None`; os filtros de período/especialidade/noturno passaram a ser aplicados por um único helper interno, usado tanto na consulta quanto na contagem (`None` = sem filtro).
+- `escala_do_profissional` multiplica as horas de cada plantão (duração ou interseção com `[de, ate)`) por `plantao.turno.fator_horas` antes de somar em `horas_periodo`.
+
+**`app/rotas.py`** — `GET /turnos` aceita `noturno=` combinável com `de`, `ate`, `especialidade_id`, `limite`, `deslocamento`.
+
+**`app/tempo.py`** — constante `FATOR_HORAS_NOTURNAS = 1.2`, documentada como exclusiva de `horas_periodo`.
+
+INV3 e INV8 ficaram intactos: `invariantes.py` e o cálculo de `horas_extras` usam `duracao_horas`/`Plantao.horas`, que continuam retornando a duração real — o fator só é aplicado no laço de `horas_periodo`.
+
+Verificação: estática apenas (este ambiente recusa executar Python), então não rodei o app nem o smoke. Conferi que não há outros chamadores de `listar_turnos` nem outras construções de `Turno`, e `app/` ficou com 2589 linhas, dentro do limite de 2600. Não há migração: o `escala.db` não existe no repositório e o esquema é criado por `create_all`; um banco antigo preexistente precisaria de um `ALTER TABLE turnos ADD COLUMN noturno` manual.

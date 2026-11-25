@@ -1,0 +1,11 @@
+Implementado.
+
+- `app/models.py:146` — coluna `noturno` em `turnos` (Boolean, `NOT NULL`, default/server_default `false`, indexada).
+- `app/schemas.py` — `TurnoCriar.noturno: bool = False` (opcional) e `TurnoSaida.noturno`, portanto o POST/GET de turnos devolve o campo.
+- `app/rotas/turnos.py` — persiste `noturno` na criação e adiciona o filtro `GET /turnos?noturno=`, acumulado na mesma lista de filtros de `de`/`ate`/`especialidade_id` (todos combináveis).
+- `app/tempo.py` — constante `FATOR_ADICIONAL_NOTURNO = 1.2`.
+- `app/rotas/profissionais.py` — na escala, plantões de turno noturno somam `duração × 1.2` em `horas_periodo`; o campo `horas` de cada item e os cálculos de INV3/INV8 (`regras.calcular_horas_extras`, que parte da duração real dos turnos) ficaram intactos.
+
+Não executei a aplicação: as chamadas a `python` nesta sessão foram negadas pelo controle de permissões, então a verificação foi por inspeção. Se quiser, aprove a execução e eu rodo um teste de ponta a ponta (criar turno noturno, alocar, conferir `horas_periodo` e o filtro).
+
+Uma observação: o esquema é criado só por `Base.metadata.create_all`, sem migração. Um `escala.db` pré-existente (não há nenhum versionado) não ganhará a coluna automaticamente e precisaria ser recriado.

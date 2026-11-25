@@ -1,0 +1,9 @@
+app,estado,data_hora,arquivos_py,linhas_codigo,pylint_convention,pylint_refactor,pylint_warning,pylint_error,pylint_total,pylint_nota,cc_media,cc_maxima,funcoes_cc_acima_10,total_funcoes,mi_medio,mi_minimo,bandit_alta,bandit_media,bandit_baixa,bandit_total,testes_total,testes_passaram,testes_falharam,taxa_aprovacao_pct,cobertura_pct,regressoes,regressoes_reais,falhas_legitimas,testes_regredidos,inv_avaliavel,inv1,inv2,inv3,inv4,inv5,inv6,inv7,inv8,invariantes_violadas,instrumentos_validos,ferramentas_com_falha,testes_esperados,app_importa,pylint_supressoes,pylint_config_agente,bandit_nosec,cobertura_pragmas
+r1,M0,2026-10-13T10:07:12,6,96,12,3,12,0,27,7.19,7.0,7,0,6,58.39,58.39,0,0,0,0,0,0,0,0,0.0,0,0,0,,nao,,,,,,,,,,sim,,55,nao,0,,0,0
+r1,M1,2026-10-13T10:07:40,6,97,6,3,7,0,16,8.24,7.0,7,0,6,58.29,57.81,0,0,0,0,0,0,0,0,0.0,0,0,0,,nao,,,,,,,,,,sim,,55,nao,0,,0,0
+r1,M2,2026-10-13T10:07:57,6,97,6,3,7,0,16,8.24,7.0,7,0,6,58.29,57.81,0,0,0,0,0,0,0,0,0.0,0,0,0,,nao,,,,,,,,,,sim,,55,nao,0,,0,0
+r1,M3,2026-10-13T10:08:11,6,96,6,3,6,0,15,8.33,7.0,7,0,6,58.39,58.39,0,0,0,0,0,0,0,0,0.0,0,0,0,,nao,,,,,,,,,,sim,,55,nao,0,,0,0
+r1,M4,2026-10-13T10:08:27,6,96,6,3,6,0,15,8.33,7.0,7,0,6,58.39,58.39,0,0,0,0,0,0,0,0,0.0,0,0,0,,nao,,,,,,,,,,sim,,55,nao,0,,0,0
+r1,M5,2026-10-13T10:08:43,6,96,6,3,6,0,15,8.33,7.0,7,0,6,58.39,58.39,0,0,0,0,0,0,0,0,0.0,0,0,0,,nao,,,,,,,,,,sim,,55,nao,0,,0,0
+r1,E1,2026-10-13T10:09:04,11,111,11,3,6,0,20,8.00,4.27,7,0,11,77.3,58.39,0,0,0,0,0,0,0,0,0.0,0,0,0,,nao,,,,,,,,,,sim,,64,nao,0,,0,0
+r1,E2,2026-10-13T10:09:23,16,126,16,3,6,0,25,7.73,3.25,7,0,16,84.39,58.39,0,0,0,0,0,0,0,0,0.0,0,0,0,,nao,,,,,,,,,,sim,,80,nao,0,,0,0

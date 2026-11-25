@@ -1,0 +1,24 @@
+Pronto.
+
+## O que verifiquei
+
+Auditei estaticamente os 11 módulos de `app/` contra as 38 RFs e as 8 invariantes. **Não encontrei nenhum desvio funcional nem violação de invariante** — os relatórios de pylint, complexidade, segurança e os 55 testes conferem com o que o código faz. Conferi em particular os pontos mais sujeitos a erro:
+
+- **INV1/INV2** — a varredura só compara vizinhos na ordem cronológica, o que é suficiente: se existe qualquer sobreposição no conjunto, existe um par adjacente sobreposto.
+- **Bordas** — `folga == 11h` passa (`<`), `44h` exatas passam (`>`), `dias_cobertos` não conta o dia seguinte quando o turno termina em 00:00.
+- **RF25 (atomicidade)** — os dois conjuntos propostos são validados antes de qualquer mutação, e o `commit` só acontece na rota.
+- **Seção 4.4** — `de` exclusivo por `fim <= de`, `ate` por `inicio >= ate`.
+
+## O que corrigi
+
+**Código morto** — seis definições públicas nunca referenciadas, sendo a mais grave `verificar_inv6`, que dava a impressão de que INV6 era verificada em algum ponto quando quem a garante é, construtivamente, `renumerar_fila`:
+
+`regras.verificar_inv6`, `regras.total_horas`, `tempo.com_fuso` (duplicava `schemas._para_utc`), `erros.invalido`, `schemas.ProfissionalAtualizar` (não há rota de atualização), `schemas.SaudeSaida`.
+
+**Lógica duplicada** — `promover_fila` e `sair_da_fila` decrementavam posições manualmente e logo em seguida chamavam `renumerar_fila`, que reatribui `1..n` e tornava o passo anterior inócuo. Como `fila_aguardando` ordena por `(posicao, id)`, renumerar sozinho produz exatamente "reduzir em uma unidade as posições posteriores" exigido por RF22/RF33 — mesmo resultado, um caminho só.
+
+**Nomenclatura** — `recorta_periodo` → `pertence_ao_periodo`: a função é um predicado que devolve `bool`, não recorta nada.
+
+`app/` passou de 2563 para 2513 linhas, dentro da faixa 1100–2600. Nenhuma assinatura de rota, schema de resposta ou código HTTP foi alterado.
+
+**Ressalva:** a execução de Python está bloqueada neste ambiente (tentei `python -c`, `compileall` e os testes — todos barrados por permissão), então **não revalidei a suíte após as edições**. As mudanças são remoções de símbolos não referenciados — confirmei por `grep` que não restou nenhuma referência — e duas simplificações equivalentes; ainda assim, convém rodar os 55 testes antes de fechar a iteração.

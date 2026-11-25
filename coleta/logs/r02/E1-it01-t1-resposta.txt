@@ -1,0 +1,19 @@
+Implementado. Resumo das mudanças:
+
+**`app/models.py`** — coluna `turnos.noturno` (`Boolean`, `NOT NULL`, default `False`, `server_default="0"`).
+
+**`app/schemas.py`** — `TurnoCriar.noturno: bool = False` (opcional) e `TurnoSaida.noturno` (herdado por `TurnoDetalhe`).
+
+**`app/routers/turnos.py`**
+- `POST /turnos` persiste `noturno`; `GET /turnos/{id}` o devolve.
+- `GET /turnos?noturno=` novo filtro, aplicado junto a `especialidade_id`, `de` e `ate`. Aceita `true/false/1/0/yes/no/on/off`; valor vazio equivale a não filtrar; valor fora do domínio dá 422 com `detail` — mesma convenção do filtro `estado` de `/trocas`.
+
+**`app/routers/comum.py`** — helper `filtro_booleano()` para o parsing acima.
+
+**`app/servicos.py`** — `FATOR_NOTURNO = 1.2` aplicado às horas de cada plantão em `horas_periodo` de `GET /profissionais/{id}/escala`. O campo `horas` de cada item continua sendo a duração real, e `recalcular_horas_extras`/INV3 (em `regras.py`) não foram tocados — seguem usando a duração real, como pedido.
+
+**Testes** — `conftest.criar_turno` ganhou o parâmetro opcional `noturno` (omitido do corpo quando não informado, para continuar exercitando o default do servidor); dois testes novos em `tests/test_cadastros.py` cobrem o default/filtro e o adicional de 20% em `horas_periodo` com `horas_extras` inalterado.
+
+**`LEIA-ME.md`** — nota de projeto sobre o campo.
+
+Uma ressalva: **não consegui executar a suíte** — toda invocação de `python`/`pytest` foi recusada pelo modo de permissão desta sessão (inclusive `python --version`), e a sessão é não interativa. A revisão foi estática. Se puder liberar `python -m pytest`, rodo em seguida para confirmar.

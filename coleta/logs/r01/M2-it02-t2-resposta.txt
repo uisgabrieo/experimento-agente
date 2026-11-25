@@ -1,0 +1,26 @@
+## Resultado da iteração 2
+
+**Nenhuma correção foi aplicada — porque nenhum problema foi apontado nos relatórios.** Os quatro sinais estão verdes:
+
+| Verificação | Resultado |
+|---|---|
+| Pylint | 10.00/10 |
+| Complexidade | sem ocorrências |
+| Segurança | sem ocorrências |
+| Testes de comportamento | 55/55 aprovados |
+| Invariantes violadas | `[]` |
+
+Como não havia nada a corrigir, fiz uma auditoria estática do código contra a especificação congelada, procurando divergências que os 55 testes pudessem não cobrir. Não encontrei nenhuma. Itens que verifiquei explicitamente, por serem os de borda mais fáceis de errar:
+
+- **Restrições técnicas** — Python 3.13, `app` em `app/main.py`, `DATABASE_URL` com padrão `sqlite:///./escala.db` (`app/config.py:11`), 21 módulos em `app/`, **2008 linhas** (dentro de 1100–2600).
+- **Esquema 2.1** — todas as 8 tabelas e todas as colunas obrigatórias existem com os nomes exatos em `app/modelos.py`.
+- **Epsilons das bordas inclusivas** — descanso de exatamente 11 h é aceito (`app/regras.py:70`), semana de exatamente 44 h é aceita (`app/regras.py:83`), turno de exatamente 4 h e de 12 h são aceitos (`app/esquemas.py:140-149`). Todos na direção que a seção 4.1 exige.
+- **INV7** — `sequencia_excedente(..., 6)` recusa a partir de 7 dias civis consecutivos; dias cobertos consideram parcela de duração positiva (`app/tempo.py:135-179`).
+- **INV3/INV8 na virada de semana** — `horas_por_semana` fatia o intervalo por segunda-feira 00:00 UTC e contabiliza só a parcela de cada semana (`app/tempo.py:111-131`).
+- **Filtros 4.4** — `data_fim > de` e `data_inicio < ate` em `app/repositorio.py:228-234`, idênticos a `dentro_do_periodo` usado na escala.
+- **Atomicidade de RF25 e RF34** — ambos mutam, dão `flush`, revalidam e o `rollback` do contexto `transacao` desfaz tudo em caso de `ErroDeNegocio` (`app/servicos.py:33-42`).
+- **RF37** — os quatro `exception_handler` em `app/main.py` cobrem erro de domínio, `HTTPException` (inclui 404 de rota e 405), `RequestValidationError` e `IntegrityError`; todos emitem `detail`.
+
+Uma observação, não um defeito: em `GET /profissionais` e `GET /turnos`, `limite=101` resulta em **422** (`Query(..., le=100)`) em vez de ser truncado para 100. A especificação diz apenas "o máximo é 100", sem definir o comportamento no excesso — as duas leituras são defensáveis e mantive a atual, já que mudá-la alteraria comportamento hoje coberto pelos testes.
+
+Não consegui executar a suíte localmente para confirmar por conta própria: o sandbox deste ambiente recusa invocações de `python` além de `python --version`, então a auditoria acima é estática e me apoio no relatório de 55/55 para a parte dinâmica. A árvore de trabalho está limpa — nenhum arquivo foi modificado.

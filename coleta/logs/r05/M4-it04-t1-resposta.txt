@@ -1,0 +1,18 @@
+Não há o que corrigir nesta iteração — todos os relatórios vieram limpos. Verifiquei o estado atual para confirmar:
+
+**Relatórios da iteração 4**
+- Pylint: 10.00/10
+- Complexidade: sem ocorrências
+- Segurança: sem ocorrências
+- Testes de comportamento: 55/55 aprovados
+- Invariantes violadas: `[]`
+
+**Conformidade com as restrições técnicas (checagem estática)**
+- Módulos em `app/`: 11 (`config`, `db`, `erros`, `esquemas`, `invariantes`, `main`, `modelos`, `rotas`, `servicos`, `tempo`, `__init__`) — mínimo de 6 atendido.
+- Dimensão: 2572 linhas em `app/` — dentro da faixa 1100–2600 (próximo do limite superior; vale evitar crescimento nas próximas iterações).
+- Esquema obrigatório: as 8 tabelas existem com os nomes exatos (`profissionais`, `especialidades`, `profissional_especialidade`, `turnos`, `plantoes`, `trocas`, `substituicoes`, `ausencias`) e todas as colunas do contrato estão presentes em `app/modelos.py`.
+- Datas/horas: tipo próprio `DataHoraUTC` (`app/db.py:19`) para normalização em UTC.
+
+**Sobre as supressões de lint**: as únicas presentes são estreitas e justificadas (`too-few-public-methods` nas classes declarativas do SQLAlchemy, `too-many-ancestors` no `TypeDecorator`, `invalid-name` no `sessionmaker`, e `too-many-arguments` em `listar_turnos`/rota de listagem). Não há `# noqa`, `# nosec` nem TODO/FIXME mascarando problemas.
+
+Não alterei nenhum arquivo — qualquer mudança agora seria especulativa e correria o risco de mexer no comportamento funcional congelado. Se houver um relatório com ocorrências que não veio no texto (por exemplo, a saída bruta do verificador de invariantes ou de complexidade), me envie e eu trato os pontos.

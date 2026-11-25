@@ -1,0 +1,23 @@
+All reported issues are addressed. Summary of what changed and why:
+
+**Security (bandit) — all 4 issues fixed in code, no suppressions**
+- `app/db.py:49` B110 try/except/pass: replaced the blanket `try/except Exception: pass` around the SQLite `PRAGMA foreign_keys=ON` with an explicit `isinstance(conexao_dbapi, sqlite3.Connection)` guard. The intent ("this PRAGMA only applies to SQLite") is now stated directly instead of being inferred from a swallowed exception. This also clears pylint W0718.
+- `app/tempo.py:60` B101: `analisar_iso` asserted that `para_utc` didn't return `None`. Split the non-optional core out as `normalizar_utc(datetime) -> datetime`; `para_utc` now delegates to it for the optional case. The assert is gone because the type is no longer optional.
+- `app/regras.py:319-320` B101: the two asserts existed only to narrow types after an `if None in (...)` check that pylint/mypy can't follow. Replaced with four explicit `is None` comparisons, which narrow naturally.
+
+**Pylint — fixed in code**
+- C0116/C0115 (~45 occurrences): added real docstrings to every route handler, the two `regras.py` methods, `models.possui_especialidade`, `main.ciclo_de_vida`, and all 19 schema classes.
+- C0103: `SessionLocal` → `SESSAO_LOCAL` (module-level constant naming, matching the codebase's Portuguese convention).
+- C0415 + W0611 in `db.py`: the deferred `from . import models  # noqa: F401` was there to break a real import cycle (`models` needs `Base`). Replaced with `import_module(".models", __package__)`, which expresses "import for the side effect of registering tables" directly — no unused name, no top-level import statement.
+- E1102 `func.count is not callable` (7 occurrences) and R0913/R0917 (2 occurrences): both came from the same duplicated block. All seven list routes repeated an identical count-then-offset/limit pattern, so I extracted `paginar()` into `routers/comum.py` plus a `Paginacao` dependency that bundles `limite`/`deslocamento`. The false-positive `not-callable` now needs one commented disable in one place instead of seven, and collapsing the two pagination params drops the 6-arg routes to 5.
+
+**Pylint — configured rather than code-changed (1 check)**
+- R0903 too-few-public-methods (8 occurrences): `.pylintrc` sets `min-public-methods=0`. SQLAlchemy models and Pydantic schemas are field declarations by design; there's no code change that satisfies this check without harming the models.
+
+**Two things worth flagging:**
+
+1. I could not execute anything to verify — `python`, `pylint`, and `pytest` all require approval in this environment, and every invocation was denied. So the changes are reviewed but **not run**. The highest-risk change is the new pagination dependency; I initially wrote it as `Annotated[Paginacao, Depends()]` (dataclass-as-dependency) and then changed it to a function dependency `Depends(obter_paginacao)`, because under `from __future__ import annotations` FastAPI resolves annotations against the callable's `__globals__`, which a class doesn't have — the dataclass form would likely have raised `NameError` on `Limite` at import. The function form resolves against module globals. Worth running the suite to confirm.
+
+2. The `SessionLocal` → `SESSAO_LOCAL` rename is the one change that could break a test that imports it directly. I judged this low-risk since `obter_sessao`, `engine`, `Base`, `criar_tabelas`, and `app` are all unchanged and are the normal integration points — but it's an internal-name change, so I'm calling it out explicitly.
+
+The HTTP contract is untouched: same routes, same query parameter names, validation bounds and defaults, same response shapes and status codes.

@@ -1,0 +1,15 @@
+Implementado. Mudanças em 5 arquivos:
+
+**`app/models.py`** — coluna `noturno` em `turnos` (`Boolean`, `NOT NULL`, default `False`). Nenhuma `CheckConstraint` nova; o esquema obrigatório da seção 2.1 permanece intacto (a spec permite colunas extras).
+
+**`app/schemas.py`** — `noturno: bool = False` em `TurnoCriar` (opcional, padrão `false`) e em `TurnoLer`, que é herdado por `TurnoDetalhe`, então aparece em `POST /turnos`, `GET /turnos` e `GET /turnos/{id}`.
+
+**`app/tempo.py`** — constante `ADICIONAL_NOTURNO = 1.2` junto das demais constantes de regra.
+
+**`app/routers/turnos.py`** — persiste `dados.noturno` na criação; novo filtro `noturno` em `GET /turnos`, acrescentado à mesma lista `filtros` usada por `de`/`ate`/`especialidade_id`, portanto combinável com todos (e omitido quando ausente, preservando o comportamento atual); `noturno` incluído no detalhe de `GET /turnos/{id}`.
+
+**`app/routers/profissionais.py`** — em `GET /profissionais/{id}/escala`, `horas_periodo` acumula `horas * 1.2` para turnos noturnos. O campo `horas` de cada item da escala continua sendo a duração real, e `recalcular_horas_extras`/`validar_escala` (INV3, INV8) não foram tocados — seguem usando `duracao_horas` puro.
+
+Total em `app/`: 2599 linhas (dentro da faixa 1100–2600).
+
+Uma ressalva: **não consegui executar a verificação.** Escrevi um script de smoke test (criar turno diurno 8h + noturno 10h, alocar, conferir `horas_periodo == 20.0` com `horas_extras` inalterado, e exercitar os filtros `noturno=true/false` combinados), mas todas as tentativas de rodar `python` nesta sessão foram recusadas por permissão — inclusive `py_compile`. O script foi removido; a revisão acima é estática. Se você liberar execução de Python, rodo a verificação.

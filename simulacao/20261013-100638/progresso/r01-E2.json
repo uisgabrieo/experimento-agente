@@ -1,0 +1,125 @@
+{
+  "origem": "267e661e612bdd88d1f5f5f0a85955c6a8e96e98",
+  "iteracoes": [
+    {
+      "iteracao": 1,
+      "commit": "27c930341ae8a732a583793e65dea01bc4c1e0f6",
+      "avaliado": true,
+      "aceito": false,
+      "criterio": "pendente: a aplicacao nao importa",
+      "relatorio": "RELATORIO DE VERIFICACAO - iteracao 1\n\nTestes do novo requisito: nao executados, porque a aplicacao nao pode ser importada.\nErro ao importar app.main:\n  Traceback (most recent call last):\n    File \"<string>\", line 1, in <module>\n      import app.main\n  ModuleNotFoundError: No module named 'app.main'\n\nTestes do comportamento existente: nao executados, porque a aplicacao nao pode ser importada.\nErro ao importar app.main:\n  Traceback (most recent call last):\n    File \"<string>\", line 1, in <module>\n      import app.main\n  ModuleNotFoundError: No module named 'app.main'\n\nInvariantes: nao avaliaveis (o banco nao foi criado pela aplicacao)",
+      "interacao": {
+        "tentativa": 1,
+        "tipo": "evolucao-e2",
+        "segundos": 0.1,
+        "codigo_saida": 0,
+        "erro": "",
+        "tamanho_instrucao": 19916,
+        "modelos": "simulado",
+        "custo_usd": "",
+        "tokens_entrada": "",
+        "tokens_saida": "",
+        "tokens_cache_criacao": "",
+        "tokens_cache_leitura": "",
+        "num_turnos": "",
+        "subtipo": ""
+      }
+    },
+    {
+      "iteracao": 2,
+      "commit": "7da924876cfe1f147b05d909456812cf6544921b",
+      "avaliado": true,
+      "aceito": false,
+      "criterio": "pendente: a aplicacao nao importa",
+      "relatorio": "RELATORIO DE VERIFICACAO - iteracao 2\n\nTestes do novo requisito: nao executados, porque a aplicacao nao pode ser importada.\nErro ao importar app.main:\n  Traceback (most recent call last):\n    File \"<string>\", line 1, in <module>\n      import app.main\n  ModuleNotFoundError: No module named 'app.main'\n\nTestes do comportamento existente: nao executados, porque a aplicacao nao pode ser importada.\nErro ao importar app.main:\n  Traceback (most recent call last):\n    File \"<string>\", line 1, in <module>\n      import app.main\n  ModuleNotFoundError: No module named 'app.main'\n\nInvariantes: nao avaliaveis (o banco nao foi criado pela aplicacao)",
+      "interacao": {
+        "tentativa": 1,
+        "tipo": "evolucao-e2",
+        "segundos": 0.1,
+        "codigo_saida": 0,
+        "erro": "",
+        "tamanho_instrucao": 20686,
+        "modelos": "simulado",
+        "custo_usd": "",
+        "tokens_entrada": "",
+        "tokens_saida": "",
+        "tokens_cache_criacao": "",
+        "tokens_cache_leitura": "",
+        "num_turnos": "",
+        "subtipo": ""
+      }
+    },
+    {
+      "iteracao": 3,
+      "commit": "b3f5d9e59dcedc7c02d92be8e15ea15467c3674e",
+      "avaliado": true,
+      "aceito": false,
+      "criterio": "pendente: a aplicacao nao importa",
+      "relatorio": "RELATORIO DE VERIFICACAO - iteracao 3\n\nTestes do novo requisito: nao executados, porque a aplicacao nao pode ser importada.\nErro ao importar app.main:\n  Traceback (most recent call last):\n    File \"<string>\", line 1, in <module>\n      import app.main\n  ModuleNotFoundError: No module named 'app.main'\n\nTestes do comportamento existente: nao executados, porque a aplicacao nao pode ser importada.\nErro ao importar app.main:\n  Traceback (most recent call last):\n    File \"<string>\", line 1, in <module>\n      import app.main\n  ModuleNotFoundError: No module named 'app.main'\n\nInvariantes: nao avaliaveis (o banco nao foi criado pela aplicacao)",
+      "interacao": {
+        "tentativa": 1,
+        "tipo": "evolucao-e2",
+        "segundos": 0.1,
+        "codigo_saida": 0,
+        "erro": "",
+        "tamanho_instrucao": 20686,
+        "modelos": "simulado",
+        "custo_usd": "",
+        "tokens_entrada": "",
+        "tokens_saida": "",
+        "tokens_cache_criacao": "",
+        "tokens_cache_leitura": "",
+        "num_turnos": "",
+        "subtipo": ""
+      }
+    },
+    {
+      "iteracao": 4,
+      "commit": "77ef9c3fcca687ae78a5f449ef8f4e62e8b3f44b",
+      "avaliado": true,
+      "aceito": false,
+      "criterio": "pendente: a aplicacao nao importa",
+      "relatorio": "RELATORIO DE VERIFICACAO - iteracao 4\n\nTestes do novo requisito: nao executados, porque a aplicacao nao pode ser importada.\nErro ao importar app.main:\n  Traceback (most recent call last):\n    File \"<string>\", line 1, in <module>\n      import app.main\n  ModuleNotFoundError: No module named 'app.main'\n\nTestes do comportamento existente: nao executados, porque a aplicacao nao pode ser importada.\nErro ao importar app.main:\n  Traceback (most recent call last):\n    File \"<string>\", line 1, in <module>\n      import app.main\n  ModuleNotFoundError: No module named 'app.main'\n\nInvariantes: nao avaliaveis (o banco nao foi criado pela aplicacao)",
+      "interacao": {
+        "tentativa": 1,
+        "tipo": "evolucao-e2",
+        "segundos": 0.1,
+        "codigo_saida": 0,
+        "erro": "",
+        "tamanho_instrucao": 20686,
+        "modelos": "simulado",
+        "custo_usd": "",
+        "tokens_entrada": "",
+        "tokens_saida": "",
+        "tokens_cache_criacao": "",
+        "tokens_cache_leitura": "",
+        "num_turnos": "",
+        "subtipo": ""
+      }
+    },
+    {
+      "iteracao": 5,
+      "commit": "1144257537326a2b9887d29bc215a18e832ef91a",
+      "avaliado": true,
+      "aceito": false,
+      "criterio": "pendente: a aplicacao nao importa",
+      "relatorio": "RELATORIO DE VERIFICACAO - iteracao 5\n\nTestes do novo requisito: nao executados, porque a aplicacao nao pode ser importada.\nErro ao importar app.main:\n  Traceback (most recent call last):\n    File \"<string>\", line 1, in <module>\n      import app.main\n  ModuleNotFoundError: No module named 'app.main'\n\nTestes do comportamento existente: nao executados, porque a aplicacao nao pode ser importada.\nErro ao importar app.main:\n  Traceback (most recent call last):\n    File \"<string>\", line 1, in <module>\n      import app.main\n  ModuleNotFoundError: No module named 'app.main'\n\nInvariantes: nao avaliaveis (o banco nao foi criado pela aplicacao)",
+      "interacao": {
+        "tentativa": 1,
+        "tipo": "evolucao-e2",
+        "segundos": 0.1,
+        "codigo_saida": 0,
+        "erro": "",
+        "tamanho_instrucao": 20686,
+        "modelos": "simulado",
+        "custo_usd": "",
+        "tokens_entrada": "",
+        "tokens_saida": "",
+        "tokens_cache_criacao": "",
+        "tokens_cache_leitura": "",
+        "num_turnos": "",
+        "subtipo": ""
+      }
+    }
+  ]
+}

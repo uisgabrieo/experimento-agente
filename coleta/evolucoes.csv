@@ -1,0 +1,11 @@
+repeticao,evolucao,aceita,iteracoes,arquivos_tocados,linhas_adicionadas,linhas_removidas,criterio_final,commit_origem,commit_destino,arquivos_tocados_total,linhas_adicionadas_total,linhas_removidas_total
+1,E1,sim,1,7,71,13,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",06679bfab2ca,2466bfa356a3,7,71,13
+1,E2,sim,1,10,315,15,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",2466bfa356a3,3637edc39ddc,12,626,15
+2,E1,sim,1,5,40,3,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",31ec94de1c6b,8af3c5eecb3f,8,118,13
+2,E2,sim,1,10,355,4,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",8af3c5eecb3f,85f3ef8fd44e,12,575,4
+3,E1,sim,1,5,16,3,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",88cf8cb04f2c,da8638b132ef,5,16,3
+3,E2,sim,1,12,318,10,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",da8638b132ef,0eadb98f73ce,13,356,22
+4,E1,sim,1,5,27,3,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",e5744a83e911,a71e16b14146,6,31,3
+4,E2,sim,1,21,292,233,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",a71e16b14146,98a81b3c4d32,23,478,233
+5,E1,sim,1,5,41,12,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",de89b150206b,9b9d2758178d,5,41,12
+5,E2,sim,1,10,271,263,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",9b9d2758178d,353c934b890b,11,275,263

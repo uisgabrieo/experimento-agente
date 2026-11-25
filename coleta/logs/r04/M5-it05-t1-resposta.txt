@@ -1,0 +1,21 @@
+## Resultado da iteração 6: nada a corrigir no código
+
+Os quatro relatórios desta iteração vêm limpos (pylint 10.00/10, complexidade sem ocorrências, segurança sem ocorrências, 55/55 testes aprovados, lista de invariantes violadas vazia). Como não havia problema apontado, fiz uma auditoria estática dos 20 módulos de `app/` contra a especificação congelada, requisito por requisito e invariante por invariante.
+
+**Conformidade verificada**
+
+- **Restrições técnicas:** `app` em `app/main.py`; 20 módulos; 2.513 linhas em `app/` (faixa 1100–2600); `DATABASE_URL` com o padrão exigido; datas em UTC ISO 8601.
+- **Esquema (2.1):** as 8 tabelas e todas as colunas obrigatórias existem com os nomes exatos do contrato (`app/models.py`).
+- **Convenções temporais (4.1):** `ha_sobreposicao` trata intervalos semiabertos (toque em instante não é sobreposição); `INTERVALO_MINIMO_SEGUNDOS` aceita exatamente 11 h; `segundos_por_semana` reparte plantões que cruzam a virada de semana a partir de segunda 00:00 UTC; `dias_cobertos` conta apenas dias com duração positiva — um plantão que termina à meia-noite não contamina o dia seguinte (`app/tempo.py:105`).
+- **INV1–INV8:** `validar_escala` avalia o conjunto completo proposto, o que torna a aprovação de troca atômica por construção — a permuta em `aprovar_troca` só é aplicada após validar os dois conjuntos resultantes (`app/servicos.py:372`). `horas_extras` é recalculada em toda alocação, cancelamento e troca.
+- **INV6:** `renumerar_fila` reatribui 1..n às `aguardando`, o que cobre tanto RF22 (convocação da posição 1) quanto RF33 (saída da fila), sem lacunas.
+- **RF37:** os dois tratadores em `app/erros.py` garantem `detail` em 4xx, incluindo os 422 de validação.
+
+**Única alteração feita:** acrescentei `httpx>=0.27` ao `requirements.txt`. É dependência de `fastapi.testclient`, usada pela suíte de verificação, e estava ausente da lista — nenhum comportamento funcional foi tocado.
+
+**Dois pontos ambíguos que deixei como estão** (ambas as leituras são defensáveis na especificação; mudar seria alterar comportamento sem respaldo):
+
+- RF04 — `limite` acima de 100 hoje responde 422 (`Query(le=100)`), em vez de ser truncado para 100.
+- RF07 — `DELETE` de um vínculo inexistente responde 404; a especificação só descreve os casos 204 e 409.
+
+Observação sobre método: o ambiente bloqueou a execução de `python` (permissão), então não consegui rodar um smoke test próprio contra o `TestClient` — a verificação acima é estática, apoiada no relatório de 55/55 que já acompanha a iteração.

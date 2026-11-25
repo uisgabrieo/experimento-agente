@@ -1,0 +1,29 @@
+Auditei o código inteiro contra a especificação congelada. Resumo do que verifiquei e do que encontrei.
+
+## Resultado
+
+**Nenhum problema a corrigir.** Os três relatórios (pylint 10.00/10, complexidade, segurança) vieram sem ocorrências, os 55 testes passaram e a lista de invariantes violadas veio vazia. A auditoria manual que fiz por cima disso não revelou desvio funcional.
+
+## O que conferi, ponto a ponto
+
+**Convenções temporais (4.1)** — `app/tempo.py` está correto nos pontos que costumam falhar:
+- `intervalos_sobrepoem` usa comparação estrita (`<`), então fim == início não é sobreposição;
+- `DESCANSO_MINIMO` é comparado com `<` em `app/regras.py:120`, logo 11h exatas são válidas (RF16);
+- `horas_por_semana` fatia o plantão por semana com `intersecao`, contabilizando só as horas contidas em cada semana;
+- `dias_cobertos` só adiciona o dia quando a interseção tem duração positiva — plantão que vira a meia-noite conta nos dois dias, e `[00:00, 24:00)` conta como um dia só.
+
+**Invariantes** — `validar_invariantes_do_profissional` opera sobre um cenário hipotético, não sobre o estado gravado. É isso que torna RF25 genuinamente atômico: os dois cenários pós-permuta são validados antes de qualquer escrita (`app/servicos.py:207-218`). INV1/INV2 em pares adjacentes de lista ordenada é suficiente — sobreposição é detectada antes de qualquer gap ser avaliado erroneamente.
+
+**INV8** — `recalcular_horas_extras` é chamado nos três pontos que alteram o conjunto de plantões confirmados: criação (`criar_plantao`), cancelamento (`cancelar_plantao`) e aprovação de troca. Não existe caminho que remova um plantão confirmado sem passar por um deles — `DELETE /turnos/{id}` recusa 409 se houver confirmado, e não há rota de exclusão de profissional.
+
+**INV6** — `renumerar_fila` roda após cancelamento (RF33) e após convocação (RF22), e `proxima_posicao` deriva de `len(fila_aguardando)`, que é consistente porque a fila é mantida contígua.
+
+**Atomicidade em falha (RF34)** — `aceitar_convocacao` chama `criar_plantao` antes de marcar `atendida`; o `Conflito` sobe sem `commit`, e `obter_sessao` fecha a sessão no `finally`, revertendo. A substituição permanece `convocado`.
+
+**RF37** — os quatro tratadores em `app/erros.py` cobrem `StarletteHTTPException` (inclui 404/405 de rota não casada), `RequestValidationError`, `IntegrityError` e `ValueError`, todos emitindo `detail`.
+
+## Uma observação, não um problema
+
+O volume em `app/` está em **2569 linhas** (1771 nos módulos raiz + 798 em `app/routers/`), dentro da faixa exigida de 1100–2600, mas com apenas 31 linhas de folga. Qualquer acréscimo futuro de código precisa ser compensado em outro ponto para não estourar o limite. Não mexi em nada por causa disso.
+
+Não consegui executar `pytest` nesta sessão — as invocações foram bloqueadas pelo modo de permissão. Os 55/55 que relato acima vêm do relatório de verificação da iteração 4, não de uma execução minha.

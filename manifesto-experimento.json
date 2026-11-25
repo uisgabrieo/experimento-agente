@@ -1,0 +1,105 @@
+{
+  "coleta": "2",
+  "data_geracao": "2026-10-13T10:32:01",
+  "ambiente": {
+    "python": "3.13.13",
+    "sistema_operacional": "Windows 11",
+    "arquitetura": "AMD64"
+  },
+  "agente": {
+    "claude_code": "2.1.241 (Claude Code)",
+    "modelo_solicitado": "opus (--model opus)",
+    "modelo_efetivo": "ver coluna 'modelos' de coleta/interacoes.csv",
+    "modo_de_permissao": "acceptEdits",
+    "configuracao": {
+      "arquivo": "C:\\Users\\uisgabrieo\\.claude\\settings.json",
+      "existe": true,
+      "model": "opus[1m]",
+      "effortLevel": "medium",
+      "env": {
+        "DISABLE_AUTOUPDATER": "1",
+        "DISABLE_UPDATES": "1"
+      },
+      "permissions": null,
+      "autoUpdatesChannel": null
+    }
+  },
+  "ferramentas": {
+    "pytest": "9.1.1",
+    "hypothesis": "6.168.0",
+    "coverage": "7.16.0",
+    "pylint": "4.0.8",
+    "astroid": "4.0.4",
+    "radon": "6.0.1",
+    "bandit": "1.9.4",
+    "fastapi": "0.115.5",
+    "starlette": "0.41.3",
+    "pydantic": "2.13.4",
+    "pydantic-core": "2.46.4",
+    "sqlalchemy": "2.0.36",
+    "httpx": "0.28.1",
+    "uvicorn": "0.32.1"
+  },
+  "artefatos_congelados": {
+    "artefatos/classificacao.json": "7d6da3c57f43dc8ae7245f22204e904a4cea3c885cd71dd389f55cee39eb4b6a",
+    "artefatos/evolucao-e1.md": "1653e5d9ea0a34ffe95e8f6f19f431ef115a649d6831f916eddd3ae54522959a",
+    "artefatos/evolucao-e2.md": "2fab071d72ed378b9196d45150fdf0a7e98680617423be0b3297a41204d7cbd1",
+    "artefatos/spec.md": "929f6112e388c391d9b6cc9abd72d98c75958d26e9e9b6241253ad4688f2f912",
+    "config/bandit.ini": "374ed960355416d1015c354295925781ee639b3b075f36891f6ed4a410f4888c",
+    "config/coveragerc": "79c73cbae3d8425597830eb8231d92034774fc717d6bc1695ffbc6cf33b888fd",
+    "config/pylintrc": "09975f093fe01bb2bbe340ba81bfad7b3745aa2761bf89f3a708990f043c7e4d",
+    "oracle/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "oracle/auxiliares.py": "50e326560de3cc87aaea26b322428579ced16992938abf5ff67ab68f7e527686",
+    "oracle/conftest.py": "b7e3e60245e703b80367d1eaaa4587a1457d548e0f9417eeb3540cc7dd87320c",
+    "oracle/invariantes.py": "c78882ec78cc2f748c90b0daccb4d66658bbd53cdf0d99a3ab8b72130d4424bf",
+    "oracle/observacao.py": "1b77abada3fba04b90d4f5848e1e20f841a868e0aed52409e9ec187c44c16787",
+    "oracle/base/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "oracle/base/conftest.py": "59acc1fe09c99aef280f97d847eb1f3c40087d8ee80eadcfc677974741c798f7",
+    "oracle/base/test_alocacao.py": "4e07927e696ef5c9b55308e3017922cb7edf63d481a2bb22a3886718e86df84f",
+    "oracle/base/test_cadastros.py": "308f7c262f62867b9f58330d93420ac9bb8b206a3e6d0f814e31271bee2255e0",
+    "oracle/base/test_complementares.py": "64fb1f097355b0459ee9b74d8a2432a3152f0898c072e946448d16d1c741c356",
+    "oracle/base/test_substituicoes.py": "5ca0cc2ce49fb5916ffbaf50a6b4dd59cf5bc62b1e69223851b6363cda946064",
+    "oracle/base/test_transversais.py": "a53f81daa623ecb3f944acaf61f3fe0257e0d100a3fbb4b05a86ceb12359d6cb",
+    "oracle/base/test_trocas.py": "d60e0a02398251d1d817abe28262ccd14b67d38c8296f21c62265a621b8dcdda",
+    "oracle/base/test_turnos.py": "9b2b07a4861a2ba6e9f4f919f0abb6d3b6c58871679e4cc149ce72c2f60a9fc1",
+    "oracle/propriedades/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "oracle/propriedades/conftest.py": "59acc1fe09c99aef280f97d847eb1f3c40087d8ee80eadcfc677974741c798f7",
+    "oracle/propriedades/test_sequencias.py": "ca816ef48e56c5e12be92877a00aeb8a9b2fb35be1fb1c68f1437776dd76e867",
+    "oracle/e1/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "oracle/e1/conftest.py": "59acc1fe09c99aef280f97d847eb1f3c40087d8ee80eadcfc677974741c798f7",
+    "oracle/e1/test_noturno.py": "2919352b2b68853b6b03c524c002b9fb2379d6e90a871a83dd9ea9382becf1a2",
+    "oracle/e2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "oracle/e2/conftest.py": "59acc1fe09c99aef280f97d847eb1f3c40087d8ee80eadcfc677974741c798f7",
+    "oracle/e2/test_autenticacao.py": "11f5b671ef2b90a453e117da1992a9c83509bfdd6b2b3e2ef540a5af7ebb0bf3",
+    "validacao_oraculo/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validacao_oraculo/test_oraculo.py": "7f43859a5a693a1631b4976655e11be6959ae733670926d0c06cc3a5ced870c5",
+    "orq/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "orq/agente.py": "a0b53e9e051fcda1fbf0ce6633a3b16e12daa111ac37c2f73bf0ed7187c8a47b",
+    "orq/estados.py": "b7240bc9e4f701aaae79d6c356d11365fc0c0f1a7047d777b5753639c64b3805",
+    "orquestrador.py": "e93db5e80c9f8e2aca25ec14c2520e9cb21b5f6d8821d1eeb89e137a72d3f0f7",
+    "medir.py": "c05a1c1e9d2485d034ac40b9447f0b8cbfda66b909b9d2976742a6b53ffcaa60",
+    "manifesto.py": "f798ee31be06f70e8e7c5a397f8606c7c29170392ff321e8a70304b577b43f0e",
+    "reavaliar_v1.py": "57ce7af73f13c5a7478ca26c677ac3dd262c8af5fd4786cf6ddc48e7e4ff3d65",
+    "requirements.txt": "8bd7ea14283ecb193577001ee0ce037e286113e738b8fb92d944dac6a5f0888a",
+    "pytest.ini": "8777385a0e9d6d8090e6d2fb5b39f5eef73adcabe800541ebe24e0d5fd5ee4d5",
+    "metodologia/protocolo-execucao.md": "4f54248a5ac665cbb63fab78ec5daeaee4bf1c6cce141ca381960eb3f1562aaf"
+  },
+  "git": {
+    "commit": "9dd4c8d4453cedf24ac3146b322a711f9542404c",
+    "tag": "EXPERIMENTO-V2-CONGELADO"
+  },
+  "suites": {
+    "base": {
+      "testes_declarados": 54
+    },
+    "propriedades": {
+      "testes_declarados": 1
+    },
+    "e1": {
+      "testes_declarados": 9
+    },
+    "e2": {
+      "testes_declarados": 16
+    }
+  }
+}

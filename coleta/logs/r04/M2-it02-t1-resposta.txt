@@ -1,0 +1,26 @@
+Não consegui executar Python neste ambiente (as chamadas a `python` são bloqueadas pelo sandbox e pelas permissões), então fiz a verificação por leitura integral do código contra a especificação. Resultado:
+
+## Não há problemas a corrigir
+
+Os relatórios desta iteração estão todos limpos — pylint 10.00/10, nenhuma ocorrência de complexidade, nenhuma de segurança, 55/55 testes aprovados e `Invariantes violadas: []`. Não há nada apontado para corrigir, e eu não introduzi mudanças especulativas.
+
+## Auditoria estática que fiz em cima disso
+
+Confirmei ponto a ponto os trechos onde esse tipo de sistema normalmente erra, e todos estão corretos:
+
+- **Convenções temporais (4.1)** — `tempo.ha_sobreposicao` usa `a[0] < b[1] and b[0] < a[1]` (semiaberto, tocar não sobrepõe); `inicio_semana` ancora na segunda 00:00 UTC; `segundos_por_semana` fatia plantões que cruzam a virada de semana; `dias_cobertos` para plantão que termina exatamente à meia-noite não conta o dia seguinte (`app/tempo.py:122`).
+- **INV2** — 11 horas exatas são aceitas (`folga < INTERVALO_MINIMO_SEGUNDOS`, `app/regras.py:124`).
+- **INV1/INV2 por vizinhos ordenados** — correto, e `validar_escala` roda INV1 antes de INV2, então INV2 só é avaliada sobre conjuntos já livres de sobreposição (`app/regras.py:178`).
+- **INV3** — `> 44h` viola, `== 44h` passa; limite fixo em 44 e independente de `carga_semanal`.
+- **INV8** — `max(0, semana - carga_semanal)` somado em todas as semanas, com recálculo em alocação, cancelamento e nos dois lados da troca aprovada.
+- **RF25 atomicidade** — `aprovar_troca` monta os dois conjuntos hipotéticos (cada um excluindo o próprio plantão e incluindo o turno do outro) e valida ambos **antes** de qualquer mutação; o `commit` só ocorre na rota, então um 409 descarta tudo (`app/servicos.py:373`).
+- **INV6** — `promover_fila` e `sair_da_fila` decrementam e depois renormalizam 1..n; `entrar_na_fila` usa `max(posicao)` apenas entre `aguardando`, o que mantém INV6 mesmo havendo um `convocado` com posição 1.
+- **Seção 4.4** — `GET /turnos` filtra por `data_fim > de` / `data_inicio < ate` e `recorta_periodo` aplica a mesma regra na escala.
+- **RF37** — ambos os handlers (`StarletteHTTPException` e `RequestValidationError`) garantem `detail`, inclusive em 404/405 gerados pelo roteamento.
+
+## Duas observações (não são defeitos, são ambiguidades da especificação)
+
+1. `DELETE /profissionais/{id}/especialidades/{esp_id}` responde **404** quando o vínculo não existe (`app/servicos.py:575`). A RF07 só menciona 204 e o 409 de INV4; uma leitura idempotente de DELETE pediria 204. Deixei como está porque os testes atuais passam e mudar isso pode quebrar expectativa já validada.
+2. `horas_periodo` na RF23 soma as horas **integrais** dos turnos que se sobrepõem ao período, sem recortar pela janela `[de, ate)`. A especificação define a inclusão por sobreposição, mas não diz se as horas devem ser recortadas.
+
+Há também código morto que o pylint não acusa (`erros.invalido`, `schemas.ProfissionalAtualizar`, `models.ESTADOS_*`/`TIPOS_AUSENCIA`, `Troca.pendente`, `regras.total_horas`). Não removi: não é problema apontado e `app/` está em 2563 linhas, dentro da faixa exigida. Se quiser que eu limpe, faço numa passada separada.

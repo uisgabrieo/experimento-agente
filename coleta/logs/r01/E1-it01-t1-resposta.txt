@@ -1,0 +1,11 @@
+Mudança implementada em 6 arquivos:
+
+- **`app/constantes.py`** — `ADICIONAL_NOTURNO = 1.20`.
+- **`app/modelos.py`** — `Turno.noturno` (`Boolean`, `NOT NULL`, default/server_default `false`), mais `_acrescentar_colunas_ausentes()` chamado por `criar_tabelas()`: faz `ALTER TABLE turnos ADD COLUMN noturno` em bancos pré-existentes, já que `create_all` não altera tabelas existentes.
+- **`app/esquemas.py`** — `TurnoCriar.noturno: bool = False` (opcional) e `TurnoResposta.noturno` (herdado por `TurnoDetalhe`).
+- **`app/tempo.py`** — extraído `horas_recortadas(inicio, fim, de, ate)`; `horas_no_periodo` passa a usá-lo (comportamento idêntico).
+- **`app/repositorio.py`** — `listar_turnos` ganha parâmetro `noturno: bool | None = None`, aplicado em conjunto com `de`/`ate`/`especialidade_id` na consulta e na contagem.
+- **`app/rotas/turnos.py`** — persiste `noturno` no POST, expõe `GET /turnos?noturno=`, e inclui `noturno` no detalhe do turno (RF11).
+- **`app/rotas/profissionais.py`** — `horas_periodo` agora soma por plantão as horas recortadas ao período multiplicadas por 1.2 quando `turno.noturno`; o campo `horas` de cada item e os cálculos de `horas_extras`/INV3 (em `app/regras.py`/`servicos.py`, intocados) seguem usando a duração real.
+
+Uma ressalva de verificação: neste ambiente a execução de `python` foi bloqueada por permissão, então não consegui rodar o smoke test que havia preparado (criar turno noturno + plantão e conferir `horas_periodo`, `horas_extras` e os filtros) — a revisão foi estática. Se quiser, aprove a execução e eu valido de ponta a ponta.

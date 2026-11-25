@@ -1,0 +1,17 @@
+Corrigi todos os avisos do relatório do pylint sem tocar em comportamento funcional. Nenhuma rota, validação, regra de negócio ou cálculo de invariante foi alterado.
+
+**`app/db.py`**
+- `DataHoraUTC`: implementados `python_type` (propriedade) e `process_literal_param` (W0223); `too-many-ancestors` suprimido localmente (herança vem do `TypeDecorator`).
+- `Base`: `too-few-public-methods` suprimido (base declarativa).
+- Listener SQLite: argumento não usado renomeado para `_connection_record` (W0613).
+- `SessionLocal`: `invalid-name` suprimido na linha da fábrica de sessões (nome mantido para não quebrar importadores).
+- `criar_esquema`: import local mantido (é circular por natureza — `modelos` importa `db`), com `disable-next=import-outside-toplevel,unused-import` e comentário explicando o motivo.
+
+**`app/config.py`, `app/modelos.py`, `app/esquemas.py`, `app/rotas.py`, `app/servicos.py`**
+- Docstrings adicionadas em todas as classes (enums, modelos ORM, esquemas Pydantic), propriedades, métodos e funções públicas apontadas (C0115/C0116).
+- `too-few-public-methods` suprimido nas classes ORM de dados puros.
+- `too-many-arguments`/`too-many-positional-arguments` suprimidos em `rotas.listar_turnos` e `servicos.listar_turnos` (assinaturas ditadas pelos filtros de RF10).
+
+**Dimensão:** `app/` passou de 2452 para 2580 linhas — dentro da faixa 1100–2600 (para caber, as docstrings de uma linha que adicionei ficam coladas ao código, sem linha em branco intermediária). Continuam 11 módulos.
+
+Verificação: o ambiente bloqueia execução de Python aqui (inclusive `compileall`, pylint e os testes), então a conferência foi estática — revisei cada trecho editado, mas não consegui rodar a suíte de 55 testes nem o pylint para confirmar o resultado zerado.

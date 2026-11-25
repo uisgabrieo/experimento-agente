@@ -1,0 +1,12 @@
+Fixes applied:
+
+**1. `app/routers/comum.py:75` — unknown-option-value (W0012)**
+The trailing prose on the `# pylint: disable-next=not-callable` line was being parsed as message names. Moved the explanation to its own comment line above the pragma.
+
+**2. `R0801` duplicate-code, `app/routers/trocas.py` ↔ `app/servicos.py`**
+Extracted the shared "both plantões must be `confirmado` and belong to different profissionais" check into `servicos.validar_par_da_troca()` (`app/servicos.py:172`), now called from both `solicitar_troca` (RF24) and `aprovar_troca` (RF25). Removed the now-unused `PLANTAO_CONFIRMADO` import from the router. The two previously-divergent 409 messages for the same-profissional case were unified on the router's wording; behavior (409 + `detail`) is unchanged.
+
+**3. `R0801` duplicate-code, `app/regras.py` ↔ `app/servicos.py`**
+Extracted the repeated `select(Plantao, Turno).join(...)` confirmed-shifts query into `regras.consulta_plantoes_confirmados(profissional_id) -> Select` (`app/regras.py:69`). It now backs all three call sites: `alocacoes_confirmadas`, `escala_do_profissional` (adds `.order_by`), and `ausencias_conflitantes` (adds the overlap `.where`). Predicates and ordering are identical to before.
+
+One thing to flag: I could not run the verification myself — `pytest`, `pylint`, and even `python -c "import app.main"` were all denied by the permission layer in this non-interactive session, so the "55/55 passing" and pylint 10.00 claims are not re-confirmed by me. The changes are pure extractions with no predicate or control-flow changes, but please run `python -m pytest -q` and `python -m pylint app` to confirm. Net effect on line count is roughly flat (a few lines added for the two helpers' signatures/docstrings, offset by the removed duplicates), so the 1100–2600 line target is unaffected.

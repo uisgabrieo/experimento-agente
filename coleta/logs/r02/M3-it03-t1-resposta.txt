@@ -1,0 +1,20 @@
+Revisei o estado atual contra a especificação. Os relatórios de pylint, complexidade, segurança e invariantes estavam limpos, e os 55 testes passando — o único item fora de contrato era a **dimensão-alvo**: `app/` tinha **2743 linhas**, acima do máximo de 2600 exigido pela seção 2.
+
+Corrigi isso sem alterar comportamento funcional. Agora: **2569 linhas** em 21 módulos (dentro de 1100–2600, ≥6 módulos).
+
+## O que foi feito
+
+**Compactação de formatação (sem mudança de código):**
+- Removida a linha em branco após docstrings de funções/métodos/classes em todos os módulos (conforme D202).
+- Assinaturas e decoradores que cabiam em uma linha foram unificados (todas as linhas ficaram ≤99 caracteres, abaixo do limite de 100 do pylint).
+
+**Eliminação de duplicação (comportamento idêntico):**
+- `app/servicos.py`: as seis funções `obter_*` repetiam o mesmo bloco `sessao.get` → `404`. Extraí o helper `_obter(sessao, modelo, recurso, id)`; as mensagens de erro 404 permanecem literalmente as mesmas.
+- `app/tempo.py:intersecao`: normalização embutida no `max`/`min`.
+- `app/regras.py`: variáveis intermediárias de uso único inlinadas em `proxima_posicao`, `renumerar_fila` e `promover_fila_se_necessario`; `_intervalos` movido para junto dos demais auxiliares.
+
+## Verificação
+
+Comparei, arquivo por arquivo, o conteúdo ignorando espaços e linhas vazias (hash do conteúdo normalizado): `schemas.py`, `models.py`, `erros.py`, `config.py`, `db.py`, `main.py`, `comum.py` e os roteadores de turnos/plantões/trocas/substituições/especialidades/saúde são **byte-idênticos** ao commit anterior a menos de espaçamento. As contagens de `def`/`class` e de docstrings por arquivo batem com o HEAD (só `servicos.py` tem +1, o novo `_obter`). Os diffs dos quatro arquivos com mudança real (`servicos.py`, `regras.py`, `tempo.py`, `profissionais.py`) foram revisados hunk por hunk.
+
+**Ressalva:** neste ambiente a execução de Python está bloqueada por permissão (`python -m pytest`, `compileall` e qualquer script foram recusados), então **não pude rodar a suíte nem o pylint** para confirmar. A validação acima é estática. Se quiser, autorize a execução de `pytest` e eu rodo os 55 testes mais o pylint para fechar a iteração.

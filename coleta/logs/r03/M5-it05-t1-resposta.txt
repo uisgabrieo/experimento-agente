@@ -1,0 +1,30 @@
+Revisei o estado atual contra a especificação. Resumo do que encontrei:
+
+## Relatórios desta iteração
+
+Os quatro relatórios anexados não apontam nenhum problema:
+
+- **pylint:** 10.00/10
+- **complexidade:** sem ocorrências
+- **segurança:** sem ocorrências
+- **verificação (iteração 5):** 55/55 testes aprovados, `Invariantes violadas: []`
+
+Não há, portanto, nenhum problema apontado para corrigir — e não alterei nenhum arquivo.
+
+## Verificação própria que fiz (leitura estática de todo o `app/`)
+
+Conferi os pontos onde um desvio da especificação costuma passar pelos testes e não encontrei defeito:
+
+- **INV1/INV2** (`regras.py:180-201`) — a checagem por pares adjacentes é suficiente: com a lista ordenada por `inicio` e sem sobreposições, `inicio_j ≥ inicio_{i+1}`, logo o menor intervalo está sempre entre vizinhos. Sobreposição é detectada antes, em `_violacao_sobreposicao`.
+- **INV3/INV8** (`tempo.py:90-104`, `regras.py:348-365`) — repartição por semana a partir de segunda 00:00 UTC, com recálculo de `horas_extras` após `flush()` em todos os quatro caminhos que mexem em plantão (alocação, cancelamento, aprovação de troca, PATCH de `carga_semanal`).
+- **INV6** — `normalizar_fila` e `convocar_se_necessario` mantêm 1,2,3,… tanto na saída da fila (RF33) quanto na convocação por cancelamento (RF22).
+- **RF25 atomicidade** — `validar_permuta` monta o estado final hipotético dos dois profissionais e decide antes de qualquer escrita; em caso de violação nada é gravado.
+- **RF34** — o aceite reusa `plantoes.alocar`, que levanta 409 antes de escrever, deixando a substituição em `convocado`.
+- **Seção 4.4** — `data_fim > de` / `data_inicio < ate` em turnos, escala e ausências.
+- **Seção 2.1** — todas as oito tabelas e suas colunas obrigatórias existem com os nomes exatos.
+
+## Um ponto de atenção (não é defeito)
+
+`app/` está com **2586 linhas**, contra o teto de 2600 da dimensão-alvo — restam 14 linhas de margem. Qualquer acréscimo nas próximas iterações precisa vir acompanhado de remoção equivalente, ou a restrição é rompida.
+
+Observação: não consegui reexecutar `pylint` nem o smoke test localmente — as chamadas de shell foram recusadas pelas permissões desta sessão. A confirmação acima é de leitura do código somada aos relatórios que você anexou.

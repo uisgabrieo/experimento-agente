@@ -1,0 +1,50 @@
+app,repeticao,estado,iteracao,tentativa,data_hora,tipo,segundos,codigo_saida,sucesso,criterio,erro,commit,modelos,custo_usd,tokens_entrada,tokens_saida,tokens_cache_criacao,tokens_cache_leitura,num_turnos,subtipo,tamanho_instrucao
+app,1,M0,1,1,2026-10-13T10:55:49,geracao,1338.38,0,sim,,,af63e4c703e3,"claude-haiku-4-5-20251001,claude-opus-5",9.605259499999999,194,117153,178419,9769645,97,success,17751
+app,1,M1,1,1,2026-10-13T11:06:10,correcao,539.94,0,sim,ciclo fixo 1/5,,06679bfab2ca,"claude-haiku-4-5-20251001,claude-opus-5",3.7308844999999997,88,42187,102843,3277143,67,success,24434
+app,1,M2,2,1,2026-10-13T11:09:46,correcao,126.2,1,nao,falha da invocacao,You've hit your session limit · resets 2:50pm (America/Sao_Paulo),,"claude-haiku-4-5-20251001,claude-opus-5",1.200303,26,5928,76495,561004,28,success,17989
+app,1,M2,2,2,2026-10-13T15:56:29,correcao,347.18,0,sim,ciclo fixo 2/5,,06679bfab2ca,"claude-haiku-4-5-20251001,claude-opus-5",2.8877404999999996,78,20770,117522,2372719,39,success,17989
+app,1,M3,3,1,2026-10-13T16:03:34,correcao,307.5,0,sim,ciclo fixo 3/5,,06679bfab2ca,"claude-haiku-4-5-20251001,claude-opus-5",2.2368105,62,18828,82278,1872999,31,success,17989
+app,1,M4,4,1,2026-10-13T16:10:33,correcao,298.25,0,sim,ciclo fixo 4/5,,06679bfab2ca,"claude-haiku-4-5-20251001,claude-opus-5",2.2695705,68,18262,81424,1983839,34,success,17989
+app,1,M5,5,1,2026-10-13T16:17:10,correcao,291.38,0,sim,ciclo fixo 5/5,,06679bfab2ca,"claude-haiku-4-5-20251001,claude-opus-5",2.2228879999999998,64,17380,80640,1950294,32,success,17989
+app,1,E1,1,1,2026-10-13T16:22:00,evolucao-e1,191.04,0,sim,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",,2466bfa356a3,"claude-haiku-4-5-20251001,claude-opus-5",1.9708999999999994,80,12591,56876,2160820,40,success,18079
+app,1,E2,1,1,2026-10-13T16:31:02,evolucao-e2,420.46,0,sim,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",,3637edc39ddc,"claude-haiku-4-5-20251001,claude-opus-5",3.4140980000000005,112,27935,88820,3639696,56,success,19916
+app,2,M0,1,1,2026-10-13T16:53:05,geracao,1213.14,1,nao,falha da invocacao,You've hit your session limit · resets 8:40pm (America/Sao_Paulo),,"claude-haiku-4-5-20251001,claude-opus-5",6.0549185,102,109956,137218,3853753,64,success,17751
+app,2,M0,1,2,2026-10-14T10:56:20,geracao,1409.38,0,sim,,,8db5f5b2df33,"claude-haiku-4-5-20251001,claude-opus-5",11.069529499999996,222,125471,215424,11541905,111,success,17751
+app,2,M1,1,1,2026-10-14T11:05:03,correcao,397.12,0,sim,ciclo fixo 1/5,,d002c201a5d8,"claude-haiku-4-5-20251001,claude-opus-5",4.9788615,224,25651,91282,6830347,112,success,23852
+app,2,M2,2,1,2026-10-14T11:07:02,correcao,23.05,1,nao,falha da invocacao,You've hit your session limit · resets 3:30pm (America/Sao_Paulo),,"claude-haiku-4-5-20251001,claude-opus-5",0.4429025,6,637,39063,58607,6,success,19443
+app,2,M2,2,2,2026-10-14T14:55:22,correcao,3.87,1,nao,falha da invocacao,You've hit your session limit · resets 3:30pm (America/Sao_Paulo),,,0,0,0,0,0,1,success,19443
+app,2,M2,2,3,2026-10-14T15:54:44,correcao,117.41,0,sim,ciclo fixo 2/5,,f153478cbd09,"claude-haiku-4-5-20251001,claude-opus-5",1.262575,42,7401,63288,874892,26,success,19443
+app,2,M3,3,1,2026-10-14T16:09:00,correcao,735.36,0,sim,ciclo fixo 3/5,,a0c7fbd4aa30,"claude-haiku-4-5-20251001,claude-opus-5",7.687366,192,59565,150215,9377220,96,success,17989
+app,2,M4,4,1,2026-10-14T16:14:03,correcao,180.58,0,sim,ciclo fixo 4/5,,a0c7fbd4aa30,"claude-haiku-4-5-20251001,claude-opus-5",1.722711,58,9662,77639,1395920,29,success,17989
+app,2,M5,5,1,2026-10-14T16:19:30,correcao,211.47,0,sim,ciclo fixo 5/5,,31ec94de1c6b,"claude-haiku-4-5-20251001,claude-opus-5",1.6278875,42,12901,77238,1052483,21,success,17989
+app,2,E1,1,1,2026-10-14T16:24:24,evolucao-e1,209.04,0,sim,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",,8af3c5eecb3f,"claude-haiku-4-5-20251001,claude-opus-5",2.1580385000000004,84,11521,73333,2259417,42,success,18079
+app,2,E2,1,1,2026-10-14T16:33:09,evolucao-e2,408.48,0,sim,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",,85f3ef8fd44e,"claude-haiku-4-5-20251001,claude-opus-5",3.1610114999999994,94,28692,89484,3082573,57,success,19916
+app,3,M0,1,1,2026-10-14T16:55:13,geracao,1211.15,0,sim,,,9f0ff5008e07,"claude-haiku-4-5-20251001,claude-opus-5",7.338534999999999,138,111943,148980,6086046,69,success,17751
+app,3,M1,1,1,2026-10-14T16:57:22,correcao,21.18,1,nao,falha da invocacao,You've hit your session limit · resets 8:50pm (America/Sao_Paulo),,"claude-haiku-4-5-20251001,claude-opus-5",0.3970935,4,954,35009,27615,3,success,26356
+app,3,M1,1,2,2026-10-14T22:02:49,correcao,676.63,0,sim,ciclo fixo 1/5,,7a24d0bb40a2,"claude-haiku-4-5-20251001,claude-opus-5",7.5340655000000005,198,45911,165469,9442569,131,success,26356
+app,3,M2,2,1,2026-10-14T22:11:00,correcao,384.7,0,sim,ciclo fixo 2/5,,8e70fa36033a,"claude-haiku-4-5-20251001,claude-opus-5",3.7439889999999973,134,24518,94268,4360444,76,success,20622
+app,3,M3,3,1,2026-10-14T22:14:01,correcao,72.61,0,sim,ciclo fixo 3/5,,be8a680ef1fe,"claude-haiku-4-5-20251001,claude-opus-5",0.6041854999999999,24,3730,33249,343529,12,success,18093
+app,3,M4,4,1,2026-10-14T22:18:08,correcao,143.45,0,sim,ciclo fixo 4/5,,88cf8cb04f2c,"claude-haiku-4-5-20251001,claude-opus-5",1.709213,50,8053,81445,1373334,35,success,17989
+app,3,M5,5,1,2026-10-14T22:22:54,correcao,182.1,0,sim,ciclo fixo 5/5,,88cf8cb04f2c,"claude-haiku-4-5-20251001,claude-opus-5",1.7471015,50,9802,79678,1397001,25,success,17989
+app,3,E1,1,1,2026-10-14T22:26:49,evolucao-e1,149.45,0,sim,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",,da8638b132ef,"claude-haiku-4-5-20251001,claude-opus-5",1.5405354999999998,54,9888,58661,1399801,37,success,18079
+app,3,E2,1,1,2026-10-14T22:37:19,evolucao-e2,522.05,0,sim,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",,0eadb98f73ce,"claude-haiku-4-5-20251001,claude-opus-5",4.8611675,152,38163,112504,5548355,76,success,19916
+app,4,M0,1,1,2026-10-14T22:56:08,geracao,1009.11,1,nao,falha da invocacao,You've hit your session limit · resets 2:50am (America/Sao_Paulo),,"claude-haiku-4-5-20251001,claude-opus-5",4.815680999999999,102,82197,109201,3323568,52,success,17751
+app,4,M0,1,2,2026-10-15T03:06:05,geracao,686.48,0,sim,,,2ffc71bd7f07,"claude-haiku-4-5-20251001,claude-opus-5",3.659100499999999,70,59873,117717,1956607,43,success,17751
+app,4,M1,1,1,2026-10-15T03:21:01,correcao,741.05,0,sim,ciclo fixo 1/5,,1cdd2c657f0a,"claude-haiku-4-5-20251001,claude-opus-5",7.5355789999999985,240,42389,125612,10419314,120,success,24700
+app,4,M2,2,1,2026-10-15T03:30:05,correcao,329.05,0,sim,ciclo fixo 2/5,,1cdd2c657f0a,"claude-haiku-4-5-20251001,claude-opus-5",2.5183380000000004,68,22151,91317,2089064,34,success,17989
+app,4,M3,3,1,2026-10-15T03:35:32,correcao,241.81,0,sim,ciclo fixo 3/5,,eb76aaba2ace,"claude-haiku-4-5-20251001,claude-opus-5",1.8925665,44,17300,82981,1247031,44,success,17989
+app,4,M4,4,1,2026-10-15T03:39:02,correcao,126.17,0,sim,ciclo fixo 4/5,,eb76aaba2ace,"claude-haiku-4-5-20251001,claude-opus-5",1.5640040000000006,52,6758,73442,1307706,26,success,17989
+app,4,M5,5,1,2026-10-15T03:44:33,correcao,247.64,0,sim,ciclo fixo 5/5,,e5744a83e911,"claude-haiku-4-5-20251001,claude-opus-5",1.9363020000000002,52,17471,79257,1400352,39,success,17989
+app,4,E1,1,1,2026-10-15T03:48:00,evolucao-e1,131.56,0,sim,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",,a71e16b14146,"claude-haiku-4-5-20251001,claude-opus-5",1.3269680000000004,56,7653,52009,1217436,28,success,18079
+app,4,E2,1,1,2026-10-15T04:00:21,evolucao-e2,684.3,1,nao,falha da invocacao,You've hit your session limit · resets 7:50am (America/Sao_Paulo),,"claude-haiku-4-5-20251001,claude-opus-5",5.447402499999999,160,53272,124657,5722235,81,success,19916
+app,4,E2,1,2,2026-10-15T08:46:15,evolucao-e2,967.22,0,sim,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",,98a81b3c4d32,"claude-haiku-4-5-20251001,claude-opus-5",10.6132255,242,77689,193255,13460251,136,success,19916
+app,5,M0,1,1,2026-10-15T09:00:48,geracao,782.28,0,sim,,,b33e9fa97fc7,"claude-haiku-4-5-20251001,claude-opus-5",4.303157499999999,92,66842,109118,3068031,46,success,17751
+app,5,M1,1,1,2026-10-15T09:10:32,correcao,450.96,1,nao,falha da invocacao,You've hit your session limit · resets 1:20pm (America/Sao_Paulo),,"claude-haiku-4-5-20251001,claude-opus-5",5.376113000000002,172,32734,110542,6885740,87,success,23852
+app,5,M1,1,2,2026-10-15T13:56:56,correcao,475.54,0,sim,ciclo fixo 1/5,,24f0a2b518f7,"claude-haiku-4-5-20251001,claude-opus-5",6.091588499999998,176,36831,145669,7409291,128,success,23852
+app,5,M2,2,1,2026-10-15T14:01:15,correcao,151.68,0,sim,ciclo fixo 2/5,,6d2058c38858,"claude-haiku-4-5-20251001,claude-opus-5",1.5004355000000003,62,10343,47478,1519567,37,success,19269
+app,5,M3,3,1,2026-10-15T14:05:06,correcao,126.8,0,sim,ciclo fixo 3/5,,6d2058c38858,"claude-haiku-4-5-20251001,claude-opus-5",1.172447,24,7374,73898,484952,16,success,17989
+app,5,M4,4,1,2026-10-15T14:07:16,correcao,30.67,0,sim,ciclo fixo 4/5,,6d2058c38858,"claude-haiku-4-5-20251001,claude-opus-5",0.3453525,8,1710,24955,92993,4,success,17989
+app,5,M5,5,1,2026-10-15T14:12:57,correcao,243.5,0,sim,ciclo fixo 5/5,,de89b150206b,"claude-haiku-4-5-20251001,claude-opus-5",1.7993054999999996,40,15263,78494,1252139,20,success,17989
+app,5,E1,1,1,2026-10-15T14:16:44,evolucao-e1,140.22,0,sim,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",,9b9d2758178d,"claude-haiku-4-5-20251001,claude-opus-5",1.4903785,56,7818,60063,1374927,28,success,18079
+app,5,E2,1,1,2026-10-15T14:30:46,evolucao-e2,722.21,0,sim,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",,353c934b890b,"claude-haiku-4-5-20251001,claude-opus-5",5.987191499999998,106,64760,154712,5626853,102,success,19916
+app,6,M0,1,1,2026-10-15T14:33:07,geracao,2.72,1,nao,falha da invocacao,You've hit your session limit · resets 6:40pm (America/Sao_Paulo),,,0,0,0,0,0,1,success,17751

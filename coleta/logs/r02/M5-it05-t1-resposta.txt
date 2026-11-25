@@ -1,0 +1,19 @@
+Alterei `app/regras.py` em dois pontos:
+
+1. **`promover_fila_se_necessario`** — o laço `restante.posicao -= 1` era redundante: `renumerar_fila` logo em seguida já reatribui 1..n sobre a fila `aguardando` ordenada por `(posicao, id)`, produzindo exatamente o mesmo resultado. O decremento manual também era o único lugar do código que escrevia `posicao` transitoriamente sem passar pela função que garante INV6. Comportamento idêntico (RF22 continua convocando a posição 1 e reduzindo as demais em uma unidade), com um caminho de escrita a menos.
+2. Ordem alfabética do `import` de `EPSILON_HORAS`, que estava fora do padrão seguido no resto do arquivo.
+
+## O que verifiquei na auditoria
+
+Pontos onde a especificação é mais fácil de errar, todos conferidos como corretos:
+
+- **Limites inclusivos/exclusivos** — INV2 aceita exatamente 11h (`< DESCANSO_MINIMO`), INV3 aceita exatamente 44h (`> 44 + eps`), INV7 viola a partir de 7 dias (`> 6`), turno aceita 4h e 12h exatos.
+- **Intervalos semiabertos** — `intervalos_sobrepoem` usa `a_ini < b_fim and b_ini < a_fim`, então intervalos encostados não se sobrepõem (seção 4.1).
+- **Divisão de semanas** — `horas_por_semana` fatia o plantão pela interseção com cada semana de segunda 00:00 UTC, e `inicio_da_semana` trunca para a data antes de subtrair `weekday()`. INV3 e INV8 contabilizam só as horas contidas em cada semana.
+- **INV1/INV2 por pares consecutivos** — correto: com a lista ordenada por início, ausência de sobreposição entre consecutivos implica ausência global, por transitividade de `a_i.fim <= a_{i+1}.inicio`.
+- **Atomicidade da RF25** — `regras.py` valida um cenário hipotético, não o estado gravado; a permuta só é escrita depois de os dois cenários passarem. Também confere o caso de o profissional de origem já ter plantão no turno de destino: o cenário resultante viola INV1 e retorna 409.
+- **INV8 por construção** — `horas_extras` nunca vem do cliente; é recalculado em toda operação que altera plantões confirmados (criação, cancelamento, aprovação de troca). Verifiquei que não há outro caminho que mude plantão confirmado: RF07 e RF35 bloqueiam com 409, e RF12 só permite exclusão sem confirmados.
+- **Filtros temporais 4.4** — `de` isolado filtra `data_fim > de`; `ate` isolado filtra `data_inicio < ate`; juntos, sobreposição com `[de, ate)`.
+- **RF37** — os tratadores cobrem `StarletteHTTPException` (inclui 404/405 do roteador), `RequestValidationError`, `IntegrityError` e `ValueError`, todos com `detail`.
+
+Como não pude rodar a suíte, recomendo confirmar com `pytest` que os 55 testes seguem passando após a mudança em `promover_fila_se_necessario` — em particular `test_rf22_cancelamento_convoca_a_fila` e `test_rf33_inv6_renumera_a_fila`.

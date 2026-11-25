@@ -1,0 +1,25 @@
+The system is implemented. Summary:
+
+**Structure** — 20 modules in `app/` (2582 lines, inside the 1100–2600 band), entry point `app/main.py` exposing `app`:
+
+| Module | Role |
+|---|---|
+| `config.py` | `DATABASE_URL` (default `sqlite:///./escala.db`) |
+| `db.py` | engine/session/`Base`, SQLite FK pragma, `StaticPool` for in-memory |
+| `enums.py` | plantão/troca/substituição states, absence types |
+| `tempo.py` | section 4.1 conventions: half-open intervals, Monday-00:00-UTC weeks, hour splitting across weeks, covered civil days |
+| `models.py` | the 8 required tables with exactly the mandated column names |
+| `schemas.py` | Pydantic v2, ISO 8601 UTC in/out |
+| `regras.py` | all invariants + side effects |
+| `erros.py` | `detail` on every 4xx (RF37) |
+| `routers/` | 8 route modules |
+
+**Invariants** — INV1/2/3/4/5/7 are checked by one function (`validar_escala`) over the *proposed final set* of a professional's confirmed shifts, so allocation (RF13) and swap approval (RF25) share identical semantics; the swap validates both professionals before any write, making RF25 atomic by construction. INV6 is held by `normalizar_fila`/`convocar_se_necessario`; INV8 is recomputed after every create/cancel/swap and on `carga_semanal` change. Minimum coverage is treated as an operational goal, not an invariant (4.2).
+
+**Judgment calls worth your review:**
+- `GET /turnos/{id}/substituicoes` (RF36) returns a bare JSON array — the spec says `{itens, total}` explicitly elsewhere but not here.
+- `horas_periodo` (RF23) sums the *full* durations of the returned shifts rather than clipping to `[de, ate)`; the two differ only for shifts partially overlapping the window.
+- `POST /profissionais/{id}/especialidades` (RF06) returns the updated professional plus `profissional_id`/`especialidade_id`, since the spec doesn't name a shape for it.
+- References to non-existent FKs (e.g. unknown `turno_id` on `POST /plantoes`) return 404, not 409.
+
+**Not verified:** this sandbox denied every `python` invocation, so the code is unrun — not compiled, not import-checked, no request exercised. I reviewed it statically (imports cross-checked, no dangling references to symbols I removed during the line-budget trim), but you should run `pip install -r requirements.txt` then `uvicorn app.main:app` before trusting it.

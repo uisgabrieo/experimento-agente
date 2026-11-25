@@ -1,0 +1,3 @@
+repeticao,evolucao,aceita,iteracoes,arquivos_tocados,linhas_adicionadas,linhas_removidas,criterio_final,commit_origem,commit_destino,arquivos_tocados_total,linhas_adicionadas_total,linhas_removidas_total
+1,E1,nao,5,5,25,0,pendente: a aplicacao nao importa,8fc2e2ce1fa9,267e661e612b,5,25,0
+1,E2,nao,5,5,25,0,pendente: a aplicacao nao importa,267e661e612b,114425753732,5,25,0

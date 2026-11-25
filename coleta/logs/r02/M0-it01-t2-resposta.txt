@@ -1,0 +1,22 @@
+The system is implemented. Summary:
+
+**Structure** — 21 modules in `app/` (2585 lines, inside the 1100–2600 window), entry point `app` in `app/main.py`:
+
+- `config.py` — `DATABASE_URL`, default `sqlite:///./escala.db`
+- `db.py` — engine, per-request session, schema creation
+- `models.py` — the eight tables of §2.1 with exactly the required column names (plus a few `criado_em`)
+- `estados.py`, `schemas.py` — domain vocabulary and Pydantic v2 I/O
+- `tempo.py` — §4.1 conventions (half-open intervals, Monday-00:00 UTC weeks, UTC civil days)
+- `regras.py` — invariant engine
+- `servicos.py` — state transitions
+- `routers/` — one module per resource
+
+**Key design decision.** `regras.validar_invariantes_do_profissional` validates a *candidate* set of shifts rather than stored state. That single function serves allocation, swap approval, and substitute acceptance, which is what makes RF25 atomic: the permutation is written only if the resulting scenario satisfies INV1–INV5 and INV7 for both professionals; otherwise nothing changes and the exchange stays `solicitada`. `horas_extras` is never client-supplied — it is recomputed from confirmed shifts on every operation that touches them, so INV8 holds by construction. INV6 is held by renumbering the `aguardando` queue to 1..n after every removal or promotion.
+
+All 38 RFs are routed, with §4.2 respected (minimum coverage is a target, not an invariant) and §4.4 filter semantics in both `GET /turnos` and `GET /profissionais/{id}/escala`.
+
+**Verification — important caveat.** I wrote a pytest suite in `tests/` (~60 tests across cadastros, invariants, and trocas/substituições, including boundary cases: exactly-11-hour rest, touching intervals, shifts crossing the week divide, atomic swap rollback, queue renumbering). **I could not run it.** Every attempt to execute Python in this environment (`python _smoke.py`, `python -V`, via both Bash and PowerShell, with and without sandbox override) was refused by the permission layer, so I also could not confirm which versions of FastAPI/SQLAlchemy/Pydantic are installed. The code is reviewed statically, not executed — please run `pip install -r requirements.txt && pytest` and send me any failures.
+
+Two spots where the spec left room and I chose:
+- `POST /substituicoes/{id}/aceite` returns the created shift (201 Created refers to the shift), with the attended substitution nested under `substituicao`.
+- `horas_periodo` in RF23 counts only hours falling inside `[de, ate)`, consistent with §4.1's treatment of partial weeks.

@@ -1,0 +1,38 @@
+Sistema implementado por completo em `app/` (11 módulos, 2452 linhas — dentro da faixa 1100–2600).
+
+## Estrutura
+
+| Módulo | Papel |
+| --- | --- |
+| `app/main.py` | objeto `app` (ponto de entrada), lifespan que cria o esquema |
+| `app/config.py` | `DATABASE_URL` com padrão `sqlite:///./escala.db` |
+| `app/db.py` | engine/sessão SQLAlchemy 2.x, `DataHoraUTC` (TypeDecorator que grava UTC ingênuo e devolve UTC consciente), `PRAGMA foreign_keys=ON` |
+| `app/modelos.py` | as 8 tabelas com nomes e colunas exatos da seção 2.1 + enums de estado |
+| `app/esquemas.py` | Pydantic v2; regras da seção 3 → 422; datas ISO 8601 UTC |
+| `app/tempo.py` | convenções da seção 4.1 (intervalos semiabertos, semana ISO em UTC, recorte por semana/dia) |
+| `app/invariantes.py` | INV1–INV8 |
+| `app/servicos.py` | regras de negócio e transações |
+| `app/rotas.py` | todas as rotas da seção 5 |
+| `app/erros.py` | garante `detail` em todo 4xx (RF37) |
+
+## Como as invariantes são garantidas
+
+A estratégia é uniforme: a mutação é aplicada, descarregada com `flush`, e o estado resultante é **reavaliado a partir do banco**; qualquer violação dispara `rollback()` integral antes do 409. Isso dá atomicidade de graça na aprovação de troca (RF25) — a permuta é feita, as seis invariantes são checadas para **ambos** os profissionais e, se qualquer uma falhar, nenhum dos plantões fica alterado. O mesmo mecanismo faz o aceite de convocação (RF34) deixar a substituição em `convocado` quando a alocação é recusada.
+
+`horas_extras` (INV8) é sempre **recalculada** do zero — nunca incrementada — em toda alocação, cancelamento, troca aprovada e alteração de `carga_semanal`, somando `max(0, horas_da_semana - carga_semanal)` com as horas de plantões que cruzam semanas repartidas proporcionalmente. A cobertura mínima foi tratada como meta operacional (seção 4.2), não como invariante.
+
+## Pontos onde a especificação era omissa e eu decidi
+
+- `GET /turnos/{id}/substituicoes` devolve **lista pura** — a spec nomeia `{itens, total}` explicitamente apenas em RF04/RF10/RF23/RF29.
+- `de`/`ate` em `/escala` recortam as horas: `horas_periodo` conta só a parcela dentro de `[de, ate)`; `itens` traz apenas plantões `confirmado`.
+- Referência inexistente (turno, profissional, especialidade, vínculo) → 404; `DELETE /plantoes/{id}` em plantão já cancelado é idempotente (200).
+- Acrescentei `PATCH`/`PUT /profissionais/{id}` (útil para inativar e para RF20), com recálculo de INV8 quando a carga muda, além de `GET` de item para trocas/substituições/plantões.
+
+## Verificação — não executada
+
+Não consegui rodar nada: este ambiente recusa toda invocação de Python (`python -c`, `python arquivo.py`, `python -m compileall`, `pip list` → "This command requires approval") e a sessão é não interativa, então só `python --version` passou. **Nenhum teste, smoke run ou checagem de sintaxe foi executado** — a implementação foi validada por releitura módulo a módulo, conferindo cada nome importado contra sua definição. Deixei `verificacao/smoke.py` (igualmente não executado) para você rodar:
+
+```
+pip install -r requirements.txt
+python verificacao/smoke.py
+```

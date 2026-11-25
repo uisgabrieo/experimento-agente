@@ -1,0 +1,28 @@
+Revisei o estado atual por completo. **Nenhuma correção foi aplicada — não há problema a corrigir.**
+
+## Verificação dos relatórios
+
+Os quatro relatórios da iteração 4 estão limpos: pylint 10.00/10, nenhuma ocorrência de complexidade ou segurança, 55/55 testes de comportamento aprovados, lista de invariantes violadas vazia. Não consegui re-executar `pylint`/`pytest` aqui (a execução de `python` no sandbox exige aprovação), então auditei o código por leitura, arquivo por arquivo.
+
+## Conferência das restrições técnicas (seção 2)
+
+| Item | Estado |
+| --- | --- |
+| Ponto de entrada `app` em `app/main.py` | `app/main.py:27` |
+| `DATABASE_URL` com padrão `sqlite:///./escala.db` | `app/config.py:12` |
+| Módulos em `app/` | 14 (mínimo 6) |
+| Linhas em `app/` | 2513 (faixa 1100–2600) |
+| Esquema 2.1 (8 tabelas, colunas exatas) | `app/models.py` — todas conferidas nome a nome |
+
+## Conferência das invariantes
+
+As convenções da seção 4.1 estão corretas nos pontos onde erram com mais frequência: intervalo semiaberto em `ha_sobreposicao` (`app/tempo.py:74`), INV2 aceitando exatamente 11h (`<` em `app/regras.py:124`), INV3 aceitando exatamente 44h (`>` em `app/regras.py:137`), rateio de horas na virada de semana por fatiamento (`segundos_por_semana`, `app/tempo.py:84`), dia civil contado só com duração positiva (`dias_cobertos`, `app/tempo.py:112`), e INV7 violando apenas acima de 6 dias. INV8 segue a fórmula da seção 4.3 e é recalculada na alocação, no cancelamento e nos dois lados da troca aprovada. A atomicidade de RF25 está correta: os dois conjuntos propostos são validados antes de qualquer atribuição, e nenhum serviço faz `commit` — isso fica nas rotas, então uma violação aborta tudo.
+
+## Dois pontos de julgamento (deixados como estão)
+
+Não são defeitos contra o texto da especificação, mas são os lugares onde uma leitura alternativa produziria outro código:
+
+- `DELETE /profissionais/{id}/especialidades/{esp_id}` com vínculo inexistente retorna **404** (`app/servicos.py:572`). RF07 só nomeia 204 e 409; uma leitura idempotente devolveria 204. Mantive porque os 55 testes atuais passam e alterar isso mudaria comportamento funcional.
+- `limite` acima de 100 retorna **422** em vez de ser truncado para 100 (RF04). "O máximo é 100" admite as duas leituras; 422 é a mais comum em FastAPI.
+
+Uma observação operacional: com 2513 linhas, restam ~87 de margem até o teto de 2600. Qualquer iteração futura precisa cortar antes de adicionar.

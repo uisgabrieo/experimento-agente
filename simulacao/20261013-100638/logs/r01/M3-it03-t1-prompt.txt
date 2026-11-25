@@ -1,0 +1,433 @@
+ESPECIFICACAO DO SISTEMA
+
+# Especificação — Sistema de Escala de Plantão
+
+**Status:** CONGELADA · **Data:** 12/10/2026
+
+## 1. Contexto
+
+> Uma clínica de médio porte precisa organizar e manter a escala mensal de plantões de sua equipe. A organização da escala deve considerar os limites de jornada dos profissionais, a cobertura mínima necessária em cada turno e as solicitações de troca de plantão entre os membros da equipe.
+
+---
+
+## 2. Restrições técnicas
+
+A implementação deve seguir as restrições abaixo.
+
+| Item             | Valor obrigatório                                           |
+| ---------------- | ----------------------------------------------------------- |
+| Linguagem        | Python 3.13                                                 |
+| Framework        | FastAPI + Pydantic v2                                       |
+| Persistência     | SQLite via SQLAlchemy 2.x                                   |
+| Banco de dados   | variável `DATABASE_URL`, com padrão `sqlite:///./escala.db` |
+| Ponto de entrada | objeto `app` em `app/main.py`                               |
+| Módulos          | no mínimo 6 módulos em `app/`                               |
+| Dimensão-alvo    | entre 1100 e 2600 linhas em `app/`                          |
+| Datas e horários | UTC, em formato ISO 8601                                    |
+
+### 2.1 Esquema obrigatório do banco
+
+Os nomes das tabelas e das colunas a seguir fazem parte do contrato estabelecido na aplicação e devem ser mantidos exatamente como estão.
+
+| Tabela                       | Colunas obrigatórias                                                                          |
+| ---------------------------- | --------------------------------------------------------------------------------------------- |
+| `profissionais`              | `id`, `nome`, `email`, `carga_semanal`, `ativo`, `horas_extras`                               |
+| `especialidades`             | `id`, `nome`                                                                                  |
+| `profissional_especialidade` | `profissional_id`, `especialidade_id`                                                         |
+| `turnos`                     | `id`, `data_inicio`, `data_fim`, `especialidade_id`, `cobertura_minima`                       |
+| `plantoes`                   | `id`, `turno_id`, `profissional_id`, `estado`                                                 |
+| `trocas`                     | `id`, `plantao_origem_id`, `plantao_destino_id`, `estado`, `data_solicitacao`, `data_decisao` |
+| `substituicoes`              | `id`, `turno_id`, `profissional_id`, `posicao`, `estado`                                      |
+| `ausencias`                  | `id`, `profissional_id`, `data_inicio`, `data_fim`, `tipo`                                    |
+
+1. Pode-se adicionar outras colunas, caso necessário;
+2. As colunas e tabelas listas acima devem obrigatoriamente existir no banco.
+
+---
+
+## 3. Modelo e tipo dos dados
+
+### Profissional
+
+* `id`
+* `nome`: entre 1 e 120 caracteres;
+* `email`: único, deve conter `@` e possuir entre 13 e 120 caracteres;
+* `carga_semanal`: número inteiro entre 20 e 44;
+* `ativo`: padrão `true`;
+* `horas_extras`: decimal, iniciado em 0.
+
+### Especialidade
+
+* `id`
+* `nome`: único, entre 1 e 60 caracteres.
+
+### Turno
+
+* `id`
+* `data_inicio`
+* `data_fim`: deve ser posterior a `data_inicio`, com duração total entre 4 e 12 horas;
+* `especialidade_id`
+* `cobertura_minima`: inteiro maior ou igual a 1.
+
+### Plantão
+
+* `id`
+* `turno_id`
+* `profissional_id`
+* `estado`: `confirmado` ou `cancelado`.
+
+### Troca
+
+* `id`
+* `plantao_origem_id`
+* `plantao_destino_id`
+* `estado`: `solicitada`, `aprovada` ou `rejeitada`;
+* `data_solicitacao`
+* `data_decisao`: nulo enquanto a troca estiver em estado `solicitada`.
+
+### Substituição
+
+* `id`
+* `turno_id`
+* `profissional_id`
+* `posicao`: inteiro maior ou igual a 1;
+* `estado`: `aguardando`, `convocado`, `atendida` ou `cancelada`.
+
+### Ausência
+
+* `id`
+* `profissional_id`
+* `data_inicio`
+* `data_fim`
+* `tipo`: `ferias`, `atestado` ou `folga`.
+
+---
+
+## 4. Invariantes e Regras de negócio
+
+As invariantes abaixo devem permanecer verdadeiras após qualquer operação realizada pela aplicação. 
+
+|          | Invariante                                                                                                                                                 |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **INV1** | Um profissional não pode ter dois plantões em estado `confirmado` cujos intervalos de tempo se sobreponham.                                                |
+| **INV2** | Deve haver um intervalo mínimo de 11 horas entre o fim de um plantão `confirmado` e o início do plantão `confirmado` seguinte do mesmo profissional.       |
+| **INV3** | A soma das horas dos plantões `confirmado` de um profissional não pode ultrapassar 44 horas em nenhuma semana.                                             |
+| **INV4** | Todo plantão `confirmado` deve estar associado a um profissional que possua a especialidade exigida pelo turno.                                            |
+| **INV5** | Um plantão `confirmado` não pode se sobrepor a um período de ausência do profissional nele alocado.                                                        |
+| **INV6** | Para cada turno, as posições das substituições em estado `aguardando` devem formar uma sequência contínua: 1, 2, 3, …, sem lacunas nem posições repetidas. |
+| **INV7** | Um profissional não pode possuir plantões `confirmado` em mais de seis dias consecutivos.                                                                  |
+| **INV8** | O valor de `horas_extras` de um profissional deve corresponder à soma, considerando todas as semanas, das horas trabalhadas além de sua `carga_semanal`.   |
+
+### 4.1 Convenções temporais
+
+Para evitar interpretações diferentes das invariantes, são adotadas as seguintes convenções:
+
+* turnos e ausências são considerados intervalos semiabertos, no formato `[data_inicio, data_fim)`;
+* dois intervalos se sobrepõem quando possuem algum período de tempo em comum;
+* se um intervalo termina exatamente no instante em que outro começa, não há sobreposição entre eles;
+* para `INV2`, um intervalo de exatamente 11 horas é válido;
+* para `INV3` e `INV8`, a semana começa na segunda-feira às 00:00 UTC e termina na segunda-feira seguinte às 00:00 UTC;
+* quando um plantão atravessa a divisão entre duas semanas, apenas as horas efetivamente contidas em cada semana são contabilizadas nela;
+* para `INV7`, considera-se trabalhado todo dia civil, em UTC, no qual exista alguma parcela de um plantão `confirmado`;
+* um plantão que atravesse a meia-noite conta como trabalho nos dois dias, desde que possua duração positiva em ambos.
+
+### 4.2 Cobertura mínima
+
+A cobertura mínima de um turno **não é uma invariante**.
+
+Durante a montagem da escala, os profissionais são alocados individualmente. Portanto, é válido que um turno permaneça temporariamente com menos profissionais do que sua cobertura mínima. Se essa condição fosse tratada como invariante global, estados intermediários legítimos da montagem da escala seriam considerados inválidos.
+
+A cobertura mínima é, portanto, uma meta operacional do turno, e não uma regra de consistência que precise ser satisfeita após toda operação.
+
+### 4.3 Cálculo das horas extras
+
+Para cada semana, as horas extras de um profissional correspondem apenas às horas dos plantões `confirmado` que excederem sua `carga_semanal`.
+
+De forma equivalente:
+
+`horas_extras = soma(max(0, horas_confirmadas_na_semana - carga_semanal))`
+
+A soma é feita considerando todas as semanas registradas.
+
+Quando um plantão atravessa a divisão entre duas semanas, suas horas são distribuídas entre elas conforme definido na seção 4.1.
+
+### 4.4 Filtros temporais
+
+Os parâmetros temporais `de` e `ate`, quando utilizados nas consultas da aplicação, seguem as mesmas convenções da seção 4.1.
+
+* `de` representa o limite inicial inclusivo;
+* `ate` representa o limite final exclusivo;
+* quando ambos são informados, o período consultado é `[de, ate)`;
+* são considerados pertencentes ao período os turnos cujos intervalos possuam alguma sobreposição com o período consultado.
+
+Quando apenas `de` for informado, são considerados os turnos que terminem depois desse instante. Quando apenas `ate` for informado, são considerados os turnos que comecem antes desse instante.
+
+---
+
+## 5. Requisitos funcionais
+
+As rotas e comportamentos descritos nesta seção fazem parte do contrato funcional da aplicação.
+
+Os cadastros feitos por `POST` em `/profissionais`, `/especialidades`, `/turnos`, `/plantoes`, `/trocas`, `/substituicoes` e `/ausencias` retornam o registro criado, incluindo o seu `id`.
+
+### 5.1 Cadastros
+
+**RF01 — Criar profissional.**
+`POST /profissionais` deve cadastrar um profissional e retornar **201**.
+
+**RF02 — Validar profissional.**
+Dados que violem as regras definidas para `Profissional` na seção 3 devem resultar em **422**.
+
+**RF03 — Impedir e-mail duplicado.**
+A tentativa de cadastrar um e-mail já existente deve retornar **409**.
+
+**RF04 — Listar profissionais.**
+`GET /profissionais` deve retornar **200** e um objeto no formato `{itens, total}`. A rota aceita os parâmetros `limite`, cujo valor padrão é 20 e o máximo é 100, e `deslocamento`, cujo valor padrão é 0.
+
+**RF05 — Consultar profissional.**
+`GET /profissionais/{id}` deve retornar **200** quando o profissional existir e **404** quando não for encontrado.
+
+**RF06 — Vincular especialidade.**
+`POST /profissionais/{id}/especialidades`, recebendo `especialidade_id`, deve vincular uma especialidade ao profissional e retornar **201**. Se o vínculo já existir, deve retornar **409**.
+
+**RF07 — Remover especialidade.**
+`DELETE /profissionais/{id}/especialidades/{esp_id}` deve retornar **204**.
+
+A remoção não pode ser realizada enquanto existir qualquer plantão em estado `confirmado` daquele profissional associado a um turno que exija a especialidade removida. Nesse caso, a operação deve retornar **409**, preservando `INV4`.
+
+**RF08 — Criar especialidade.**
+`POST /especialidades` deve cadastrar uma especialidade e retornar **201**. Um nome já cadastrado deve resultar em **409**.
+
+### 5.2 Turnos
+
+**RF09 — Criar turno.**
+`POST /turnos` deve cadastrar um turno e retornar **201**. Durações inferiores a 4 horas ou superiores a 12 horas devem resultar em **422**.
+
+**RF10 — Listar turnos.**
+`GET /turnos` deve retornar **200** com `{itens, total}`. A consulta aceita, opcionalmente, os filtros `de`, `ate` e `especialidade_id`. Os filtros temporais seguem as regras da seção 4.4.
+
+**RF11 — Consultar turno.**
+`GET /turnos/{id}` deve retornar **200**, incluindo os dados do turno e sua lista de plantões. Se o turno não existir, deve retornar **404**.
+
+**RF12 — Excluir turno.**
+`DELETE /turnos/{id}` deve retornar **204**. Se houver algum plantão `confirmado` associado ao turno, a exclusão deve ser recusada com **409**.
+
+### 5.3 Alocação de plantões
+
+**RF13 — Alocar profissional.**
+`POST /plantoes`, recebendo `turno_id` e `profissional_id`, deve criar o plantão em estado `confirmado` e retornar **201**.
+
+**RF14 — Verificar especialidade.**
+Se o profissional não possuir a especialidade exigida pelo turno, a alocação deve retornar **409** (`INV4`).
+
+**RF15 — Impedir sobreposição.**
+Se o novo plantão se sobrepuser a outro plantão `confirmado` do mesmo profissional, a operação deve retornar **409** (`INV1`).
+
+**RF16 — Respeitar intervalo entre plantões.**
+A alocação deve retornar **409** se resultar em intervalo inferior a 11 horas em relação ao plantão anterior ou seguinte do profissional (`INV2`).
+
+**RF17 — Respeitar limite semanal.**
+A alocação que fizer o profissional ultrapassar 44 horas de plantões `confirmado` em uma semana deve retornar **409** (`INV3`).
+
+**RF18 — Respeitar ausências.**
+A alocação deve retornar **409** quando o turno se sobrepuser a uma ausência do profissional (`INV5`).
+
+**RF19 — Limitar dias consecutivos.**
+A alocação que fizer o profissional trabalhar por mais de seis dias consecutivos deve retornar **409** (`INV7`).
+
+**RF20 — Impedir alocação de profissional inativo.**
+Um profissional com `ativo = false` não pode receber novo plantão. A tentativa deve retornar **409**.
+
+**RF21 — Impedir duplicação no mesmo turno.**
+Se o profissional já estiver alocado no turno em estado `confirmado`, uma nova tentativa de alocação deve retornar **409**.
+
+**RF22 — Cancelar plantão.**
+`DELETE /plantoes/{id}` deve alterar o estado do plantão para `cancelado` e retornar **200**.
+
+Quando o cancelamento fizer a cobertura do turno ficar abaixo da cobertura mínima e houver substituições em estado `aguardando`:
+
+* a substituição de posição 1 passa para o estado `convocado`;
+* as demais substituições em estado `aguardando` têm suas posições reduzidas em uma unidade, preservando `INV6`.
+
+As horas do plantão cancelado deixam de participar dos cálculos de `INV3` e `INV8`.
+
+**RF23 — Consultar escala do profissional.**
+`GET /profissionais/{id}/escala?de=&ate=` deve retornar **200** com `{itens, total, horas_periodo}`. Os filtros `de` e `ate` seguem as regras da seção 4.4.
+
+### 5.4 Trocas
+
+**RF24 — Solicitar troca.**
+`POST /trocas`, recebendo `plantao_origem_id` e `plantao_destino_id`, deve criar uma solicitação em estado `solicitada` e retornar **201**.
+
+Os dois plantões devem estar em estado `confirmado` e pertencer a profissionais diferentes. O descumprimento de qualquer uma dessas condições deve resultar em **409**.
+
+**RF25 — Aprovar troca.**
+`POST /trocas/{id}/aprovacao` deve retornar **200** quando a troca puder ser concluída.
+
+A operação deve ser **atômica**. Os profissionais dos dois plantões somente podem ser permutados se a configuração resultante mantiver `INV1`, `INV2`, `INV3`, `INV4`, `INV5` e `INV7` válidas para ambos.
+
+Se alguma dessas invariantes for violada, nenhum dos dois plantões deve ser alterado. A resposta deve ser **409**, com o motivo informado em `detail`.
+
+Concluída a permuta, o estado da troca deve ser alterado para `aprovada` e `data_decisao` deve receber o instante da decisão, em UTC.
+
+**RF26 — Rejeitar troca.**
+`POST /trocas/{id}/rejeicao` deve retornar **200**, alterar o estado da troca para `rejeitada` e preencher `data_decisao` com o instante da decisão, em UTC.
+
+**RF27 — Impedir nova decisão.**
+Uma troca que já tenha sido aprovada ou rejeitada não pode receber nova decisão. A tentativa deve retornar **409**.
+
+**RF28 — Tratar cancelamento durante troca pendente.**
+Se um plantão envolvido em uma troca no estado `solicitada` for cancelado, a troca deve ser rejeitada automaticamente e `data_decisao` deve receber o instante da rejeição, em UTC.
+
+**RF29 — Listar trocas.**
+`GET /trocas?estado=` deve retornar **200** com `{itens, total}`. O parâmetro `estado` pode ser usado como filtro.
+
+### 5.5 Substituições e ausências
+
+**RF30 — Entrar na fila de substituição.**
+`POST /substituicoes`, recebendo `turno_id` e `profissional_id`, deve criar uma substituição em estado `aguardando` e retornar **201**. O campo `posicao` deve receber o valor da última posição existente acrescido de 1.
+
+**RF31 — Verificar necessidade de substituição.**
+Não deve ser permitida nova inscrição na fila quando o turno já estiver com sua cobertura mínima atendida. Nesse caso, a resposta deve ser **409**.
+
+**RF32 — Verificar especialidade para substituição.**
+Um profissional sem a especialidade exigida pelo turno não pode entrar na fila de substituição. A tentativa deve retornar **409**.
+
+**RF33 — Sair da fila de substituição.**
+`DELETE /substituicoes/{id}` deve alterar o estado da substituição para `cancelada` e retornar **204**.
+
+A operação só pode ser realizada enquanto a substituição estiver em estado `aguardando`. Nos demais estados, deve retornar **409**.
+
+Após o cancelamento, as posições das substituições em estado `aguardando` posteriores devem ser reduzidas em uma unidade, preservando `INV6`.
+
+**RF34 — Aceitar convocação.**
+`POST /substituicoes/{id}/aceite` só pode ser executado quando a substituição estiver em estado `convocado`. Para qualquer outro estado, deve retornar **409**.
+
+Quando válida, a operação deve criar um plantão em estado `confirmado`, marcar a substituição como `atendida` e retornar **201**.
+
+A criação do plantão está sujeita às mesmas validações definidas em `RF14` a `RF21`. Se qualquer uma delas falhar, a operação deve retornar **409**, nenhum plantão deve ser criado e a substituição deve permanecer no estado `convocado`.
+
+**RF35 — Registrar ausência.**
+`POST /ausencias` deve criar uma ausência e retornar **201**. Se existir plantão `confirmado` que se sobreponha ao período informado, o cadastro deve retornar **409**. O plantão precisa ser cancelado antes do registro da ausência.
+
+**RF36 — Consultar fila de substituição.**
+`GET /turnos/{id}/substituicoes` deve retornar **200** com a fila de substituições em estado `aguardando` ordenada por `posicao`.
+
+### 5.6 Requisitos transversais
+
+**RF37 — Padronizar erros.**
+Toda resposta HTTP da classe 4xx deve conter a chave `detail`.
+
+**RF38 — Verificar saúde da aplicação.**
+`GET /saude` deve retornar **200** com exatamente:
+
+```json
+{"status": "ok"}
+```
+
+---
+
+## 6. Fora de escopo
+
+Não fazem parte desta versão do sistema:
+
+* interface gráfica;
+* autenticação;
+* folha de pagamento;
+* envio de notificações;
+* tratamento de feriados;
+* internacionalização.
+
+
+RELATORIOS DE ANALISE DO ESTADO ATUAL
+
+===== PYLINT =====
+************* Module modulo_0
+app\modulo_0.py:5:0: C0116: Missing function or method docstring (missing-function-docstring)
+app\modulo_0.py:2:0: W0611: Unused import os (unused-import)
+************* Module modulo_1
+app\modulo_1.py:5:0: C0116: Missing function or method docstring (missing-function-docstring)
+app\modulo_1.py:2:0: W0611: Unused import os (unused-import)
+************* Module modulo_2
+app\modulo_2.py:5:0: C0116: Missing function or method docstring (missing-function-docstring)
+app\modulo_2.py:2:0: W0611: Unused import os (unused-import)
+************* Module modulo_3
+app\modulo_3.py:5:0: C0116: Missing function or method docstring (missing-function-docstring)
+app\modulo_3.py:2:0: W0611: Unused import os (unused-import)
+************* Module modulo_4
+app\modulo_4.py:6:0: C0116: Missing function or method docstring (missing-function-docstring)
+app\modulo_4.py:2:0: W0611: Unused import os (unused-import)
+app\modulo_4.py:3:0: W0611: Unused import sys (unused-import)
+************* Module modulo_5
+app\modulo_5.py:5:0: C0116: Missing function or method docstring (missing-function-docstring)
+app\modulo_5.py:2:0: W0611: Unused import os (unused-import)
+app\modulo_5.py:1:0: R0801: Similar lines in 2 files
+==modulo_0:[5:18]
+==modulo_1:[5:18]
+    if valor > 0:
+        valor += 0
+    if valor > 1:
+        valor += 1
+    if valor > 2:
+        valor += 2
+    if valor > 3:
+        valor += 3
+    if valor > 4:
+        valor += 4
+    if valor > 5:
+        valor += 5
+    return valor (duplicate-code)
+app\modulo_5.py:1:0: R0801: Similar lines in 2 files
+==modulo_2:[5:18]
+==modulo_3:[5:18]
+    if valor > 0:
+        valor += 0
+    if valor > 1:
+        valor += 1
+    if valor > 2:
+        valor += 2
+    if valor > 3:
+        valor += 3
+    if valor > 4:
+        valor += 4
+    if valor > 5:
+        valor += 5
+    return valor (duplicate-code)
+app\modulo_5.py:1:0: R0801: Similar lines in 2 files
+==modulo_4:[6:19]
+==modulo_5:[5:18]
+    if valor > 0:
+        valor += 0
+    if valor > 1:
+        valor += 1
+    if valor > 2:
+        valor += 2
+    if valor > 3:
+        valor += 3
+    if valor > 4:
+        valor += 4
+    if valor > 5:
+        valor += 5
+    return valor (duplicate-code)
+
+-------------------------------------------------------------------
+Your code has been rated at 8.24/10 (previous run: 10.00/10, -1.76)
+
+===== COMPLEXIDADE =====
+sem ocorrencias
+
+===== SEGURANCA =====
+sem ocorrencias
+
+RELATORIO DE VERIFICACAO - iteracao 3
+
+Testes do comportamento existente: nao executados, porque a aplicacao nao pode ser importada.
+Erro ao importar app.main:
+  Traceback (most recent call last):
+    File "<string>", line 1, in <module>
+      import app.main
+  ModuleNotFoundError: No module named 'app.main'
+
+Invariantes: nao avaliaveis (o banco nao foi criado pela aplicacao)
+
+Corrija os problemas apontados. Nao altere o comportamento funcional descrito na especificacao.

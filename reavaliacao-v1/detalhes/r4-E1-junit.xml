@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="64" time="19.587" timestamp="2026-10-13T00:44:34.379818-03:00" hostname="DESKTOP-LNCKA7T"><properties><property name="hypothesis-statistics-oracle/propriedades/test_sequencias.py::test_invariantes_sob_sequencia_arbitraria" value="b3JhY2xlL3Byb3ByaWVkYWRlcy90ZXN0X3NlcXVlbmNpYXMucHk6OnRlc3RfaW52YXJpYW50ZXNfc29iX3NlcXVlbmNpYV9hcmJpdHJhcmlhOgoKICAtIGR1cmluZyBnZW5lcmF0ZSBwaGFzZSAoMTIuNjUgc2Vjb25kcyk6CiAgICAtIFR5cGljYWwgcnVudGltZXM6IH4gMjE2LTQ0MiBtcywgb2Ygd2hpY2ggfiAwLTEgbXMgaW4gZGF0YSBnZW5lcmF0aW9uCiAgICAtIDQwIHBhc3NpbmcsIDAgZmFpbGluZywgYW5kIDEgaW52YWxpZCB0ZXN0IGNhc2VzCgogIC0gU3RvcHBlZCBiZWNhdXNlIHNldHRpbmdzLm1heF9leGFtcGxlcz00MA==" /></properties><testcase classname="oracle.base.test_alocacao" name="test_rf13_alocar_plantao" time="0.113" /><testcase classname="oracle.base.test_alocacao" name="test_rf14_sem_especialidade" time="0.038" /><testcase classname="oracle.base.test_alocacao" name="test_rf15_sobreposicao" time="0.067" /><testcase classname="oracle.base.test_alocacao" name="test_rf16_descanso_menor_que_11h" time="0.066" /><testcase classname="oracle.base.test_alocacao" name="test_rf16_descanso_de_exatamente_11h_permitido" time="0.074" /><testcase classname="oracle.base.test_alocacao" name="test_rf17_excede_44_horas_semanais" time="0.116" /><testcase classname="oracle.base.test_alocacao" name="test_rf18_sobreposicao_com_ausencia" time="0.062" /><testcase classname="oracle.base.test_alocacao" name="test_rf19_setimo_dia_consecutivo" time="0.215" /><testcase classname="oracle.base.test_alocacao" name="test_rf20_profissional_inativo" time="0.049" /><testcase classname="oracle.base.test_alocacao" name="test_rf21_ja_alocado_no_mesmo_turno" time="0.074" /><testcase classname="oracle.base.test_alocacao" name="test_rf22_cancelamento_libera_horas" time="0.120" /><testcase classname="oracle.base.test_cadastros" name="test_rf01_criar_profissional" time="0.018" /><testcase classname="oracle.base.test_cadastros" name="test_rf02_email_sem_arroba" time="0.009" /><testcase classname="oracle.base.test_cadastros" name="test_rf02_email_curto_demais" time="0.010" /><testcase classname="oracle.base.test_cadastros" name="test_rf02_nome_vazio" time="0.010" /><testcase classname="oracle.base.test_cadastros" name="test_rf02_carga_semanal_acima_do_maximo" time="0.010" /><testcase classname="oracle.base.test_cadastros" name="test_rf02_carga_semanal_abaixo_do_minimo" time="0.009" /><testcase classname="oracle.base.test_cadastros" name="test_rf03_email_duplicado" time="0.019" /><testcase classname="oracle.base.test_cadastros" name="test_rf04_listar_profissionais" time="0.027" /><testcase classname="oracle.base.test_cadastros" name="test_rf04_limite_maximo_de_100" time="0.006" /><testcase classname="oracle.base.test_cadastros" name="test_rf05_consultar_profissional_inexistente" time="0.006" /><testcase classname="oracle.base.test_cadastros" name="test_rf06_vinculo_duplicado" time="0.039" /><testcase classname="oracle.base.test_cadastros" name="test_rf08_especialidade_duplicada" time="0.018" /><testcase classname="oracle.base.test_complementares" name="test_rf07_remover_especialidade_sem_plantao" time="0.046" /><testcase classname="oracle.base.test_complementares" name="test_rf07_remover_especialidade_com_plantao_confirmado" time="0.067" /><testcase classname="oracle.base.test_complementares" name="test_rf12_excluir_turno_sem_plantao" time="0.037" /><testcase classname="oracle.base.test_complementares" name="test_rf12_excluir_turno_com_plantao_confirmado" time="0.068" /><testcase classname="oracle.base.test_complementares" name="test_rf23_consultar_escala" time="0.094"><failure message="pydantic.errors.PydanticUserError: `TypeAdapter[typing.Annotated[ForwardRef('datetime | None'), Query(None)]]` is not fully defined; you should define `typing.Annotated[ForwardRef('datetime | None'), Query(None)]` and all referenced types, then call `.rebuild()` on the instance.&#10;&#10;For further information visit https://errors.pydantic.dev/2.13/u/class-not-fully-defined">cliente = &lt;starlette.testclient.TestClient object at 0x000002179AE86660&gt;
+criar_especialidade = &lt;function criar_especialidade.&lt;locals&gt;.executar_criacao at 0x000002179B4E98A0&gt;
+criar_profissional = &lt;function criar_profissional.&lt;locals&gt;.executar_criacao at 0x000002179B4E91C0&gt;
+criar_turno = &lt;function criar_turno.&lt;locals&gt;.executar_criacao at 0x000002179B4E93A0&gt;
+alocar = &lt;function alocar.&lt;locals&gt;.executar_alocacao at 0x000002179B4E8B80&gt;
+
+    def test_rf23_consultar_escala(cliente, criar_especialidade,
+                                   criar_profissional, criar_turno, alocar):
+        """RF23 — Devolva `itens`, `total` e `horas_periodo` na consulta da escala.
+    
+        Dois plantões de oito horas totalizam 16 horas. Esse valor serve como linha
+        de base para E1, que acrescenta o adicional a `horas_periodo`.
+        """
+        especialidade = criar_especialidade()
+        profissional = criar_profissional(especialidade_id=especialidade["id"])
+        for dia in (406, 408):
+            turno = criar_turno(especialidade["id"], dia=dia, hora=8, duracao=8)
+            alocar_confirmado(alocar, turno, profissional)
+    
+&gt;       resposta = cliente.get(f"/profissionais/{profissional['id']}/escala",
+                               params={"de": momento(405, 0), "ate": momento(410, 0)})
+
+..\..\..\..\..\Desktop\tcc-v2\oracle\base\test_complementares.py:119: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\testclient.py:514: in get
+    return super().get(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:1053: in get
+    return self.request(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\testclient.py:484: in request
+    return super().request(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\testclient.py:377: in handle_request
+    raise exc
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\testclient.py:374: in handle_request
+    portal.call(self.app, scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\anyio\from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\Programs\Python\Python313\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\Programs\Python\Python313\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\anyio\from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\applications.py:1054: in __call__
+    await super().__call__(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\applications.py:113: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\middleware\errors.py:187: in __call__
+    raise exc
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\middleware\errors.py:165: in __call__
+    await self.app(scope, receive, _send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\middleware\exceptions.py:62: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:715: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:735: in app
+    await route.handle(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:288: in handle
+    await self.app(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:76: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:73: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\routing.py:291: in app
+    solved_result = await solve_dependencies(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\dependencies\utils.py:615: in solve_dependencies
+    solved_result = await solve_dependencies(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\dependencies\utils.py:648: in solve_dependencies
+    query_values, query_errors = request_params_to_args(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\dependencies\utils.py:801: in request_params_to_args
+    v_, errors_ = _validate_value_with_model_field(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\dependencies\utils.py:706: in _validate_value_with_model_field
+    v_, errors_ = field.validate(value, values, loc=loc)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\_compat.py:129: in validate
+    self._type_adapter.validate_python(value, from_attributes=True),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = TypeAdapter(Annotated[ForwardRef('datetime | None'), Query(None)])
+object = '2027-10-17T00:00:00', strict = None, extra = None
+from_attributes = True, context = None, experimental_allow_partial = False
+by_alias = None, by_name = None
+
+    def validate_python(
+        self,
+        object: Any,
+        /,
+        *,
+        strict: bool | None = None,
+        extra: ExtraValues | None = None,
+        from_attributes: bool | None = None,
+        context: Any | None = None,
+        experimental_allow_partial: bool | Literal['off', 'on', 'trailing-strings'] = False,
+        by_alias: bool | None = None,
+        by_name: bool | None = None,
+    ) -&gt; T:
+        """Validate a Python object against the model.
+    
+        Args:
+            object: The Python object to validate against the model.
+            strict: Whether to strictly check types.
+            extra: Whether to ignore, allow, or forbid extra data during model validation.
+                See the [`extra` configuration value][pydantic.ConfigDict.extra] for details.
+            from_attributes: Whether to extract data from object attributes.
+            context: Additional context to pass to the validator.
+            experimental_allow_partial: **Experimental** whether to enable
+                [partial validation](../concepts/experimental.md#partial-validation), e.g. to process streams.
+                * False / 'off': Default behavior, no partial validation.
+                * True / 'on': Enable partial validation.
+                * 'trailing-strings': Enable partial validation and allow trailing strings in the input.
+            by_alias: Whether to use the field's alias when validating against the provided input data.
+            by_name: Whether to use the field's name when validating against the provided input data.
+    
+        !!! note
+            When using `TypeAdapter` with a Pydantic `dataclass`, the use of the `from_attributes`
+            argument is not supported.
+    
+        Returns:
+            The validated object.
+        """
+        if by_alias is False and by_name is not True:
+            raise PydanticUserError(
+                'At least one of `by_alias` or `by_name` must be set to True.',
+                code='validate-by-alias-and-name-false',
+            )
+    
+&gt;       return self.validator.validate_python(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            object,
+            strict=strict,
+            extra=extra,
+            from_attributes=from_attributes,
+            context=context,
+            allow_partial=experimental_allow_partial,
+            by_alias=by_alias,
+            by_name=by_name,
+        )
+E       pydantic.errors.PydanticUserError: `TypeAdapter[typing.Annotated[ForwardRef('datetime | None'), Query(None)]]` is not fully defined; you should define `typing.Annotated[ForwardRef('datetime | None'), Query(None)]` and all referenced types, then call `.rebuild()` on the instance.
+E       
+E       For further information visit https://errors.pydantic.dev/2.13/u/class-not-fully-defined
+
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\pydantic\type_adapter.py:441: PydanticUserError</failure></testcase><testcase classname="oracle.base.test_complementares" name="test_rf23_escala_respeita_o_periodo" time="0.094"><failure message="pydantic.errors.PydanticUserError: `TypeAdapter[typing.Annotated[ForwardRef('datetime | None'), Query(None)]]` is not fully defined; you should define `typing.Annotated[ForwardRef('datetime | None'), Query(None)]` and all referenced types, then call `.rebuild()` on the instance.&#10;&#10;For further information visit https://errors.pydantic.dev/2.13/u/class-not-fully-defined">cliente = &lt;starlette.testclient.TestClient object at 0x000002179AE86660&gt;
+criar_especialidade = &lt;function criar_especialidade.&lt;locals&gt;.executar_criacao at 0x000002179B474D60&gt;
+criar_profissional = &lt;function criar_profissional.&lt;locals&gt;.executar_criacao at 0x000002179BD94720&gt;
+criar_turno = &lt;function criar_turno.&lt;locals&gt;.executar_criacao at 0x000002179BD979C0&gt;
+alocar = &lt;function alocar.&lt;locals&gt;.executar_alocacao at 0x000002179BD97BA0&gt;
+
+    def test_rf23_escala_respeita_o_periodo(cliente, criar_especialidade,
+                                            criar_profissional, criar_turno, alocar):
+        """RF23 — Ignore no total os plantões que estão fora do período consultado."""
+        especialidade = criar_especialidade()
+        profissional = criar_profissional(especialidade_id=especialidade["id"])
+        turno_dentro = criar_turno(especialidade["id"], dia=412, hora=8, duracao=8)
+        turno_fora = criar_turno(especialidade["id"], dia=420, hora=8, duracao=8)
+        alocar_confirmado(alocar, turno_dentro, profissional)
+        alocar_confirmado(alocar, turno_fora, profissional)
+    
+&gt;       resposta = cliente.get(f"/profissionais/{profissional['id']}/escala",
+                               params={"de": momento(411, 0), "ate": momento(414, 0)})
+
+..\..\..\..\..\Desktop\tcc-v2\oracle\base\test_complementares.py:139: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\testclient.py:514: in get
+    return super().get(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:1053: in get
+    return self.request(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\testclient.py:484: in request
+    return super().request(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\testclient.py:377: in handle_request
+    raise exc
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\testclient.py:374: in handle_request
+    portal.call(self.app, scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\anyio\from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\Programs\Python\Python313\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\Programs\Python\Python313\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\anyio\from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\applications.py:1054: in __call__
+    await super().__call__(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\applications.py:113: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\middleware\errors.py:187: in __call__
+    raise exc
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\middleware\errors.py:165: in __call__
+    await self.app(scope, receive, _send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\middleware\exceptions.py:62: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:715: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:735: in app
+    await route.handle(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:288: in handle
+    await self.app(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:76: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:73: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\routing.py:291: in app
+    solved_result = await solve_dependencies(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\dependencies\utils.py:615: in solve_dependencies
+    solved_result = await solve_dependencies(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\dependencies\utils.py:648: in solve_dependencies
+    query_values, query_errors = request_params_to_args(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\dependencies\utils.py:801: in request_params_to_args
+    v_, errors_ = _validate_value_with_model_field(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\dependencies\utils.py:706: in _validate_value_with_model_field
+    v_, errors_ = field.validate(value, values, loc=loc)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\_compat.py:129: in validate
+    self._type_adapter.validate_python(value, from_attributes=True),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = TypeAdapter(Annotated[ForwardRef('datetime | None'), Query(None)])
+object = '2027-10-23T00:00:00', strict = None, extra = None
+from_attributes = True, context = None, experimental_allow_partial = False
+by_alias = None, by_name = None
+
+    def validate_python(
+        self,
+        object: Any,
+        /,
+        *,
+        strict: bool | None = None,
+        extra: ExtraValues | None = None,
+        from_attributes: bool | None = None,
+        context: Any | None = None,
+        experimental_allow_partial: bool | Literal['off', 'on', 'trailing-strings'] = False,
+        by_alias: bool | None = None,
+        by_name: bool | None = None,
+    ) -&gt; T:
+        """Validate a Python object against the model.
+    
+        Args:
+            object: The Python object to validate against the model.
+            strict: Whether to strictly check types.
+            extra: Whether to ignore, allow, or forbid extra data during model validation.
+                See the [`extra` configuration value][pydantic.ConfigDict.extra] for details.
+            from_attributes: Whether to extract data from object attributes.
+            context: Additional context to pass to the validator.
+            experimental_allow_partial: **Experimental** whether to enable
+                [partial validation](../concepts/experimental.md#partial-validation), e.g. to process streams.
+                * False / 'off': Default behavior, no partial validation.
+                * True / 'on': Enable partial validation.
+                * 'trailing-strings': Enable partial validation and allow trailing strings in the input.
+            by_alias: Whether to use the field's alias when validating against the provided input data.
+            by_name: Whether to use the field's name when validating against the provided input data.
+    
+        !!! note
+            When using `TypeAdapter` with a Pydantic `dataclass`, the use of the `from_attributes`
+            argument is not supported.
+    
+        Returns:
+            The validated object.
+        """
+        if by_alias is False and by_name is not True:
+            raise PydanticUserError(
+                'At least one of `by_alias` or `by_name` must be set to True.',
+                code='validate-by-alias-and-name-false',
+            )
+    
+&gt;       return self.validator.validate_python(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            object,
+            strict=strict,
+            extra=extra,
+            from_attributes=from_attributes,
+            context=context,
+            allow_partial=experimental_allow_partial,
+            by_alias=by_alias,
+            by_name=by_name,
+        )
+E       pydantic.errors.PydanticUserError: `TypeAdapter[typing.Annotated[ForwardRef('datetime | None'), Query(None)]]` is not fully defined; you should define `typing.Annotated[ForwardRef('datetime | None'), Query(None)]` and all referenced types, then call `.rebuild()` on the instance.
+E       
+E       For further information visit https://errors.pydantic.dev/2.13/u/class-not-fully-defined
+
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\pydantic\type_adapter.py:441: PydanticUserError</failure></testcase><testcase classname="oracle.base.test_complementares" name="test_rf24_troca_entre_plantoes_do_mesmo_profissional" time="0.095" /><testcase classname="oracle.base.test_complementares" name="test_rf24_troca_com_plantao_cancelado" time="0.135" /><testcase classname="oracle.base.test_complementares" name="test_rf29_listar_trocas_com_filtro" time="0.243" /><testcase classname="oracle.base.test_complementares" name="test_rf28_cancelamento_rejeita_troca_automaticamente" time="0.142" /><testcase classname="oracle.base.test_complementares" name="test_rf34_aceite_fora_do_estado_convocado" time="0.081" /><testcase classname="oracle.base.test_complementares" name="test_rf34_aceite_cria_plantao" time="0.147" /><testcase classname="oracle.base.test_substituicoes" name="test_rf30_entrar_na_fila" time="0.068" /><testcase classname="oracle.base.test_substituicoes" name="test_rf30_segunda_inscricao_recebe_posicao_2" time="0.123" /><testcase classname="oracle.base.test_substituicoes" name="test_rf31_cobertura_ja_atendida" time="0.109" /><testcase classname="oracle.base.test_substituicoes" name="test_rf32_sem_especialidade" time="0.060" /><testcase classname="oracle.base.test_substituicoes" name="test_rf33_cancelar_inscricao" time="0.093" /><testcase classname="oracle.base.test_substituicoes" name="test_rf33_cancelamento_reordena_a_fila" time="0.117" /><testcase classname="oracle.base.test_substituicoes" name="test_rf36_consultar_fila" time="0.171" /><testcase classname="oracle.base.test_substituicoes" name="test_rf35_ausencia_com_plantao_sobreposto" time="0.078" /><testcase classname="oracle.base.test_transversais" name="test_rf37_erro_404_contem_detail" time="0.009" /><testcase classname="oracle.base.test_transversais" name="test_rf38_rota_de_saude" time="0.008" /><testcase classname="oracle.base.test_trocas" name="test_rf25_troca_valida_permuta_os_dois" time="0.152" /><testcase classname="oracle.base.test_trocas" name="test_rf25_troca_invalida_nao_altera_nada" time="0.163" /><testcase classname="oracle.base.test_trocas" name="test_rf27_decidir_troca_ja_decidida" time="0.144" /><testcase classname="oracle.base.test_turnos" name="test_rf09_criar_turno" time="0.032" /><testcase classname="oracle.base.test_turnos" name="test_rf09_duracao_curta_recusada" time="0.024" /><testcase classname="oracle.base.test_turnos" name="test_rf09_duracao_longa_recusada" time="0.025" /><testcase classname="oracle.base.test_turnos" name="test_rf10_listar_turnos" time="0.038" /><testcase classname="oracle.base.test_turnos" name="test_rf11_consultar_turno_inexistente" time="0.008" /><testcase classname="oracle.base.test_turnos" name="test_rf09_duracoes_de_4h_e_12h_aceitas" time="0.051" /><testcase classname="oracle.propriedades.test_sequencias" name="test_invariantes_sob_sequencia_arbitraria" time="12.674" /><testcase classname="oracle.e1.test_noturno" name="test_e1_criar_turno_noturno" time="0.064" /><testcase classname="oracle.e1.test_noturno" name="test_e1_valor_padrao_e_false" time="0.056" /><testcase classname="oracle.e1.test_noturno" name="test_e1_valor_invalido_recusado" time="0.042" /><testcase classname="oracle.e1.test_noturno" name="test_e1_filtro_noturno_verdadeiro" time="0.061" /><testcase classname="oracle.e1.test_noturno" name="test_e1_filtro_noturno_falso" time="0.065" /><testcase classname="oracle.e1.test_noturno" name="test_e1_filtro_combinado_com_especialidade" time="0.079" /><testcase classname="oracle.e1.test_noturno" name="test_e1_adicional_incide_no_total_do_periodo" time="0.134"><failure message="pydantic.errors.PydanticUserError: `TypeAdapter[typing.Annotated[ForwardRef('datetime | None'), Query(None)]]` is not fully defined; you should define `typing.Annotated[ForwardRef('datetime | None'), Query(None)]` and all referenced types, then call `.rebuild()` on the instance.&#10;&#10;For further information visit https://errors.pydantic.dev/2.13/u/class-not-fully-defined">cliente = &lt;starlette.testclient.TestClient object at 0x000002179B4139D0&gt;
+criar_especialidade = &lt;function criar_especialidade.&lt;locals&gt;.executar_criacao at 0x000002179BF68B80&gt;
+criar_profissional = &lt;function criar_profissional.&lt;locals&gt;.executar_criacao at 0x000002179BF68040&gt;
+
+    def test_e1_adicional_incide_no_total_do_periodo(cliente, criar_especialidade,
+                                                    criar_profissional):
+        """E1 — Aplique o adicional noturno ao total de horas do período.
+    
+        Três plantões noturnos de dez horas na mesma semana representam 30 horas
+        reais e 36 horas após o adicional de 20%.
+    
+        O acréscimo incide em `horas_periodo`, mas não em `horas_extras`, cujo
+        cálculo obedece a INV8 e considera a duração efetiva dos plantões.
+        """
+        especialidade = criar_especialidade()
+        profissional = criar_profissional(carga=44, especialidade_id=especialidade["id"])
+    
+        for dia in (315, 317, 319):
+            turno = criar(cliente, especialidade["id"], dia, hora=8, duracao=10, noturno=True)
+            assert cliente.post("/plantoes", json={
+                "turno_id": turno["id"],
+                "profissional_id": profissional["id"]}).status_code == 201
+    
+&gt;       escala = cliente.get(f"/profissionais/{profissional['id']}/escala",
+                             params={"de": momento(314, 0), "ate": momento(321, 0)})
+
+..\..\..\..\..\Desktop\tcc-v2\oracle\e1\test_noturno.py:137: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\testclient.py:514: in get
+    return super().get(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:1053: in get
+    return self.request(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\testclient.py:484: in request
+    return super().request(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\testclient.py:377: in handle_request
+    raise exc
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\testclient.py:374: in handle_request
+    portal.call(self.app, scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\anyio\from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\Programs\Python\Python313\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\Programs\Python\Python313\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\anyio\from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\applications.py:1054: in __call__
+    await super().__call__(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\applications.py:113: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\middleware\errors.py:187: in __call__
+    raise exc
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\middleware\errors.py:165: in __call__
+    await self.app(scope, receive, _send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\middleware\exceptions.py:62: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:715: in __call__
+    await self.middleware_stack(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:735: in app
+    await route.handle(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:288: in handle
+    await self.app(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:76: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\starlette\routing.py:73: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\routing.py:291: in app
+    solved_result = await solve_dependencies(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\dependencies\utils.py:615: in solve_dependencies
+    solved_result = await solve_dependencies(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\dependencies\utils.py:648: in solve_dependencies
+    query_values, query_errors = request_params_to_args(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\dependencies\utils.py:801: in request_params_to_args
+    v_, errors_ = _validate_value_with_model_field(
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\dependencies\utils.py:706: in _validate_value_with_model_field
+    v_, errors_ = field.validate(value, values, loc=loc)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\fastapi\_compat.py:129: in validate
+    self._type_adapter.validate_python(value, from_attributes=True),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = TypeAdapter(Annotated[ForwardRef('datetime | None'), Query(None)])
+object = '2027-07-18T00:00:00', strict = None, extra = None
+from_attributes = True, context = None, experimental_allow_partial = False
+by_alias = None, by_name = None
+
+    def validate_python(
+        self,
+        object: Any,
+        /,
+        *,
+        strict: bool | None = None,
+        extra: ExtraValues | None = None,
+        from_attributes: bool | None = None,
+        context: Any | None = None,
+        experimental_allow_partial: bool | Literal['off', 'on', 'trailing-strings'] = False,
+        by_alias: bool | None = None,
+        by_name: bool | None = None,
+    ) -&gt; T:
+        """Validate a Python object against the model.
+    
+        Args:
+            object: The Python object to validate against the model.
+            strict: Whether to strictly check types.
+            extra: Whether to ignore, allow, or forbid extra data during model validation.
+                See the [`extra` configuration value][pydantic.ConfigDict.extra] for details.
+            from_attributes: Whether to extract data from object attributes.
+            context: Additional context to pass to the validator.
+            experimental_allow_partial: **Experimental** whether to enable
+                [partial validation](../concepts/experimental.md#partial-validation), e.g. to process streams.
+                * False / 'off': Default behavior, no partial validation.
+                * True / 'on': Enable partial validation.
+                * 'trailing-strings': Enable partial validation and allow trailing strings in the input.
+            by_alias: Whether to use the field's alias when validating against the provided input data.
+            by_name: Whether to use the field's name when validating against the provided input data.
+    
+        !!! note
+            When using `TypeAdapter` with a Pydantic `dataclass`, the use of the `from_attributes`
+            argument is not supported.
+    
+        Returns:
+            The validated object.
+        """
+        if by_alias is False and by_name is not True:
+            raise PydanticUserError(
+                'At least one of `by_alias` or `by_name` must be set to True.',
+                code='validate-by-alias-and-name-false',
+            )
+    
+&gt;       return self.validator.validate_python(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            object,
+            strict=strict,
+            extra=extra,
+            from_attributes=from_attributes,
+            context=context,
+            allow_partial=experimental_allow_partial,
+            by_alias=by_alias,
+            by_name=by_name,
+        )
+E       pydantic.errors.PydanticUserError: `TypeAdapter[typing.Annotated[ForwardRef('datetime | None'), Query(None)]]` is not fully defined; you should define `typing.Annotated[ForwardRef('datetime | None'), Query(None)]` and all referenced types, then call `.rebuild()` on the instance.
+E       
+E       For further information visit https://errors.pydantic.dev/2.13/u/class-not-fully-defined
+
+..\..\..\..\..\Desktop\tcc\venv\Lib\site-packages\pydantic\type_adapter.py:441: PydanticUserError</failure></testcase><testcase classname="oracle.e1.test_noturno" name="test_e1_adicional_nao_altera_horas_extras" time="0.133" /><testcase classname="oracle.e1.test_noturno" name="test_e1_adicional_nao_altera_limite_semanal" time="0.179" /></testsuite></testsuites>

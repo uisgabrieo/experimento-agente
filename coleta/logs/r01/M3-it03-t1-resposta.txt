@@ -1,0 +1,32 @@
+## Resultado: não há problemas a corrigir
+
+Os quatro relatórios da iteração 3 estão todos limpos:
+
+| Relatório | Resultado |
+|---|---|
+| Pylint | 10.00/10 |
+| Complexidade | sem ocorrências |
+| Segurança | sem ocorrências |
+| Testes de comportamento | 55/55 aprovados |
+| Invariantes violadas | `[]` |
+
+Não havendo nada apontado, fiz uma auditoria estática do código contra a especificação congelada para procurar divergências que os 55 testes pudessem não cobrir. Não encontrei nenhuma.
+
+**Restrições técnicas (seção 2)** — Python 3.13/FastAPI/Pydantic v2/SQLAlchemy 2.x ✓; `DATABASE_URL` com padrão `sqlite:///./escala.db` em `app/config.py:11` ✓; `app` em `app/main.py:23` ✓; 21 módulos (mínimo 6) ✓; **2589 linhas** em `app/`, dentro de [1100, 2600] ✓. As 8 tabelas e todas as colunas obrigatórias da seção 2.1 estão em `app/modelos.py` com os nomes exatos ✓.
+
+**Convenções temporais (4.1)** — `app/tempo.py` implementa corretamente: semiabertos com `a_inicio < b_fim and b_inicio < a_fim` (`tempo.py:68`); INV2 aceita exatamente 11h via `EPSILON_HORAS` (`regras.py:70`); semana ancorada na segunda 00:00 UTC (`tempo.py:104`); rateio de horas entre semanas na travessia (`tempo.py:111`); INV7 por dia civil com interseção de duração positiva (`tempo.py:135`).
+
+**Filtros temporais (4.4)** — `listar_turnos` (`repositorio.py:227`) e `dentro_do_periodo` (`tempo.py:183`) aplicam a mesma regra: só `de` → `data_fim > de`; só `ate` → `data_inicio < ate`; ambos → sobreposição com `[de, ate)`.
+
+**Atomicidade (RF25, RF34)** — o padrão é consistente: mutar → `flush` → revalidar invariantes do(s) profissional(is) afetado(s) → `commit`, com `rollback` de toda a transação em qualquer `ErroDeNegocio` (`servicos.py:33`). Em RF25 ambos os profissionais são revalidados contra INV1–5 e INV7 (`servicos.py:167`); em RF34 a falha deixa a substituição em `convocado` por efeito do rollback.
+
+**Cobertura mínima (4.2)** — corretamente tratada como meta operacional, não invariante: é consultada apenas em RF22 (`regras.py:271`) e RF31 (`servicos.py:195`), nunca revalidada globalmente.
+
+As 38 rotas/comportamentos de RF01–RF38 estão todas presentes e com os códigos de status especificados.
+
+Duas observações, nenhuma delas um defeito:
+
+- **Folga de dimensão apertada.** 2589 de 2600 linhas deixa 11 linhas de margem. Vale considerar numa próxima iteração que acrescente código.
+- **Código defensivo não utilizado.** `erros.DadosInvalidos`, `regras.validar_inv8` e as tuplas `ESTADOS_*`/`TIPOS_AUSENCIA` em `constantes.py` não têm chamadores. Deixei como está: `validar_inv8` é plausivelmente usado pelo verificador externo de invariantes, e removê-los seria uma alteração sem problema reportado que a justifique.
+
+Uma limitação a registrar: as permissões deste ambiente bloquearam a execução de `python`, então **não pude validar minhas hipóteses empiricamente** — escrevi uma sonda exercitando os casos de borda (limite exato de 11h em INV2, turnos de 4h e 12h exatos, travessia de semana em INV3/INV8, sétimo dia em INV7, reindexação da fila em RF22) mas não consegui rodá-la, e a removi. A auditoria acima é inteiramente estática. A árvore de trabalho está limpa — nenhum arquivo foi alterado.

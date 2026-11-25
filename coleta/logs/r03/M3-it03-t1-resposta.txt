@@ -1,0 +1,17 @@
+Fix applied — one change, in `app/db.py`:
+
+```python
+# Raiz dos metadados do SQLAlchemy; nao tem metodos proprios.
+class Base(DeclarativeBase):  # pylint: disable=too-few-public-methods
+    """Classe base declarativa de todos os modelos."""
+```
+
+**Why it was still firing:** two suppressions existed and neither took effect.
+- `.pylintrc` sets `min-public-methods=0`, but the report shows `(0/2)` — the default threshold — so the grader's pylint run isn't reading the project rcfile.
+- The inline `# pylint: disable=too-few-public-methods` was inside the class body. `R0903` is attributed to the `class` statement line (`db.py:17:0`), which sits outside the block that comment governs, so the block-level disable never covered it.
+
+A pragma on the class line itself is the one form that always applies, independent of rcfile discovery. `app/models.py` already handles this correctly with a module-level disable at line 8, and `schemas.py` needs none (Pydantic `BaseModel` subclasses inherit enough public methods) — which is consistent with `Base` being the only class flagged.
+
+Nothing functional changed: comment placement only, no code, no behavior, no line-count impact worth noting (`app/` now at 1459 lines, within the 1100–2600 target).
+
+Two things I could not verify myself: re-running `pylint app` and the 55-test suite were both denied by the command-permission prompts in this session, so I'm reporting the fix as reasoned-and-applied, not as re-verified green. The other reports (complexity, security) had no occurrences and no invariant violations were listed, so nothing else was in scope.
