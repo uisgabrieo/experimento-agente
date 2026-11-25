@@ -1,4 +1,4 @@
-# Qualidade interna, preservação de invariantes e absorção de mudanças em aplicação gerada por agente de IA
+# Qualidade interna, preservação de invariantes e capacidade de absorção de mudanças em aplicação gerada por agente de inteligência artificial
 
 Material do Trabalho de Conclusão de Curso de Luís Gabriel Salvador Barros
 (Engenharia de Software, iCEV, 2026): o instrumento experimental e os dados
@@ -28,6 +28,7 @@ instrumento.
 | `reavaliacao-v1/` | reavaliação dos estados da coleta 1 com o instrumento v2 (`reavaliar_v1.py`) |
 | `simulacao/` | ensaio do orquestrador com agente simulado, antes da coleta |
 | `execucoes-v2/` | código produzido pelo agente: uma área por repetição, com todo o histórico Git |
+| `Evidencias_TCC_V023.zip` | pacote de evidências citado no texto (Seções 2.11 e 2.12): `codigo/`, `complementar/`, `coleta/` e `LEIA-ME.txt` com o roteiro de conferência |
 
 ## Código produzido pelo agente
 
@@ -49,3 +50,5 @@ git log --oneline --all
 | r4 | `execucoes-v2/r4-4352363dbf.bundle` |
 | r5 | `execucoes-v2/r5-42033f96ae.bundle` |
 | r6 | `execucoes-v2/r6-aafe694e97.bundle` (interrompida antes de M0; fora da análise) |
+
+O `coleta/interacoes.csv` deste repositório inclui a tentativa interrompida de r6; o do pacote de evidências traz apenas r1 a r5.
