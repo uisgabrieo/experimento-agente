@@ -1,0 +1,1844 @@
+[
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/__init__.py",
+    "sha256": "9845eb5c3dbc14502355a7b2611115c9190829e9a28d480d954f23946239448a"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/banco.py",
+    "sha256": "912f18fa913e23a377791c0acbe85263cd29ce8e40dde0acbfb7ad7618875294"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/config.py",
+    "sha256": "872e65ec08ab55a61466027346f8c63a4234c90ad6fa22cae38c0ef711e74f09"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/constantes.py",
+    "sha256": "81d0841baaad05a4557793f8aab3879e07936dece0db54736726e673a19373e6"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/erros.py",
+    "sha256": "abd7b7f1d8741cf98367acd498f7c8495d95d1b53b826fde1bb08e9e3e9dcf83"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/esquemas.py",
+    "sha256": "983123ec7e2c45c63933131f2079bf477609aee8368e247027dd997b48fe673a"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/main.py",
+    "sha256": "adf79d81cd9b5e0ec80483f127b0b46b5a174786da3172e6023d15ae81679307"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/modelos.py",
+    "sha256": "2a245f7688ee69edf05681f7fe4adaae93bfab8871649e27b37e8a77e8da4895"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/regras.py",
+    "sha256": "7e1ed52dc0daa4ad64746f0833f5472e7237a33156f4b5b1d0b55d035a7bc9b2"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/repositorio.py",
+    "sha256": "52d9e9c41066c2d87e71f1aa2964009c57a44d4722461f260af3f3467b554eba"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/rotas/__init__.py",
+    "sha256": "880660dc9dab46aa675a35f76db18321e9bbbfaf3f493cb475b25ce651be6f73"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/rotas/ausencias.py",
+    "sha256": "ce699d729be843114fb0afd81659a734aed55cb73c93a5eec3bebae3ddb9502c"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/rotas/especialidades.py",
+    "sha256": "051f481bf3b7c51da16c003051ffeb99f81b5bdf80713ec001d6921a9a3afeb7"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/rotas/plantoes.py",
+    "sha256": "d13848fd62d5fca71a2cefc3257f69921fef2cf4aa8a8c884813efda795ac1e3"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/rotas/profissionais.py",
+    "sha256": "f617fbecc381d1ef19e7ca7ebf5f4d9117a19ddc04182bcf9fd54588aa0df00b"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/rotas/saude.py",
+    "sha256": "fbaf216e1699b167655f9f951f785bd7423259c4afcbde70ba08ae4fb2a1ed58"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/rotas/substituicoes.py",
+    "sha256": "2f7abe8ae146986f65046aa9a2b9cafe172c5fe8993e5c6d0807a3f491be8417"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/rotas/trocas.py",
+    "sha256": "4863d92eea9050f943163affb774294ff1fe0ef32de0e589cfa3367f47a2dd9f"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/rotas/turnos.py",
+    "sha256": "bb64f05b23c30933c98c2d5a01bfb81538f1ebce0cb058924fa610d1a68d003d"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/servicos.py",
+    "sha256": "0ee3cc1d4fcd06e976a9ad4e278e30e4644a0edcc2c48712c02bb06c51c3d512"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/app/tempo.py",
+    "sha256": "87e61198fd10a5271cd5e0a49ad246031199e68d34f089f60063e33f5de0aa2a"
+  },
+  {
+    "state": "r1-M5",
+    "commit": "06679bfab2ca",
+    "path": "sources/r1-M5/requirements.txt",
+    "sha256": "e618235177dc81288cb4e8cc3fd759aa67e5e2bffc3255d15e19c0c8d81cab8a"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/__init__.py",
+    "sha256": "9845eb5c3dbc14502355a7b2611115c9190829e9a28d480d954f23946239448a"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/banco.py",
+    "sha256": "912f18fa913e23a377791c0acbe85263cd29ce8e40dde0acbfb7ad7618875294"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/config.py",
+    "sha256": "872e65ec08ab55a61466027346f8c63a4234c90ad6fa22cae38c0ef711e74f09"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/constantes.py",
+    "sha256": "8ed740fc36b091877df61b8c8f72c7754c5cef8d7f7b555752556bbff39b1b78"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/erros.py",
+    "sha256": "abd7b7f1d8741cf98367acd498f7c8495d95d1b53b826fde1bb08e9e3e9dcf83"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/esquemas.py",
+    "sha256": "cd3679fe510bef6f3ddb842e397f32c253567cf6dbf1bdd892eee3e30a685e66"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/main.py",
+    "sha256": "adf79d81cd9b5e0ec80483f127b0b46b5a174786da3172e6023d15ae81679307"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/modelos.py",
+    "sha256": "828eed8d22b023bde026c8b3e546599c3261e1181bb5ac696eb1fcfde3957483"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/regras.py",
+    "sha256": "7e1ed52dc0daa4ad64746f0833f5472e7237a33156f4b5b1d0b55d035a7bc9b2"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/repositorio.py",
+    "sha256": "62c340d38010adc5361b17877835751d7837200ab5812ae0b6951d7f7d7196c6"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/rotas/__init__.py",
+    "sha256": "880660dc9dab46aa675a35f76db18321e9bbbfaf3f493cb475b25ce651be6f73"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/rotas/ausencias.py",
+    "sha256": "ce699d729be843114fb0afd81659a734aed55cb73c93a5eec3bebae3ddb9502c"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/rotas/especialidades.py",
+    "sha256": "051f481bf3b7c51da16c003051ffeb99f81b5bdf80713ec001d6921a9a3afeb7"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/rotas/plantoes.py",
+    "sha256": "d13848fd62d5fca71a2cefc3257f69921fef2cf4aa8a8c884813efda795ac1e3"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/rotas/profissionais.py",
+    "sha256": "380b6560073a6aac46a360276f2eae48b3775c240746e9056e11c387c717ef5e"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/rotas/saude.py",
+    "sha256": "fbaf216e1699b167655f9f951f785bd7423259c4afcbde70ba08ae4fb2a1ed58"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/rotas/substituicoes.py",
+    "sha256": "2f7abe8ae146986f65046aa9a2b9cafe172c5fe8993e5c6d0807a3f491be8417"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/rotas/trocas.py",
+    "sha256": "4863d92eea9050f943163affb774294ff1fe0ef32de0e589cfa3367f47a2dd9f"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/rotas/turnos.py",
+    "sha256": "729b9d3e38f597c8a23a41541d106101eb4278ad902020647cc3216a39c5c76b"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/servicos.py",
+    "sha256": "0ee3cc1d4fcd06e976a9ad4e278e30e4644a0edcc2c48712c02bb06c51c3d512"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/app/tempo.py",
+    "sha256": "71f24f6264872495cfa55205ea59e7e9e03fe42f0538b9a7176fcd220c7e71f0"
+  },
+  {
+    "state": "r1-E1",
+    "commit": "2466bfa356a3",
+    "path": "sources/r1-E1/requirements.txt",
+    "sha256": "e618235177dc81288cb4e8cc3fd759aa67e5e2bffc3255d15e19c0c8d81cab8a"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/__init__.py",
+    "sha256": "9845eb5c3dbc14502355a7b2611115c9190829e9a28d480d954f23946239448a"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/auditoria.py",
+    "sha256": "6c58c4afbcf4118b05d07844e94a239145b4ae2c2a8b51d6e98847d6fdd7740a"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/banco.py",
+    "sha256": "912f18fa913e23a377791c0acbe85263cd29ce8e40dde0acbfb7ad7618875294"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/config.py",
+    "sha256": "872e65ec08ab55a61466027346f8c63a4234c90ad6fa22cae38c0ef711e74f09"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/constantes.py",
+    "sha256": "8ed740fc36b091877df61b8c8f72c7754c5cef8d7f7b555752556bbff39b1b78"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/erros.py",
+    "sha256": "abd7b7f1d8741cf98367acd498f7c8495d95d1b53b826fde1bb08e9e3e9dcf83"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/esquemas.py",
+    "sha256": "70c96f63cea7b940b090a83ae0cf4189998570494ec94641868f1b684726ad21"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/main.py",
+    "sha256": "a975e590ed4cac31743cf9fcddc1a7f14f149b4a85b0ba3a8f18e483f0d5b6a9"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/modelos.py",
+    "sha256": "536cff160805a9b0177b59415f5ad81bb67f65147e26a7aae05a5c8d0fe09257"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/regras.py",
+    "sha256": "7e1ed52dc0daa4ad64746f0833f5472e7237a33156f4b5b1d0b55d035a7bc9b2"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/repositorio.py",
+    "sha256": "62c340d38010adc5361b17877835751d7837200ab5812ae0b6951d7f7d7196c6"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/rotas/__init__.py",
+    "sha256": "c896077609d251fc99da655c145ced72a0c7e1601c43a77e9eddc0d9a2fcf9ec"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/rotas/auditoria.py",
+    "sha256": "95b7ef06d91dd791652adc0dfd218b9b80af573b17cc245474879b7f8edffa4f"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/rotas/ausencias.py",
+    "sha256": "ce699d729be843114fb0afd81659a734aed55cb73c93a5eec3bebae3ddb9502c"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/rotas/especialidades.py",
+    "sha256": "051f481bf3b7c51da16c003051ffeb99f81b5bdf80713ec001d6921a9a3afeb7"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/rotas/plantoes.py",
+    "sha256": "d13848fd62d5fca71a2cefc3257f69921fef2cf4aa8a8c884813efda795ac1e3"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/rotas/profissionais.py",
+    "sha256": "3643a30a4f84153d68e5a6a4d01f8d08292a48b23848ee965f7ad5bc1ea2e595"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/rotas/saude.py",
+    "sha256": "fbaf216e1699b167655f9f951f785bd7423259c4afcbde70ba08ae4fb2a1ed58"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/rotas/substituicoes.py",
+    "sha256": "2f7abe8ae146986f65046aa9a2b9cafe172c5fe8993e5c6d0807a3f491be8417"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/rotas/trocas.py",
+    "sha256": "38ad5f2caa4dbc16a472e93ba1c6d928c3b6d3e67297c207987359431c0784dc"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/rotas/turnos.py",
+    "sha256": "fa5c2caf4377b5a005fa70ca978b53807aa143ab4410c85f3d87f5e3a07fab15"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/seguranca.py",
+    "sha256": "a005e6b4309c03adf6f1820175bae0caf3455acc4375809819d10826fec39fdc"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/servicos.py",
+    "sha256": "0ee3cc1d4fcd06e976a9ad4e278e30e4644a0edcc2c48712c02bb06c51c3d512"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/app/tempo.py",
+    "sha256": "71f24f6264872495cfa55205ea59e7e9e03fe42f0538b9a7176fcd220c7e71f0"
+  },
+  {
+    "state": "r1-E2",
+    "commit": "3637edc39ddc",
+    "path": "sources/r1-E2/requirements.txt",
+    "sha256": "e618235177dc81288cb4e8cc3fd759aa67e5e2bffc3255d15e19c0c8d81cab8a"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/__init__.py",
+    "sha256": "bb70e9998d17c63b8adf34b28078012c5e96b816ae6daa35cb5af565cf18538b"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/config.py",
+    "sha256": "9be878f7edcea5f753590eebe8adfa30defb3e0a56be49426399b65392e5b5d9"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/db.py",
+    "sha256": "9034bd24d4b707f8f2289561a4ebd7dd1a6293929f47fd8462dbd43ac89f530c"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/erros.py",
+    "sha256": "49e7b8f75cb5c009b02be5f84d0ea2cf2c4e254de2fa3a2d39fe3b9787016d1a"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/estados.py",
+    "sha256": "cd3008a6690f57ac5cd9a3f46ec0c5ab039bdad166fcb7daf0ff42a2b8951086"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/main.py",
+    "sha256": "cd0088262a61a7e0ce3efaf77d0b2f2f69ba7ce4eecfff9f7dca5f3bc916d1c1"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/models.py",
+    "sha256": "ea0fd2ce1e317e5ee1ef797c441c66e3b28f5d0b71f4b5327a576f2cbd514694"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/regras.py",
+    "sha256": "40d23b28093a353a7d407b98c4955e6bfe0318dfcee74fb1c907706e06807912"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/routers/__init__.py",
+    "sha256": "d17e32a46e005826fbaa2478638d29ea014f1bdf5534f29a798436455631280a"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/routers/ausencias.py",
+    "sha256": "ddcec201538ba767c3277bd1f66d881f3427a1a2530fcab3b686ef9cc755c354"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/routers/comum.py",
+    "sha256": "e5c54c69b965f812443102ecbc4ea77bf16583dfacacc89fc4f262335c3a7d94"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/routers/especialidades.py",
+    "sha256": "ef60f842dc85b19be09f02bcb27068a8631c4fc8cacf6c4f32ac9ce5777495db"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/routers/plantoes.py",
+    "sha256": "2abdc6b349dc941ff9e2c206cfa031c0ed1c33a35fc07e2e4c6be64b76360adf"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/routers/profissionais.py",
+    "sha256": "546b749baa9ffc6f4b695063beb345c9f09e5b4fb1482e7937b28fb61d4ebc51"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/routers/saude.py",
+    "sha256": "721d2612fa52ed8eaae23374b6fd9db8c70e950ebaf576831f8476a72ae32a05"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/routers/substituicoes.py",
+    "sha256": "c43736c6b8e58080edf5d2c643387d9b2d4a26c7544d959a3b1ca2d5b3bdd889"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/routers/trocas.py",
+    "sha256": "42eb11fffedbbc02465657e97acbe3074c333c53c123d65ad7afe607ae88c084"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/routers/turnos.py",
+    "sha256": "6cffab621c891e8f1199d235222dd85545139b49a3339ed9e0d2a7be0e8b3936"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/schemas.py",
+    "sha256": "a9fe2596941f077423a266509db5df4b4662396a3d08f1526254722e2ae81740"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/servicos.py",
+    "sha256": "2010b47ef89507509e7cedcd06d0bc903f54e9d0e9807ac1601eadea6c574631"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/app/tempo.py",
+    "sha256": "8fe938828c37a9b655495ca2d02c0e5dfa0d18cbfacf13bafd59453fc39e2956"
+  },
+  {
+    "state": "r2-M5",
+    "commit": "31ec94de1c6b",
+    "path": "sources/r2-M5/requirements.txt",
+    "sha256": "8957409a119c83fafc7b029a5118c8c8c9a6b941187824523639bd7f01627f08"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/__init__.py",
+    "sha256": "bb70e9998d17c63b8adf34b28078012c5e96b816ae6daa35cb5af565cf18538b"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/config.py",
+    "sha256": "9be878f7edcea5f753590eebe8adfa30defb3e0a56be49426399b65392e5b5d9"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/db.py",
+    "sha256": "9034bd24d4b707f8f2289561a4ebd7dd1a6293929f47fd8462dbd43ac89f530c"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/erros.py",
+    "sha256": "49e7b8f75cb5c009b02be5f84d0ea2cf2c4e254de2fa3a2d39fe3b9787016d1a"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/estados.py",
+    "sha256": "cd3008a6690f57ac5cd9a3f46ec0c5ab039bdad166fcb7daf0ff42a2b8951086"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/main.py",
+    "sha256": "cd0088262a61a7e0ce3efaf77d0b2f2f69ba7ce4eecfff9f7dca5f3bc916d1c1"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/models.py",
+    "sha256": "ffd19a016cce742077c0c7f5751fb2e620eb8638a703109c500c8eb9ec13b2f9"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/regras.py",
+    "sha256": "40d23b28093a353a7d407b98c4955e6bfe0318dfcee74fb1c907706e06807912"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/routers/__init__.py",
+    "sha256": "d17e32a46e005826fbaa2478638d29ea014f1bdf5534f29a798436455631280a"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/routers/ausencias.py",
+    "sha256": "ddcec201538ba767c3277bd1f66d881f3427a1a2530fcab3b686ef9cc755c354"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/routers/comum.py",
+    "sha256": "13c0888afd5e3a4dd411af7cd383af56a0f42195318d546069a35fa1cf9d7c6e"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/routers/especialidades.py",
+    "sha256": "ef60f842dc85b19be09f02bcb27068a8631c4fc8cacf6c4f32ac9ce5777495db"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/routers/plantoes.py",
+    "sha256": "2abdc6b349dc941ff9e2c206cfa031c0ed1c33a35fc07e2e4c6be64b76360adf"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/routers/profissionais.py",
+    "sha256": "546b749baa9ffc6f4b695063beb345c9f09e5b4fb1482e7937b28fb61d4ebc51"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/routers/saude.py",
+    "sha256": "721d2612fa52ed8eaae23374b6fd9db8c70e950ebaf576831f8476a72ae32a05"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/routers/substituicoes.py",
+    "sha256": "c43736c6b8e58080edf5d2c643387d9b2d4a26c7544d959a3b1ca2d5b3bdd889"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/routers/trocas.py",
+    "sha256": "42eb11fffedbbc02465657e97acbe3074c333c53c123d65ad7afe607ae88c084"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/routers/turnos.py",
+    "sha256": "d5998869b7478a241c2540b20194167a312af7f66e8f2ecc866b5285e6001542"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/schemas.py",
+    "sha256": "3a9e9a3cfad4938ee659d16c92944440185c16633ddcbf4f96353d6d73635bfe"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/servicos.py",
+    "sha256": "d3c6ff49561b178d47754cb5c7ad2fa1bbd6fe8a32d222369200d818b006d40b"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/app/tempo.py",
+    "sha256": "8fe938828c37a9b655495ca2d02c0e5dfa0d18cbfacf13bafd59453fc39e2956"
+  },
+  {
+    "state": "r2-E1",
+    "commit": "8af3c5eecb3f",
+    "path": "sources/r2-E1/requirements.txt",
+    "sha256": "8957409a119c83fafc7b029a5118c8c8c9a6b941187824523639bd7f01627f08"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/__init__.py",
+    "sha256": "bb70e9998d17c63b8adf34b28078012c5e96b816ae6daa35cb5af565cf18538b"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/auditoria.py",
+    "sha256": "a7eae569e38d2b2def78fca5b72963c1778292cdc7ee4997aee669e210c3c6bc"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/auth.py",
+    "sha256": "3de4bffa9e728c7324f0a0bb829dae96f404e309498f5f536407659ba23fe0a5"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/config.py",
+    "sha256": "9be878f7edcea5f753590eebe8adfa30defb3e0a56be49426399b65392e5b5d9"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/db.py",
+    "sha256": "9034bd24d4b707f8f2289561a4ebd7dd1a6293929f47fd8462dbd43ac89f530c"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/erros.py",
+    "sha256": "49e7b8f75cb5c009b02be5f84d0ea2cf2c4e254de2fa3a2d39fe3b9787016d1a"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/estados.py",
+    "sha256": "cd3008a6690f57ac5cd9a3f46ec0c5ab039bdad166fcb7daf0ff42a2b8951086"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/main.py",
+    "sha256": "ef8089efdcfb52dcf866c0e44dc37c849b3b19bd647e0f193b6345e1310051dd"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/models.py",
+    "sha256": "c15b112acf1ad17161e60be8d0ebdfddbba45802efcdaf502c222942bbb708a2"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/regras.py",
+    "sha256": "40d23b28093a353a7d407b98c4955e6bfe0318dfcee74fb1c907706e06807912"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/routers/__init__.py",
+    "sha256": "f1c1b91c62969060c92000aeee8d765e0b1ad1538210faf7f8fc9fadca6d68b0"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/routers/auditoria.py",
+    "sha256": "5fffe2fe9ae6778cf28cfe0370829f9733b2a84003bff53a3b13d8fa2bfe25f4"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/routers/ausencias.py",
+    "sha256": "ddcec201538ba767c3277bd1f66d881f3427a1a2530fcab3b686ef9cc755c354"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/routers/comum.py",
+    "sha256": "13c0888afd5e3a4dd411af7cd383af56a0f42195318d546069a35fa1cf9d7c6e"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/routers/especialidades.py",
+    "sha256": "ef60f842dc85b19be09f02bcb27068a8631c4fc8cacf6c4f32ac9ce5777495db"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/routers/plantoes.py",
+    "sha256": "2abdc6b349dc941ff9e2c206cfa031c0ed1c33a35fc07e2e4c6be64b76360adf"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/routers/profissionais.py",
+    "sha256": "2bddb2378228b8fce0e5424c69d30f85cb70e2b8c78d2cf11335b237e6a42ac0"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/routers/saude.py",
+    "sha256": "721d2612fa52ed8eaae23374b6fd9db8c70e950ebaf576831f8476a72ae32a05"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/routers/substituicoes.py",
+    "sha256": "c43736c6b8e58080edf5d2c643387d9b2d4a26c7544d959a3b1ca2d5b3bdd889"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/routers/trocas.py",
+    "sha256": "c262e491a1b6620ab3462c0e80705e04a72246463f34b2ca414a111861bc9321"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/routers/turnos.py",
+    "sha256": "502fd77e05bf4fb0dd1f79bec5384b365d19af8153c9c4cd9573719b29915c94"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/schemas.py",
+    "sha256": "e7c029af0195ccb1f87a467623a3513efb2331775146c53fa0a82dfffe7904cc"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/servicos.py",
+    "sha256": "d3c6ff49561b178d47754cb5c7ad2fa1bbd6fe8a32d222369200d818b006d40b"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/app/tempo.py",
+    "sha256": "8fe938828c37a9b655495ca2d02c0e5dfa0d18cbfacf13bafd59453fc39e2956"
+  },
+  {
+    "state": "r2-E2",
+    "commit": "85f3ef8fd44e",
+    "path": "sources/r2-E2/requirements.txt",
+    "sha256": "8957409a119c83fafc7b029a5118c8c8c9a6b941187824523639bd7f01627f08"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/__init__.py",
+    "sha256": "0cbbab57584c134e26c0cff92ea3b22502e41a998206439a76f48c2370dd2067"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/config.py",
+    "sha256": "cd38ce87b5bf41200e38e1513a7efd1119f6de4b2277df409d3efec808dc7d28"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/db.py",
+    "sha256": "34c2918bcf0eb2067a387d25e11960a9e31637d03a864e7cab177d13b3935e6c"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/enums.py",
+    "sha256": "0da40beea98fb5332d402a77492b4c04e1b218db977c5a527a57b6a82246a09d"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/erros.py",
+    "sha256": "483ebad618991b2513ef6cdb79a174093460007d412ebda371336016ffda0552"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/main.py",
+    "sha256": "d54cf9e1b89f7f0cb52b2fb2943e3514362ca2006b1d09254c6776262b7044a8"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/models.py",
+    "sha256": "d4d1c85f187e6d19e26d9e444956edaf50c3b8ed29853e1ad78f7d76b958e98a"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/regras.py",
+    "sha256": "b24fe718630990a02695e707af26142ca903f8ed52c0dd27c2f06ee75f7c16e8"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/routers/__init__.py",
+    "sha256": "96c4e7a07f8e526d60319f1e44b860e09eaea2eb040f35ba331521836330e860"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/routers/ausencias.py",
+    "sha256": "ad06718d8930e2e5853342c09afd4b5ff90019382bbdfc66f6b86d5735facde2"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/routers/comum.py",
+    "sha256": "389d67d315edb0d234edff78615a3d47f817e8cfbc35104ebe625acc5ed2b8c9"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/routers/especialidades.py",
+    "sha256": "6dbb06701b3c19831dc1f2ba032112f379993b770b1e2537eeb2ca64c2478bea"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/routers/plantoes.py",
+    "sha256": "66b05fff74736363271c8862a42f3cffb0f4b4fd92213ed4fb0a356771238835"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/routers/profissionais.py",
+    "sha256": "d89e83214714c6f0dfbe52c8717c018835a2a646b3d8777b650d84be3179d2f9"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/routers/saude.py",
+    "sha256": "356c95fab5cb978d1214777e33074d5cb69199b8b1b20ee371c0873f9dcc2806"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/routers/substituicoes.py",
+    "sha256": "dc430abda5982d2a08771e0edd4944dc1bb70219b8a8c33deaefbbbfa88e6589"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/routers/trocas.py",
+    "sha256": "733b52c169f5f62bb273e10cb95fa2c8c5e1c3ac330bc22b259e34a49a28b042"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/routers/turnos.py",
+    "sha256": "a2d07df93f360db343b61bf47b6ac77c011baa932de20ba7f83a40d901845a16"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/schemas.py",
+    "sha256": "edf4d63b432d0b84bf888acfeabe3abb239161a3f068bdca36b4855205d49d62"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/app/tempo.py",
+    "sha256": "9aa4e06f09c20e219268319b3295c50d61cb8642ba9b19df29fb6b48effa06bf"
+  },
+  {
+    "state": "r3-M5",
+    "commit": "88cf8cb04f2c",
+    "path": "sources/r3-M5/requirements.txt",
+    "sha256": "1bd7ae47a789d4cf9afbeef1f06aa114b3281496776b28de63a3ea4a1ed8f93d"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/__init__.py",
+    "sha256": "0cbbab57584c134e26c0cff92ea3b22502e41a998206439a76f48c2370dd2067"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/config.py",
+    "sha256": "cd38ce87b5bf41200e38e1513a7efd1119f6de4b2277df409d3efec808dc7d28"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/db.py",
+    "sha256": "34c2918bcf0eb2067a387d25e11960a9e31637d03a864e7cab177d13b3935e6c"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/enums.py",
+    "sha256": "0da40beea98fb5332d402a77492b4c04e1b218db977c5a527a57b6a82246a09d"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/erros.py",
+    "sha256": "483ebad618991b2513ef6cdb79a174093460007d412ebda371336016ffda0552"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/main.py",
+    "sha256": "d54cf9e1b89f7f0cb52b2fb2943e3514362ca2006b1d09254c6776262b7044a8"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/models.py",
+    "sha256": "7fa601c5895d7f74bbc7d8519c73997c5267ef3c656e0dd5e5b83d9bacc7b9b7"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/regras.py",
+    "sha256": "b24fe718630990a02695e707af26142ca903f8ed52c0dd27c2f06ee75f7c16e8"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/routers/__init__.py",
+    "sha256": "96c4e7a07f8e526d60319f1e44b860e09eaea2eb040f35ba331521836330e860"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/routers/ausencias.py",
+    "sha256": "ad06718d8930e2e5853342c09afd4b5ff90019382bbdfc66f6b86d5735facde2"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/routers/comum.py",
+    "sha256": "389d67d315edb0d234edff78615a3d47f817e8cfbc35104ebe625acc5ed2b8c9"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/routers/especialidades.py",
+    "sha256": "6dbb06701b3c19831dc1f2ba032112f379993b770b1e2537eeb2ca64c2478bea"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/routers/plantoes.py",
+    "sha256": "66b05fff74736363271c8862a42f3cffb0f4b4fd92213ed4fb0a356771238835"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/routers/profissionais.py",
+    "sha256": "3cadfdb49f9fcda3c792fbfee46a4a0d750cc07b00a9c33f38ac3912feb77ab3"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/routers/saude.py",
+    "sha256": "356c95fab5cb978d1214777e33074d5cb69199b8b1b20ee371c0873f9dcc2806"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/routers/substituicoes.py",
+    "sha256": "dc430abda5982d2a08771e0edd4944dc1bb70219b8a8c33deaefbbbfa88e6589"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/routers/trocas.py",
+    "sha256": "733b52c169f5f62bb273e10cb95fa2c8c5e1c3ac330bc22b259e34a49a28b042"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/routers/turnos.py",
+    "sha256": "e961bb5558af3a90f4c0bf1214b4d7db72dc2da0c4bcd40e6c3b9ce8bec83de6"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/schemas.py",
+    "sha256": "3559f335f168c984f90c3459098a29559fd4e6243ee7b80a9094ae7e99dfeb93"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/app/tempo.py",
+    "sha256": "44fc353443169749fde05610fb390caaff548a99347d8f592a130aa81204e448"
+  },
+  {
+    "state": "r3-E1",
+    "commit": "da8638b132ef",
+    "path": "sources/r3-E1/requirements.txt",
+    "sha256": "1bd7ae47a789d4cf9afbeef1f06aa114b3281496776b28de63a3ea4a1ed8f93d"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/__init__.py",
+    "sha256": "0cbbab57584c134e26c0cff92ea3b22502e41a998206439a76f48c2370dd2067"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/auditoria.py",
+    "sha256": "6754bcbe49b59dfd5d405135928a9329f85ee03965bf0298094ab5fc728c4ad0"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/autenticacao.py",
+    "sha256": "59545bd5a3ab8a2b7f85365be285311a36f2e37739032d840b6ace9d49422011"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/config.py",
+    "sha256": "e0c22efd16d0635e167cff370300abc5e83708a7ecbe250745b7aa894f20faef"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/db.py",
+    "sha256": "34c2918bcf0eb2067a387d25e11960a9e31637d03a864e7cab177d13b3935e6c"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/enums.py",
+    "sha256": "0da40beea98fb5332d402a77492b4c04e1b218db977c5a527a57b6a82246a09d"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/erros.py",
+    "sha256": "b707af664c6ee452d3c75754493c692e5598406024dae36806bceffb2fad73db"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/main.py",
+    "sha256": "459543d8537cf3b6578c5efb346ef08f5e7c18cb0f1f51517e9db7379682208c"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/models.py",
+    "sha256": "605ee1df5483a643373ae8b813db6c29faf79d079a5b2c76da1da841bc4b6d4b"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/regras.py",
+    "sha256": "b24fe718630990a02695e707af26142ca903f8ed52c0dd27c2f06ee75f7c16e8"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/routers/__init__.py",
+    "sha256": "1c54123a2d11d853b9b2f11342d46767577e018821075cbbdaac35318a1ba830"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/routers/auditoria.py",
+    "sha256": "301f67abf1be648e00f11cc0bd7638a62e587ceb55b9f14abf82c8f571c8bb55"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/routers/ausencias.py",
+    "sha256": "ad06718d8930e2e5853342c09afd4b5ff90019382bbdfc66f6b86d5735facde2"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/routers/comum.py",
+    "sha256": "389d67d315edb0d234edff78615a3d47f817e8cfbc35104ebe625acc5ed2b8c9"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/routers/especialidades.py",
+    "sha256": "6dbb06701b3c19831dc1f2ba032112f379993b770b1e2537eeb2ca64c2478bea"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/routers/plantoes.py",
+    "sha256": "66b05fff74736363271c8862a42f3cffb0f4b4fd92213ed4fb0a356771238835"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/routers/profissionais.py",
+    "sha256": "6622d87e3ebb0cc5527d942e0db7baa1cd73df4784da6cef0acf9c5ccdf246d9"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/routers/saude.py",
+    "sha256": "356c95fab5cb978d1214777e33074d5cb69199b8b1b20ee371c0873f9dcc2806"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/routers/substituicoes.py",
+    "sha256": "dc430abda5982d2a08771e0edd4944dc1bb70219b8a8c33deaefbbbfa88e6589"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/routers/trocas.py",
+    "sha256": "c97a1302f59e636d01b905cdc1c6055123ea29df1f351d38270947764d25a227"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/routers/turnos.py",
+    "sha256": "026fc50ec44c9fa6aab29205e4ea495d794553ebf7bd631cf7655415eddddfde"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/schemas.py",
+    "sha256": "56b234ee76df9bf8a22fbd6a671ed15ddffd20e29a8bbb6d68bb7ebf5837c440"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/app/tempo.py",
+    "sha256": "44fc353443169749fde05610fb390caaff548a99347d8f592a130aa81204e448"
+  },
+  {
+    "state": "r3-E2",
+    "commit": "0eadb98f73ce",
+    "path": "sources/r3-E2/requirements.txt",
+    "sha256": "1bd7ae47a789d4cf9afbeef1f06aa114b3281496776b28de63a3ea4a1ed8f93d"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/__init__.py",
+    "sha256": "af7adda1996020ff4bdccf501fcfc23983df041b02fc76a3086571b06ee11fef"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/config.py",
+    "sha256": "9c4af070a8b626bb687b272e6c5342297a63b2bbe31d6e311b2706e33ce3af8b"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/db.py",
+    "sha256": "149f1d3d74f2cb50b40b2cee0a50fd74eaee64f2f139693325eda4040ffcbc10"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/erros.py",
+    "sha256": "97da351aad1390f7edc129ae00ac48e487a724431bfb773e668e267e2dbe0466"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/main.py",
+    "sha256": "7833a2e06581aa531d564340c77d9e145ac8c15803756b01b55a16dd175f8519"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/models.py",
+    "sha256": "522e40880439ebf54ab29ecad60563eff5a74924a0753718c3b40725fe420345"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/paginacao.py",
+    "sha256": "b7b850a4f3f1ad734aff2db9c96cf67016cabfb1f55c62606c27bd5e738ea19c"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/regras.py",
+    "sha256": "a8b523b90def80b78556f94e256474793b528e82d2801cad4cce0fe07b349840"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/rotas/__init__.py",
+    "sha256": "5b82282fbf3d73461b280f9dec521f8cffdc13bc9ad4955ca465582219611bf7"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/rotas/ausencias.py",
+    "sha256": "970b29c14c1de96aacf0016caf5d4f468161ab528c7d7eecd937bba1938dcba8"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/rotas/especialidades.py",
+    "sha256": "eb4ded829fb3cd47f399132ea276da271cfcaf24efaabf7acacf413a81bcaa47"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/rotas/plantoes.py",
+    "sha256": "52684b2133820948db249180724f459dff0a7246db38e92aba9454e95a6f8cbd"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/rotas/profissionais.py",
+    "sha256": "4cf2b05f9ec3cda6927d2fcdc49090af70a0c323b24419c2e23e5876dd25785b"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/rotas/saude.py",
+    "sha256": "ea292d77a98cbc3e20f11d209e7134545d0bf80b6355b2493006613b74a509f5"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/rotas/substituicoes.py",
+    "sha256": "ddaa335a57447abed52f82d1e11935d00ccbbfdbf7f16204f6869b5a882b07c9"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/rotas/trocas.py",
+    "sha256": "531e6cdf340923acb41f514f71ab696ef33f17d04abf81732b85ac6fcaa74ec8"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/rotas/turnos.py",
+    "sha256": "285e334a8aa1c3c928322fadc5a9e189903e1ece258041afe2750fcbda63702c"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/schemas.py",
+    "sha256": "d34b5a0d8f30b3868e6ee9735e5a9748663ed8baec71ca86a73c04a31f4e3e2b"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/servicos.py",
+    "sha256": "2963698360b676c7788ceaa92ea5b7278535c1d92effd3708060f67dfb8d5bb2"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/app/tempo.py",
+    "sha256": "ed1237f95043c0a4abcde461bd656014ea7b38e41104a4ccc099ae7427f1ab56"
+  },
+  {
+    "state": "r4-M5",
+    "commit": "e5744a83e911",
+    "path": "sources/r4-M5/requirements.txt",
+    "sha256": "fd1bc05c718d72d41a371a01b1ee410097b9174dfe0b03cb871e78f5efd52265"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/__init__.py",
+    "sha256": "af7adda1996020ff4bdccf501fcfc23983df041b02fc76a3086571b06ee11fef"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/config.py",
+    "sha256": "9c4af070a8b626bb687b272e6c5342297a63b2bbe31d6e311b2706e33ce3af8b"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/db.py",
+    "sha256": "149f1d3d74f2cb50b40b2cee0a50fd74eaee64f2f139693325eda4040ffcbc10"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/erros.py",
+    "sha256": "97da351aad1390f7edc129ae00ac48e487a724431bfb773e668e267e2dbe0466"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/main.py",
+    "sha256": "7833a2e06581aa531d564340c77d9e145ac8c15803756b01b55a16dd175f8519"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/models.py",
+    "sha256": "c1ce5f252e06f0993805ef201b16c010ee4ddc471f67bb33af89ee066190ae30"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/paginacao.py",
+    "sha256": "b7b850a4f3f1ad734aff2db9c96cf67016cabfb1f55c62606c27bd5e738ea19c"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/regras.py",
+    "sha256": "a8b523b90def80b78556f94e256474793b528e82d2801cad4cce0fe07b349840"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/rotas/__init__.py",
+    "sha256": "5b82282fbf3d73461b280f9dec521f8cffdc13bc9ad4955ca465582219611bf7"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/rotas/ausencias.py",
+    "sha256": "970b29c14c1de96aacf0016caf5d4f468161ab528c7d7eecd937bba1938dcba8"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/rotas/especialidades.py",
+    "sha256": "eb4ded829fb3cd47f399132ea276da271cfcaf24efaabf7acacf413a81bcaa47"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/rotas/plantoes.py",
+    "sha256": "52684b2133820948db249180724f459dff0a7246db38e92aba9454e95a6f8cbd"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/rotas/profissionais.py",
+    "sha256": "4cdea8752b717ee0d1ddd7fb39b1670fe81273ac8d5213931b17b257177f3494"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/rotas/saude.py",
+    "sha256": "ea292d77a98cbc3e20f11d209e7134545d0bf80b6355b2493006613b74a509f5"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/rotas/substituicoes.py",
+    "sha256": "ddaa335a57447abed52f82d1e11935d00ccbbfdbf7f16204f6869b5a882b07c9"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/rotas/trocas.py",
+    "sha256": "531e6cdf340923acb41f514f71ab696ef33f17d04abf81732b85ac6fcaa74ec8"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/rotas/turnos.py",
+    "sha256": "4119d397fcb68b4b85f5151355322fa10820856d97ce0ec18e4786143ef8f61b"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/schemas.py",
+    "sha256": "4713e0f89f65f90f6d51d712c42b02a16e89e3e55f5c04749cca08a3676daf7a"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/servicos.py",
+    "sha256": "2963698360b676c7788ceaa92ea5b7278535c1d92effd3708060f67dfb8d5bb2"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/app/tempo.py",
+    "sha256": "a433af9686575af63e0a17f5548b53f6c396ee6568faa0479c16c7778e9f2450"
+  },
+  {
+    "state": "r4-E1",
+    "commit": "a71e16b14146",
+    "path": "sources/r4-E1/requirements.txt",
+    "sha256": "fd1bc05c718d72d41a371a01b1ee410097b9174dfe0b03cb871e78f5efd52265"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/__init__.py",
+    "sha256": "af7adda1996020ff4bdccf501fcfc23983df041b02fc76a3086571b06ee11fef"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/auditoria.py",
+    "sha256": "74ce8a7286e36a0bb77b38dac2dfa8de8628b2d7e38f207176b182043d629752"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/autenticacao.py",
+    "sha256": "8290292998b7a1e7368bfd0a2cf4f8ca7f10ee40530b93a1987bf2b2e9d7a415"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/config.py",
+    "sha256": "a139816012ba223d1b374a81572c360e7fca54048110e2bad932412880296084"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/db.py",
+    "sha256": "6d21f73ef10a7b5f33839566f45ae130c71eab7b4b80de0f99b3a1c06fe14468"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/erros.py",
+    "sha256": "e0402f11ea1e373939601b1626820bc2dd08369bc331f4454054508fcffe1a73"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/main.py",
+    "sha256": "23eef21b86acf73c5fab29ad26b00c4b1eae0dae9f132e5c718c3545eb3d9c20"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/models.py",
+    "sha256": "dcbb5ca13c5d2e49382ba509ca1a2ccef3215727a3a0a54ed278222938ff5c91"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/paginacao.py",
+    "sha256": "85c30d9f964c03b1fc3e0eb10ad64a5a3af6c2fabb97b0ce4769e0aaeaff8931"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/regras.py",
+    "sha256": "942bcbdcac29624acdd902d4f1d1e9589f859dc17e3d6339cf98242e0d94683e"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/rotas/__init__.py",
+    "sha256": "2119173d9daecc80ae20a42d5eac978501a164e96030eafc557338bd87cd694c"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/rotas/auditoria.py",
+    "sha256": "40daca130eeea6da432b45804c40adf7aa894403312dc496d1e076ac7794dca0"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/rotas/ausencias.py",
+    "sha256": "593e28b17d5b3a54f6af00241bdec4d08cdfafe1a331477a53b50e1e299ad334"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/rotas/especialidades.py",
+    "sha256": "be4842f51381a6f54b5809f68a7334aeb57f8303fb06c19c286ed4bb5d1fcbc9"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/rotas/plantoes.py",
+    "sha256": "692bad71667c486cd6bacc401626e679d3236d98b679ddd9c73194af31f9feff"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/rotas/profissionais.py",
+    "sha256": "4a5fa3fee94d69f030c5975abae5eaa693104df9bd794902daeff1d869280bbb"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/rotas/saude.py",
+    "sha256": "ea292d77a98cbc3e20f11d209e7134545d0bf80b6355b2493006613b74a509f5"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/rotas/substituicoes.py",
+    "sha256": "4cc1a2afab528cfddabaf5ded6491474be8bc4b5d50027f300f85010d7d8438f"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/rotas/trocas.py",
+    "sha256": "6db143b372561518e3a5fbcff517c21eea605ac49f3c5183cb4d75cefe5568fd"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/rotas/turnos.py",
+    "sha256": "d2e31c080267e228b352018ee8aee8bf2f2df9ba71c126616d6716152a81d93a"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/schemas.py",
+    "sha256": "2fed2e0f8e26f36f22621b7d557ac64b178a91f7c5346066ba037d1cb00159e8"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/servicos.py",
+    "sha256": "15c667fe5c36d5f2db291a79cacc22b4e0c7e2191ffbd749ec4434e9ef65ff56"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/app/tempo.py",
+    "sha256": "0297511afa4cdc83104fdd6aca5f6c5a348735cc0c97dcfd37445029709b4c22"
+  },
+  {
+    "state": "r4-E2",
+    "commit": "98a81b3c4d32",
+    "path": "sources/r4-E2/requirements.txt",
+    "sha256": "fd1bc05c718d72d41a371a01b1ee410097b9174dfe0b03cb871e78f5efd52265"
+  },
+  {
+    "state": "r5-M5",
+    "commit": "de89b150206b",
+    "path": "sources/r5-M5/app/__init__.py",
+    "sha256": "7730a9e6dda3ff57bc2d42420055b8f0e55e26b3465182aa974d3ac0b81f0d7f"
+  },
+  {
+    "state": "r5-M5",
+    "commit": "de89b150206b",
+    "path": "sources/r5-M5/app/config.py",
+    "sha256": "3cb7034f893e172bdd2109d82197e70109a2e59ce21ce6ebfcb4ae6a612b7d05"
+  },
+  {
+    "state": "r5-M5",
+    "commit": "de89b150206b",
+    "path": "sources/r5-M5/app/db.py",
+    "sha256": "03c7bfd58a34d29d8cb9caefae12a25dbd12abec078978413b9f7dab96b379be"
+  },
+  {
+    "state": "r5-M5",
+    "commit": "de89b150206b",
+    "path": "sources/r5-M5/app/erros.py",
+    "sha256": "297567796103a92bccea2f4325daee942de73c348ff15dd6f1b5c9272b30b2b8"
+  },
+  {
+    "state": "r5-M5",
+    "commit": "de89b150206b",
+    "path": "sources/r5-M5/app/esquemas.py",
+    "sha256": "c53e19e4f362ffda17bae0e808dbb86193fe7fc41e4331c88d935f1fa5401339"
+  },
+  {
+    "state": "r5-M5",
+    "commit": "de89b150206b",
+    "path": "sources/r5-M5/app/invariantes.py",
+    "sha256": "33731ede5b9054a4e9c85975a62ee8c0c26c5bd30610d2acd99357b4faa9a759"
+  },
+  {
+    "state": "r5-M5",
+    "commit": "de89b150206b",
+    "path": "sources/r5-M5/app/main.py",
+    "sha256": "dcb9ccc1c21ac306e48758073cade9b87f69a6af164cef14244d4623d1ae1167"
+  },
+  {
+    "state": "r5-M5",
+    "commit": "de89b150206b",
+    "path": "sources/r5-M5/app/modelos.py",
+    "sha256": "e64f05cb6a09ea6f2c97096b595b81b438ceca44e86b83e2b058ac1e605965e4"
+  },
+  {
+    "state": "r5-M5",
+    "commit": "de89b150206b",
+    "path": "sources/r5-M5/app/rotas.py",
+    "sha256": "c6c830093a0187190a3e4c7a38d76c1699bd776f7d0bd83e11c7908e82bc0ffd"
+  },
+  {
+    "state": "r5-M5",
+    "commit": "de89b150206b",
+    "path": "sources/r5-M5/app/servicos.py",
+    "sha256": "2865ec2583af198e70b23587c17baadfd8644558e8a2501b8a71e8c85f9dbbd7"
+  },
+  {
+    "state": "r5-M5",
+    "commit": "de89b150206b",
+    "path": "sources/r5-M5/app/tempo.py",
+    "sha256": "607fd3255e180e3dc6bc6ca5f0ca5e211211af6837e6d69df3b5ab7efcf6bf98"
+  },
+  {
+    "state": "r5-M5",
+    "commit": "de89b150206b",
+    "path": "sources/r5-M5/requirements.txt",
+    "sha256": "ba5cd0e0a71d3ebc66e001af81abd927785100c52030f08d45b0fb3b41c25584"
+  },
+  {
+    "state": "r5-E1",
+    "commit": "9b9d2758178d",
+    "path": "sources/r5-E1/app/__init__.py",
+    "sha256": "7730a9e6dda3ff57bc2d42420055b8f0e55e26b3465182aa974d3ac0b81f0d7f"
+  },
+  {
+    "state": "r5-E1",
+    "commit": "9b9d2758178d",
+    "path": "sources/r5-E1/app/config.py",
+    "sha256": "3cb7034f893e172bdd2109d82197e70109a2e59ce21ce6ebfcb4ae6a612b7d05"
+  },
+  {
+    "state": "r5-E1",
+    "commit": "9b9d2758178d",
+    "path": "sources/r5-E1/app/db.py",
+    "sha256": "03c7bfd58a34d29d8cb9caefae12a25dbd12abec078978413b9f7dab96b379be"
+  },
+  {
+    "state": "r5-E1",
+    "commit": "9b9d2758178d",
+    "path": "sources/r5-E1/app/erros.py",
+    "sha256": "297567796103a92bccea2f4325daee942de73c348ff15dd6f1b5c9272b30b2b8"
+  },
+  {
+    "state": "r5-E1",
+    "commit": "9b9d2758178d",
+    "path": "sources/r5-E1/app/esquemas.py",
+    "sha256": "114f1d5ef283609422d9d8cc284a1f4c7c578446a2373b6105d731cfc826e796"
+  },
+  {
+    "state": "r5-E1",
+    "commit": "9b9d2758178d",
+    "path": "sources/r5-E1/app/invariantes.py",
+    "sha256": "33731ede5b9054a4e9c85975a62ee8c0c26c5bd30610d2acd99357b4faa9a759"
+  },
+  {
+    "state": "r5-E1",
+    "commit": "9b9d2758178d",
+    "path": "sources/r5-E1/app/main.py",
+    "sha256": "dcb9ccc1c21ac306e48758073cade9b87f69a6af164cef14244d4623d1ae1167"
+  },
+  {
+    "state": "r5-E1",
+    "commit": "9b9d2758178d",
+    "path": "sources/r5-E1/app/modelos.py",
+    "sha256": "002dabc9a00ab88302673696619bad61b17422eff8944dad76d603c3b6335547"
+  },
+  {
+    "state": "r5-E1",
+    "commit": "9b9d2758178d",
+    "path": "sources/r5-E1/app/rotas.py",
+    "sha256": "2bd6d6a55d1797b204bdc3f861505f79a6218f6f5c95210827e22bdc1c9394fd"
+  },
+  {
+    "state": "r5-E1",
+    "commit": "9b9d2758178d",
+    "path": "sources/r5-E1/app/servicos.py",
+    "sha256": "e43593a82993baf67126cfe920fffdf44cb1635afcfbdb08af79d3f87497cab8"
+  },
+  {
+    "state": "r5-E1",
+    "commit": "9b9d2758178d",
+    "path": "sources/r5-E1/app/tempo.py",
+    "sha256": "d36098bb4f616555b83992eee556e68802ce3c9c4721098d4852b0a3e69fe2be"
+  },
+  {
+    "state": "r5-E1",
+    "commit": "9b9d2758178d",
+    "path": "sources/r5-E1/requirements.txt",
+    "sha256": "ba5cd0e0a71d3ebc66e001af81abd927785100c52030f08d45b0fb3b41c25584"
+  },
+  {
+    "state": "r5-E2",
+    "commit": "353c934b890b",
+    "path": "sources/r5-E2/app/__init__.py",
+    "sha256": "7730a9e6dda3ff57bc2d42420055b8f0e55e26b3465182aa974d3ac0b81f0d7f"
+  },
+  {
+    "state": "r5-E2",
+    "commit": "353c934b890b",
+    "path": "sources/r5-E2/app/config.py",
+    "sha256": "d44de7623a16d0e6f93c332aa06fbb255adc196c1c64e835b0845fc13a596223"
+  },
+  {
+    "state": "r5-E2",
+    "commit": "353c934b890b",
+    "path": "sources/r5-E2/app/db.py",
+    "sha256": "03f5c132f46b1fa3fac731d125ebdd89a2c43725e3efbc4a93228e8378971779"
+  },
+  {
+    "state": "r5-E2",
+    "commit": "353c934b890b",
+    "path": "sources/r5-E2/app/erros.py",
+    "sha256": "297567796103a92bccea2f4325daee942de73c348ff15dd6f1b5c9272b30b2b8"
+  },
+  {
+    "state": "r5-E2",
+    "commit": "353c934b890b",
+    "path": "sources/r5-E2/app/esquemas.py",
+    "sha256": "8dc95f5c85171b9da399b4b791fbf5ed6bf0bd0f4240097428e85c67fcab13ca"
+  },
+  {
+    "state": "r5-E2",
+    "commit": "353c934b890b",
+    "path": "sources/r5-E2/app/invariantes.py",
+    "sha256": "702233f5c1fe598e3edcf914698880cb09e62c571326066228be93e43f92ee4b"
+  },
+  {
+    "state": "r5-E2",
+    "commit": "353c934b890b",
+    "path": "sources/r5-E2/app/main.py",
+    "sha256": "de61c74ae646ed5324273e65ae7664dada75ef093319c067d380451954c01d5e"
+  },
+  {
+    "state": "r5-E2",
+    "commit": "353c934b890b",
+    "path": "sources/r5-E2/app/modelos.py",
+    "sha256": "04ddb089119bcdba796a63504a3402d8a8b25aadfbd6e43e41cc4ed168d05f74"
+  },
+  {
+    "state": "r5-E2",
+    "commit": "353c934b890b",
+    "path": "sources/r5-E2/app/rotas.py",
+    "sha256": "34781411350e42defac7d4b119eb78654ad4082f1c1180cb0df201f54ce756c0"
+  },
+  {
+    "state": "r5-E2",
+    "commit": "353c934b890b",
+    "path": "sources/r5-E2/app/seguranca.py",
+    "sha256": "552cf9083e8a455fc55a0f580ef1428da7b12fb20e12fc43a6881999ab3f06ce"
+  },
+  {
+    "state": "r5-E2",
+    "commit": "353c934b890b",
+    "path": "sources/r5-E2/app/servicos.py",
+    "sha256": "4adaddc60816f568934c62ff0738e3ba12b1c64cf8d466c1879e1d130979dcb9"
+  },
+  {
+    "state": "r5-E2",
+    "commit": "353c934b890b",
+    "path": "sources/r5-E2/app/tempo.py",
+    "sha256": "ed6160c00ac45d8bedca1b3474d80fda76a58f354a38c9898e52549446c0eb1e"
+  },
+  {
+    "state": "r5-E2",
+    "commit": "353c934b890b",
+    "path": "sources/r5-E2/requirements.txt",
+    "sha256": "ba5cd0e0a71d3ebc66e001af81abd927785100c52030f08d45b0fb3b41c25584"
+  }
+]

@@ -1,0 +1,401 @@
+{
+  "e1": [
+    {
+      "repetition": 1,
+      "fresh_control": {
+        "new_id": 3,
+        "horas_periodo": 17.6,
+        "old_diurnos": [
+          1,
+          2
+        ],
+        "noturnos": [
+          3
+        ]
+      },
+      "legacy_data_preserved": true,
+      "column_created": true,
+      "legacy_list_http": 200,
+      "migration_works": true,
+      "workflow": {
+        "new_id": 3,
+        "horas_periodo": 17.6,
+        "old_diurnos": [
+          1,
+          2
+        ],
+        "noturnos": [
+          3
+        ]
+      },
+      "restart_same_result": true
+    },
+    {
+      "repetition": 2,
+      "fresh_control": {
+        "new_id": 3,
+        "horas_periodo": 17.6,
+        "old_diurnos": [
+          1,
+          2
+        ],
+        "noturnos": [
+          3
+        ]
+      },
+      "legacy_data_preserved": true,
+      "column_created": false,
+      "legacy_list_http": 500,
+      "migration_works": false,
+      "workflow": null,
+      "restart_same_result": true
+    },
+    {
+      "repetition": 3,
+      "fresh_control": {
+        "new_id": 3,
+        "horas_periodo": 17.6,
+        "old_diurnos": [
+          1,
+          2
+        ],
+        "noturnos": [
+          3
+        ]
+      },
+      "legacy_data_preserved": true,
+      "column_created": false,
+      "legacy_list_http": 500,
+      "migration_works": false,
+      "workflow": null,
+      "restart_same_result": true
+    },
+    {
+      "repetition": 4,
+      "fresh_control": {
+        "new_id": 3,
+        "horas_periodo": 17.6,
+        "old_diurnos": [
+          1,
+          2
+        ],
+        "noturnos": [
+          3
+        ]
+      },
+      "legacy_data_preserved": true,
+      "column_created": false,
+      "legacy_list_http": 500,
+      "migration_works": false,
+      "workflow": null,
+      "restart_same_result": true
+    },
+    {
+      "repetition": 5,
+      "fresh_control": {
+        "new_id": 3,
+        "horas_periodo": 17.6,
+        "old_diurnos": [
+          1,
+          2
+        ],
+        "noturnos": [
+          3
+        ]
+      },
+      "legacy_data_preserved": true,
+      "column_created": false,
+      "legacy_list_http": 500,
+      "migration_works": false,
+      "workflow": null,
+      "restart_same_result": true
+    }
+  ],
+  "e2": [
+    {
+      "repetition": 1,
+      "fault_message_verified": "FALHA_AUDITORIA_COMPLEMENTAR",
+      "cases": [
+        {
+          "phase": "control",
+          "case": "sucesso",
+          "http": 201,
+          "professionals_added": 1,
+          "audit_added": 1
+        },
+        {
+          "phase": "control",
+          "case": "conflito",
+          "http": 409,
+          "professionals_added": 0,
+          "audit_added": 1
+        },
+        {
+          "phase": "control",
+          "case": "validacao",
+          "http": 422,
+          "professionals_added": 0,
+          "audit_added": 1
+        },
+        {
+          "phase": "fault",
+          "case": "sucesso",
+          "http": 500,
+          "professionals_added": 1,
+          "audit_added": 0
+        },
+        {
+          "phase": "fault",
+          "case": "conflito",
+          "http": 500,
+          "professionals_added": 0,
+          "audit_added": 0
+        },
+        {
+          "phase": "fault",
+          "case": "validacao",
+          "http": 500,
+          "professionals_added": 0,
+          "audit_added": 0
+        },
+        {
+          "phase": "recovery",
+          "case": "sucesso",
+          "http": 201,
+          "professionals_added": 1,
+          "audit_added": 1
+        }
+      ],
+      "trigger_removed": true,
+      "lost_records_recreated": false
+    },
+    {
+      "repetition": 2,
+      "fault_message_verified": "FALHA_AUDITORIA_COMPLEMENTAR",
+      "cases": [
+        {
+          "phase": "control",
+          "case": "sucesso",
+          "http": 201,
+          "professionals_added": 1,
+          "audit_added": 1
+        },
+        {
+          "phase": "control",
+          "case": "conflito",
+          "http": 409,
+          "professionals_added": 0,
+          "audit_added": 1
+        },
+        {
+          "phase": "control",
+          "case": "validacao",
+          "http": 422,
+          "professionals_added": 0,
+          "audit_added": 1
+        },
+        {
+          "phase": "fault",
+          "case": "sucesso",
+          "http": 201,
+          "professionals_added": 1,
+          "audit_added": 0
+        },
+        {
+          "phase": "fault",
+          "case": "conflito",
+          "http": 409,
+          "professionals_added": 0,
+          "audit_added": 0
+        },
+        {
+          "phase": "fault",
+          "case": "validacao",
+          "http": 422,
+          "professionals_added": 0,
+          "audit_added": 0
+        },
+        {
+          "phase": "recovery",
+          "case": "sucesso",
+          "http": 201,
+          "professionals_added": 1,
+          "audit_added": 1
+        }
+      ],
+      "trigger_removed": true,
+      "lost_records_recreated": false
+    },
+    {
+      "repetition": 3,
+      "fault_message_verified": "FALHA_AUDITORIA_COMPLEMENTAR",
+      "cases": [
+        {
+          "phase": "control",
+          "case": "sucesso",
+          "http": 201,
+          "professionals_added": 1,
+          "audit_added": 1
+        },
+        {
+          "phase": "control",
+          "case": "conflito",
+          "http": 409,
+          "professionals_added": 0,
+          "audit_added": 1
+        },
+        {
+          "phase": "control",
+          "case": "validacao",
+          "http": 422,
+          "professionals_added": 0,
+          "audit_added": 1
+        },
+        {
+          "phase": "fault",
+          "case": "sucesso",
+          "http": 201,
+          "professionals_added": 1,
+          "audit_added": 0
+        },
+        {
+          "phase": "fault",
+          "case": "conflito",
+          "http": 409,
+          "professionals_added": 0,
+          "audit_added": 0
+        },
+        {
+          "phase": "fault",
+          "case": "validacao",
+          "http": 422,
+          "professionals_added": 0,
+          "audit_added": 0
+        },
+        {
+          "phase": "recovery",
+          "case": "sucesso",
+          "http": 201,
+          "professionals_added": 1,
+          "audit_added": 1
+        }
+      ],
+      "trigger_removed": true,
+      "lost_records_recreated": false
+    },
+    {
+      "repetition": 4,
+      "fault_message_verified": "FALHA_AUDITORIA_COMPLEMENTAR",
+      "cases": [
+        {
+          "phase": "control",
+          "case": "sucesso",
+          "http": 201,
+          "professionals_added": 1,
+          "audit_added": 1
+        },
+        {
+          "phase": "control",
+          "case": "conflito",
+          "http": 409,
+          "professionals_added": 0,
+          "audit_added": 1
+        },
+        {
+          "phase": "control",
+          "case": "validacao",
+          "http": 422,
+          "professionals_added": 0,
+          "audit_added": 1
+        },
+        {
+          "phase": "fault",
+          "case": "sucesso",
+          "http": 500,
+          "professionals_added": 1,
+          "audit_added": 0
+        },
+        {
+          "phase": "fault",
+          "case": "conflito",
+          "http": 500,
+          "professionals_added": 0,
+          "audit_added": 0
+        },
+        {
+          "phase": "fault",
+          "case": "validacao",
+          "http": 500,
+          "professionals_added": 0,
+          "audit_added": 0
+        },
+        {
+          "phase": "recovery",
+          "case": "sucesso",
+          "http": 201,
+          "professionals_added": 1,
+          "audit_added": 1
+        }
+      ],
+      "trigger_removed": true,
+      "lost_records_recreated": false
+    },
+    {
+      "repetition": 5,
+      "fault_message_verified": "FALHA_AUDITORIA_COMPLEMENTAR",
+      "cases": [
+        {
+          "phase": "control",
+          "case": "sucesso",
+          "http": 201,
+          "professionals_added": 1,
+          "audit_added": 1
+        },
+        {
+          "phase": "control",
+          "case": "conflito",
+          "http": 409,
+          "professionals_added": 0,
+          "audit_added": 1
+        },
+        {
+          "phase": "control",
+          "case": "validacao",
+          "http": 422,
+          "professionals_added": 0,
+          "audit_added": 1
+        },
+        {
+          "phase": "fault",
+          "case": "sucesso",
+          "http": 201,
+          "professionals_added": 1,
+          "audit_added": 0
+        },
+        {
+          "phase": "fault",
+          "case": "conflito",
+          "http": 409,
+          "professionals_added": 0,
+          "audit_added": 0
+        },
+        {
+          "phase": "fault",
+          "case": "validacao",
+          "http": 422,
+          "professionals_added": 0,
+          "audit_added": 0
+        },
+        {
+          "phase": "recovery",
+          "case": "sucesso",
+          "http": 201,
+          "professionals_added": 1,
+          "audit_added": 1
+        }
+      ],
+      "trigger_removed": true,
+      "lost_records_recreated": false
+    }
+  ]
+}

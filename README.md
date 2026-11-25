@@ -28,7 +28,9 @@ instrumento.
 | `reavaliacao-v1/` | reavaliação dos estados da coleta 1 com o instrumento v2 (`reavaliar_v1.py`) |
 | `simulacao/` | ensaio do orquestrador com agente simulado, antes da coleta |
 | `execucoes-v2/` | código produzido pelo agente: uma área por repetição, com todo o histórico Git |
-| `Evidencias_TCC_V023.zip` | pacote de evidências citado no texto (Seções 2.11 e 2.12): `codigo/`, `complementar/`, `coleta/` e `LEIA-ME.txt` com o roteiro de conferência |
+| `codigo/` | cópias do código dos estados citados no texto (r2-M0, r2-M1, r4-M2, r4-M3, r1-E2) e `commits.csv` com os hashes completos |
+| `complementar/` | testes complementares da Seção 2.12: `confirmacao1/` e `confirmacao2/` (resultados, eventos HTTP, ambiente e dependências) e `sources_manifest.json` |
+| `LEIA-ME.txt` | roteiro para conferir dois resultados citados no texto |
 
 ## Código produzido pelo agente
 
@@ -51,4 +53,4 @@ git log --oneline --all
 | r5 | `execucoes-v2/r5-42033f96ae.bundle` |
 | r6 | `execucoes-v2/r6-aafe694e97.bundle` (interrompida antes de M0; fora da análise) |
 
-O `coleta/interacoes.csv` deste repositório inclui a tentativa interrompida de r6; o do pacote de evidências traz apenas r1 a r5.
+O `coleta/interacoes.csv` traz as 48 chamadas de r1 a r5 (40 concluídas e oito interrompidas) e, na última linha, a tentativa interrompida de r6, que ficou fora da análise.

@@ -1,0 +1,3049 @@
+[
+  {
+    "method": "POST",
+    "path": "/especialidades",
+    "input": {
+      "nome": "esp-r1-fresh"
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "esp-r1-fresh"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Profissional local",
+      "email": "r1-fresh@example.org",
+      "carga_semanal": 20,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r1-fresh@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais/1/especialidades",
+    "input": {
+      "especialidade_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r1-fresh@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": [
+        {
+          "id": 1,
+          "nome": "esp-r1-fresh"
+        }
+      ]
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": false
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": false
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "turno_id": 1,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-11T08:00:00Z",
+      "data_fim": "2026-09-11T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 3,
+      "data_inicio": "2026-09-11T08:00:00Z",
+      "data_fim": "2026-09-11T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": true
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 3
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "turno_id": 3,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "data_inicio": "2026-09-07T08:00:00Z",
+          "data_fim": "2026-09-07T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        },
+        {
+          "id": 2,
+          "data_inicio": "2026-09-09T08:00:00Z",
+          "data_fim": "2026-09-09T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        }
+      ],
+      "total": 2
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "true"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 3,
+          "data_inicio": "2026-09-11T08:00:00Z",
+          "data_fim": "2026-09-11T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": true
+        }
+      ],
+      "total": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/profissionais/1/escala",
+    "input": null,
+    "params": {
+      "de": "2026-09-07T00:00:00Z",
+      "ate": "2026-09-14T00:00:00Z"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "turno_id": 1,
+          "profissional_id": 1,
+          "estado": "confirmado",
+          "data_inicio": "2026-09-07T08:00:00Z",
+          "data_fim": "2026-09-07T16:00:00Z",
+          "especialidade_id": 1,
+          "horas": 8.0
+        },
+        {
+          "id": 2,
+          "turno_id": 3,
+          "profissional_id": 1,
+          "estado": "confirmado",
+          "data_inicio": "2026-09-11T08:00:00Z",
+          "data_fim": "2026-09-11T16:00:00Z",
+          "especialidade_id": 1,
+          "horas": 8.0
+        }
+      ],
+      "total": 2,
+      "horas_periodo": 17.6
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/especialidades",
+    "input": {
+      "nome": "esp-r1-legacy"
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "esp-r1-legacy"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Profissional local",
+      "email": "r1-legacy@example.org",
+      "carga_semanal": 20,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r1-legacy@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais/1/especialidades",
+    "input": {
+      "especialidade_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r1-legacy@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": [
+        {
+          "id": 1,
+          "nome": "esp-r1-legacy"
+        }
+      ]
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "turno_id": 1,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": null,
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "data_inicio": "2026-09-07T08:00:00Z",
+          "data_fim": "2026-09-07T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1
+        },
+        {
+          "id": 2,
+          "data_inicio": "2026-09-09T08:00:00Z",
+          "data_fim": "2026-09-09T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1
+        }
+      ],
+      "total": 2
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "data_inicio": "2026-09-07T08:00:00Z",
+          "data_fim": "2026-09-07T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        },
+        {
+          "id": 2,
+          "data_inicio": "2026-09-09T08:00:00Z",
+          "data_fim": "2026-09-09T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        }
+      ],
+      "total": 2
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-11T08:00:00Z",
+      "data_fim": "2026-09-11T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 3,
+      "data_inicio": "2026-09-11T08:00:00Z",
+      "data_fim": "2026-09-11T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": true
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 3
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "turno_id": 3,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "data_inicio": "2026-09-07T08:00:00Z",
+          "data_fim": "2026-09-07T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        },
+        {
+          "id": 2,
+          "data_inicio": "2026-09-09T08:00:00Z",
+          "data_fim": "2026-09-09T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        }
+      ],
+      "total": 2
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "true"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 3,
+          "data_inicio": "2026-09-11T08:00:00Z",
+          "data_fim": "2026-09-11T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": true
+        }
+      ],
+      "total": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/profissionais/1/escala",
+    "input": null,
+    "params": {
+      "de": "2026-09-07T00:00:00Z",
+      "ate": "2026-09-14T00:00:00Z"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "turno_id": 1,
+          "profissional_id": 1,
+          "estado": "confirmado",
+          "data_inicio": "2026-09-07T08:00:00Z",
+          "data_fim": "2026-09-07T16:00:00Z",
+          "especialidade_id": 1,
+          "horas": 8.0
+        },
+        {
+          "id": 2,
+          "turno_id": 3,
+          "profissional_id": 1,
+          "estado": "confirmado",
+          "data_inicio": "2026-09-11T08:00:00Z",
+          "data_fim": "2026-09-11T16:00:00Z",
+          "especialidade_id": 1,
+          "horas": 8.0
+        }
+      ],
+      "total": 2,
+      "horas_periodo": 17.6
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "data_inicio": "2026-09-07T08:00:00Z",
+          "data_fim": "2026-09-07T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        },
+        {
+          "id": 2,
+          "data_inicio": "2026-09-09T08:00:00Z",
+          "data_fim": "2026-09-09T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        }
+      ],
+      "total": 2
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r1@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Teste auditoria",
+      "email": "controle-r1@example.org",
+      "carga_semanal": 40,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r1@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 409,
+    "body": {
+      "detail": "o e-mail 'controle-r1@example.org' ja esta cadastrado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "inválido"
+    },
+    "params": null,
+    "status": 422,
+    "body": {
+      "detail": [
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "email"
+          ],
+          "msg": "Field required",
+          "input": {
+            "nome": "inválido"
+          }
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "carga_semanal"
+          ],
+          "msg": "Field required",
+          "input": {
+            "nome": "inválido"
+          }
+        }
+      ]
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "falha-r1@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "IntegrityError: (sqlite3.IntegrityError) FALHA_AUDITORIA_COMPLEMENTAR\n[SQL: INSERT INTO auditoria (metodo, caminho, perfil, codigo_resposta, instante) VALUES (?, ?, ?, ?, ?)]\n[parameters: ('POST', '/profissionais', 'coordenador', 201, '2026-11-03 14:01:56.497970')]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)"
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r1@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "IntegrityError: (sqlite3.IntegrityError) FALHA_AUDITORIA_COMPLEMENTAR\n[SQL: INSERT INTO auditoria (metodo, caminho, perfil, codigo_resposta, instante) VALUES (?, ?, ?, ?, ?)]\n[parameters: ('POST', '/profissionais', 'coordenador', 409, '2026-11-03 14:01:56.521802')]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)"
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "inválido"
+    },
+    "params": null,
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "IntegrityError: (sqlite3.IntegrityError) FALHA_AUDITORIA_COMPLEMENTAR\n[SQL: INSERT INTO auditoria (metodo, caminho, perfil, codigo_resposta, instante) VALUES (?, ?, ?, ?, ?)]\n[parameters: ('POST', '/profissionais', 'coordenador', 422, '2026-11-03 14:01:56.529322')]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)"
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "recuperacao-r1@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 3,
+      "nome": "Teste auditoria",
+      "email": "recuperacao-r1@example.org",
+      "carga_semanal": 40,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/especialidades",
+    "input": {
+      "nome": "esp-r2-fresh"
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "esp-r2-fresh"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Profissional local",
+      "email": "r2-fresh@example.org",
+      "carga_semanal": 20,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r2-fresh@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais/1/especialidades",
+    "input": {
+      "especialidade_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r2-fresh@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": [
+        {
+          "id": 1,
+          "nome": "esp-r2-fresh"
+        }
+      ]
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "data_inicio": "2026-09-07T08:00:00+00:00",
+      "data_fim": "2026-09-07T16:00:00+00:00",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": false
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "data_inicio": "2026-09-09T08:00:00+00:00",
+      "data_fim": "2026-09-09T16:00:00+00:00",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": false
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "turno_id": 1,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-11T08:00:00Z",
+      "data_fim": "2026-09-11T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 3,
+      "data_inicio": "2026-09-11T08:00:00+00:00",
+      "data_fim": "2026-09-11T16:00:00+00:00",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": true
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 3
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "turno_id": 3,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "data_inicio": "2026-09-07T08:00:00+00:00",
+          "data_fim": "2026-09-07T16:00:00+00:00",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        },
+        {
+          "id": 2,
+          "data_inicio": "2026-09-09T08:00:00+00:00",
+          "data_fim": "2026-09-09T16:00:00+00:00",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        }
+      ],
+      "total": 2
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "true"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 3,
+          "data_inicio": "2026-09-11T08:00:00+00:00",
+          "data_fim": "2026-09-11T16:00:00+00:00",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": true
+        }
+      ],
+      "total": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/profissionais/1/escala",
+    "input": null,
+    "params": {
+      "de": "2026-09-07T00:00:00Z",
+      "ate": "2026-09-14T00:00:00Z"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "plantao_id": 1,
+          "turno_id": 1,
+          "profissional_id": 1,
+          "estado": "confirmado",
+          "data_inicio": "2026-09-07T08:00:00+00:00",
+          "data_fim": "2026-09-07T16:00:00+00:00",
+          "especialidade_id": 1,
+          "horas": 8.0
+        },
+        {
+          "plantao_id": 2,
+          "turno_id": 3,
+          "profissional_id": 1,
+          "estado": "confirmado",
+          "data_inicio": "2026-09-11T08:00:00+00:00",
+          "data_fim": "2026-09-11T16:00:00+00:00",
+          "especialidade_id": 1,
+          "horas": 8.0
+        }
+      ],
+      "total": 2,
+      "horas_periodo": 17.6
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/especialidades",
+    "input": {
+      "nome": "esp-r2-legacy"
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "esp-r2-legacy"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Profissional local",
+      "email": "r2-legacy@example.org",
+      "carga_semanal": 20,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r2-legacy@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais/1/especialidades",
+    "input": {
+      "especialidade_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r2-legacy@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": [
+        {
+          "id": 1,
+          "nome": "esp-r2-legacy"
+        }
+      ]
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "data_inicio": "2026-09-07T08:00:00+00:00",
+      "data_fim": "2026-09-07T16:00:00+00:00",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "data_inicio": "2026-09-09T08:00:00+00:00",
+      "data_fim": "2026-09-09T16:00:00+00:00",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "turno_id": 1,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": null,
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "data_inicio": "2026-09-07T08:00:00+00:00",
+          "data_fim": "2026-09-07T16:00:00+00:00",
+          "especialidade_id": 1,
+          "cobertura_minima": 1
+        },
+        {
+          "id": 2,
+          "data_inicio": "2026-09-09T08:00:00+00:00",
+          "data_fim": "2026-09-09T16:00:00+00:00",
+          "especialidade_id": 1,
+          "cobertura_minima": 1
+        }
+      ],
+      "total": 2
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "OperationalError: (sqlite3.OperationalError) no such column: turnos.noturno\n[SQL: SELECT count(*) AS count_1 \nFROM (SELECT turnos.id AS id, turnos.data_inicio AS data_inicio, turnos.data_fim AS data_fim, turnos.especialidade_id AS especialidade_id, turnos.cobertura_minima AS cobertura_minima, turnos.noturno AS noturno \nFROM turnos \nWHERE turnos.especialidade_id = ? AND turnos.noturno = 0) AS anon_1]\n[parameters: (1,)]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "OperationalError: (sqlite3.OperationalError) no such column: turnos.noturno\n[SQL: SELECT count(*) AS count_1 \nFROM (SELECT turnos.id AS id, turnos.data_inicio AS data_inicio, turnos.data_fim AS data_fim, turnos.especialidade_id AS especialidade_id, turnos.cobertura_minima AS cobertura_minima, turnos.noturno AS noturno \nFROM turnos \nWHERE turnos.especialidade_id = ? AND turnos.noturno = 0) AS anon_1]\n[parameters: (1,)]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r2@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Teste auditoria",
+      "email": "controle-r2@example.org",
+      "carga_semanal": 40,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r2@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 409,
+    "body": {
+      "detail": "email 'controle-r2@example.org' ja cadastrado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "inválido"
+    },
+    "params": null,
+    "status": 422,
+    "body": {
+      "detail": [
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "email"
+          ],
+          "msg": "Field required"
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "carga_semanal"
+          ],
+          "msg": "Field required"
+        }
+      ]
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "falha-r2@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "nome": "Teste auditoria",
+      "email": "falha-r2@example.org",
+      "carga_semanal": 40,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r2@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 409,
+    "body": {
+      "detail": "email 'controle-r2@example.org' ja cadastrado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "inválido"
+    },
+    "params": null,
+    "status": 422,
+    "body": {
+      "detail": [
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "email"
+          ],
+          "msg": "Field required"
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "carga_semanal"
+          ],
+          "msg": "Field required"
+        }
+      ]
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "recuperacao-r2@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 3,
+      "nome": "Teste auditoria",
+      "email": "recuperacao-r2@example.org",
+      "carga_semanal": 40,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/especialidades",
+    "input": {
+      "nome": "esp-r3-fresh"
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "esp-r3-fresh"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Profissional local",
+      "email": "r3-fresh@example.org",
+      "carga_semanal": 20,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r3-fresh@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais/1/especialidades",
+    "input": {
+      "especialidade_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r3-fresh@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": [
+        {
+          "id": 1,
+          "nome": "esp-r3-fresh"
+        }
+      ],
+      "profissional_id": 1,
+      "especialidade_id": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": false
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": false
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "turno_id": 1,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-11T08:00:00Z",
+      "data_fim": "2026-09-11T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 3,
+      "data_inicio": "2026-09-11T08:00:00Z",
+      "data_fim": "2026-09-11T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": true
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 3
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "turno_id": 3,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "data_inicio": "2026-09-07T08:00:00Z",
+          "data_fim": "2026-09-07T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        },
+        {
+          "id": 2,
+          "data_inicio": "2026-09-09T08:00:00Z",
+          "data_fim": "2026-09-09T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        }
+      ],
+      "total": 2
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "true"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 3,
+          "data_inicio": "2026-09-11T08:00:00Z",
+          "data_fim": "2026-09-11T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": true
+        }
+      ],
+      "total": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/profissionais/1/escala",
+    "input": null,
+    "params": {
+      "de": "2026-09-07T00:00:00Z",
+      "ate": "2026-09-14T00:00:00Z"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "turno_id": 1,
+          "profissional_id": 1,
+          "estado": "confirmado",
+          "data_inicio": "2026-09-07T08:00:00Z",
+          "data_fim": "2026-09-07T16:00:00Z",
+          "especialidade_id": 1,
+          "horas": 8.0
+        },
+        {
+          "id": 2,
+          "turno_id": 3,
+          "profissional_id": 1,
+          "estado": "confirmado",
+          "data_inicio": "2026-09-11T08:00:00Z",
+          "data_fim": "2026-09-11T16:00:00Z",
+          "especialidade_id": 1,
+          "horas": 8.0
+        }
+      ],
+      "total": 2,
+      "horas_periodo": 17.6
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/especialidades",
+    "input": {
+      "nome": "esp-r3-legacy"
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "esp-r3-legacy"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Profissional local",
+      "email": "r3-legacy@example.org",
+      "carga_semanal": 20,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r3-legacy@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais/1/especialidades",
+    "input": {
+      "especialidade_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r3-legacy@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": [
+        {
+          "id": 1,
+          "nome": "esp-r3-legacy"
+        }
+      ],
+      "profissional_id": 1,
+      "especialidade_id": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "turno_id": 1,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": null,
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "data_inicio": "2026-09-07T08:00:00Z",
+          "data_fim": "2026-09-07T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1
+        },
+        {
+          "id": 2,
+          "data_inicio": "2026-09-09T08:00:00Z",
+          "data_fim": "2026-09-09T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1
+        }
+      ],
+      "total": 2
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "OperationalError: (sqlite3.OperationalError) no such column: turnos.noturno\n[SQL: SELECT count(*) AS count_1 \nFROM turnos \nWHERE turnos.especialidade_id = ? AND turnos.noturno = 0]\n[parameters: (1,)]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "OperationalError: (sqlite3.OperationalError) no such column: turnos.noturno\n[SQL: SELECT count(*) AS count_1 \nFROM turnos \nWHERE turnos.especialidade_id = ? AND turnos.noturno = 0]\n[parameters: (1,)]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r3@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Teste auditoria",
+      "email": "controle-r3@example.org",
+      "carga_semanal": 40,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r3@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 409,
+    "body": {
+      "detail": "ja existe profissional com o email controle-r3@example.org"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "inválido"
+    },
+    "params": null,
+    "status": 422,
+    "body": {
+      "detail": [
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "email"
+          ],
+          "msg": "Field required",
+          "input": {
+            "nome": "inválido"
+          }
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "carga_semanal"
+          ],
+          "msg": "Field required",
+          "input": {
+            "nome": "inválido"
+          }
+        }
+      ]
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "falha-r3@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "nome": "Teste auditoria",
+      "email": "falha-r3@example.org",
+      "carga_semanal": 40,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r3@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 409,
+    "body": {
+      "detail": "ja existe profissional com o email controle-r3@example.org"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "inválido"
+    },
+    "params": null,
+    "status": 422,
+    "body": {
+      "detail": [
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "email"
+          ],
+          "msg": "Field required",
+          "input": {
+            "nome": "inválido"
+          }
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "carga_semanal"
+          ],
+          "msg": "Field required",
+          "input": {
+            "nome": "inválido"
+          }
+        }
+      ]
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "recuperacao-r3@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 3,
+      "nome": "Teste auditoria",
+      "email": "recuperacao-r3@example.org",
+      "carga_semanal": 40,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/especialidades",
+    "input": {
+      "nome": "esp-r4-fresh"
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "esp-r4-fresh"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Profissional local",
+      "email": "r4-fresh@example.org",
+      "carga_semanal": 20,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r4-fresh@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais/1/especialidades",
+    "input": {
+      "especialidade_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "profissional_id": 1,
+      "especialidade_id": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": false
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": false
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "turno_id": 1,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-11T08:00:00Z",
+      "data_fim": "2026-09-11T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 3,
+      "data_inicio": "2026-09-11T08:00:00Z",
+      "data_fim": "2026-09-11T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": true
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 3
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "turno_id": 3,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "data_inicio": "2026-09-07T08:00:00Z",
+          "data_fim": "2026-09-07T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        },
+        {
+          "id": 2,
+          "data_inicio": "2026-09-09T08:00:00Z",
+          "data_fim": "2026-09-09T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false
+        }
+      ],
+      "total": 2
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "true"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 3,
+          "data_inicio": "2026-09-11T08:00:00Z",
+          "data_fim": "2026-09-11T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": true
+        }
+      ],
+      "total": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/profissionais/1/escala",
+    "input": null,
+    "params": {
+      "de": "2026-09-07T00:00:00Z",
+      "ate": "2026-09-14T00:00:00Z"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "turno_id": 1,
+          "profissional_id": 1,
+          "estado": "confirmado",
+          "data_inicio": "2026-09-07T08:00:00Z",
+          "data_fim": "2026-09-07T16:00:00Z",
+          "especialidade_id": 1,
+          "horas": 8.0
+        },
+        {
+          "id": 2,
+          "turno_id": 3,
+          "profissional_id": 1,
+          "estado": "confirmado",
+          "data_inicio": "2026-09-11T08:00:00Z",
+          "data_fim": "2026-09-11T16:00:00Z",
+          "especialidade_id": 1,
+          "horas": 8.0
+        }
+      ],
+      "total": 2,
+      "horas_periodo": 17.6
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/especialidades",
+    "input": {
+      "nome": "esp-r4-legacy"
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "esp-r4-legacy"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Profissional local",
+      "email": "r4-legacy@example.org",
+      "carga_semanal": 20,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r4-legacy@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais/1/especialidades",
+    "input": {
+      "especialidade_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "profissional_id": 1,
+      "especialidade_id": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "turno_id": 1,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": null,
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "data_inicio": "2026-09-07T08:00:00Z",
+          "data_fim": "2026-09-07T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1
+        },
+        {
+          "id": 2,
+          "data_inicio": "2026-09-09T08:00:00Z",
+          "data_fim": "2026-09-09T16:00:00Z",
+          "especialidade_id": 1,
+          "cobertura_minima": 1
+        }
+      ],
+      "total": 2
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "OperationalError: (sqlite3.OperationalError) no such column: turnos.noturno\n[SQL: SELECT count(*) AS count_1 \nFROM (SELECT turnos.id AS id, turnos.data_inicio AS data_inicio, turnos.data_fim AS data_fim, turnos.especialidade_id AS especialidade_id, turnos.cobertura_minima AS cobertura_minima, turnos.noturno AS noturno \nFROM turnos \nWHERE turnos.especialidade_id = ? AND turnos.noturno = 0) AS anon_1]\n[parameters: (1,)]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "OperationalError: (sqlite3.OperationalError) no such column: turnos.noturno\n[SQL: SELECT count(*) AS count_1 \nFROM (SELECT turnos.id AS id, turnos.data_inicio AS data_inicio, turnos.data_fim AS data_fim, turnos.especialidade_id AS especialidade_id, turnos.cobertura_minima AS cobertura_minima, turnos.noturno AS noturno \nFROM turnos \nWHERE turnos.especialidade_id = ? AND turnos.noturno = 0) AS anon_1]\n[parameters: (1,)]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r4@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Teste auditoria",
+      "email": "controle-r4@example.org",
+      "carga_semanal": 40,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r4@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 409,
+    "body": {
+      "detail": "email ja cadastrado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "inválido"
+    },
+    "params": null,
+    "status": 422,
+    "body": {
+      "detail": [
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "email"
+          ],
+          "msg": "Field required",
+          "input": {
+            "nome": "inválido"
+          }
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "carga_semanal"
+          ],
+          "msg": "Field required",
+          "input": {
+            "nome": "inválido"
+          }
+        }
+      ]
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "falha-r4@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "IntegrityError: (sqlite3.IntegrityError) FALHA_AUDITORIA_COMPLEMENTAR\n[SQL: INSERT INTO auditoria (metodo, caminho, perfil, codigo_resposta, instante) VALUES (?, ?, ?, ?, ?)]\n[parameters: ('POST', '/profissionais', 'coordenador', 201, '2026-11-03 14:02:19.211630')]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)"
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r4@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "IntegrityError: (sqlite3.IntegrityError) FALHA_AUDITORIA_COMPLEMENTAR\n[SQL: INSERT INTO auditoria (metodo, caminho, perfil, codigo_resposta, instante) VALUES (?, ?, ?, ?, ?)]\n[parameters: ('POST', '/profissionais', 'coordenador', 409, '2026-11-03 14:02:19.226316')]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)"
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "inválido"
+    },
+    "params": null,
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "IntegrityError: (sqlite3.IntegrityError) FALHA_AUDITORIA_COMPLEMENTAR\n[SQL: INSERT INTO auditoria (metodo, caminho, perfil, codigo_resposta, instante) VALUES (?, ?, ?, ?, ?)]\n[parameters: ('POST', '/profissionais', 'coordenador', 422, '2026-11-03 14:02:19.241400')]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)"
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "recuperacao-r4@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 3,
+      "nome": "Teste auditoria",
+      "email": "recuperacao-r4@example.org",
+      "carga_semanal": 40,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/especialidades",
+    "input": {
+      "nome": "esp-r5-fresh"
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "esp-r5-fresh"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Profissional local",
+      "email": "r5-fresh@example.org",
+      "carga_semanal": 20,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r5-fresh@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais/1/especialidades",
+    "input": {
+      "especialidade_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "profissional_id": 1,
+      "especialidade_id": 1,
+      "nome": "esp-r5-fresh",
+      "profissional": {
+        "id": 1,
+        "nome": "Profissional local",
+        "email": "r5-fresh@example.org",
+        "carga_semanal": 20,
+        "ativo": true,
+        "horas_extras": 0.0,
+        "especialidades": [
+          {
+            "id": 1,
+            "nome": "esp-r5-fresh"
+          }
+        ]
+      }
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "data_inicio": "2026-09-07T08:00:00+00:00",
+      "data_fim": "2026-09-07T16:00:00+00:00",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": false,
+      "horas": 8.0
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "data_inicio": "2026-09-09T08:00:00+00:00",
+      "data_fim": "2026-09-09T16:00:00+00:00",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": false,
+      "horas": 8.0
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "turno_id": 1,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-11T08:00:00Z",
+      "data_fim": "2026-09-11T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 3,
+      "data_inicio": "2026-09-11T08:00:00+00:00",
+      "data_fim": "2026-09-11T16:00:00+00:00",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "noturno": true,
+      "horas": 8.0
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 3
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "turno_id": 3,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "data_inicio": "2026-09-07T08:00:00+00:00",
+          "data_fim": "2026-09-07T16:00:00+00:00",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false,
+          "horas": 8.0
+        },
+        {
+          "id": 2,
+          "data_inicio": "2026-09-09T08:00:00+00:00",
+          "data_fim": "2026-09-09T16:00:00+00:00",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": false,
+          "horas": 8.0
+        }
+      ],
+      "total": 2
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "true"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 3,
+          "data_inicio": "2026-09-11T08:00:00+00:00",
+          "data_fim": "2026-09-11T16:00:00+00:00",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "noturno": true,
+          "horas": 8.0
+        }
+      ],
+      "total": 1
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/profissionais/1/escala",
+    "input": null,
+    "params": {
+      "de": "2026-09-07T00:00:00Z",
+      "ate": "2026-09-14T00:00:00Z"
+    },
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "turno_id": 1,
+          "profissional_id": 1,
+          "estado": "confirmado",
+          "data_inicio": "2026-09-07T08:00:00+00:00",
+          "data_fim": "2026-09-07T16:00:00+00:00",
+          "horas": 8.0,
+          "turno": {
+            "id": 1,
+            "data_inicio": "2026-09-07T08:00:00+00:00",
+            "data_fim": "2026-09-07T16:00:00+00:00",
+            "especialidade_id": 1,
+            "cobertura_minima": 1,
+            "noturno": false,
+            "horas": 8.0
+          }
+        },
+        {
+          "id": 2,
+          "turno_id": 3,
+          "profissional_id": 1,
+          "estado": "confirmado",
+          "data_inicio": "2026-09-11T08:00:00+00:00",
+          "data_fim": "2026-09-11T16:00:00+00:00",
+          "horas": 8.0,
+          "turno": {
+            "id": 3,
+            "data_inicio": "2026-09-11T08:00:00+00:00",
+            "data_fim": "2026-09-11T16:00:00+00:00",
+            "especialidade_id": 1,
+            "cobertura_minima": 1,
+            "noturno": true,
+            "horas": 8.0
+          }
+        }
+      ],
+      "total": 2,
+      "horas_periodo": 17.6
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/especialidades",
+    "input": {
+      "nome": "esp-r5-legacy"
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "esp-r5-legacy"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Profissional local",
+      "email": "r5-legacy@example.org",
+      "carga_semanal": 20,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Profissional local",
+      "email": "r5-legacy@example.org",
+      "carga_semanal": 20,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais/1/especialidades",
+    "input": {
+      "especialidade_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "profissional_id": 1,
+      "especialidade_id": 1,
+      "nome": "esp-r5-legacy",
+      "profissional": {
+        "id": 1,
+        "nome": "Profissional local",
+        "email": "r5-legacy@example.org",
+        "carga_semanal": 20,
+        "ativo": true,
+        "horas_extras": 0.0,
+        "especialidades": [
+          {
+            "id": 1,
+            "nome": "esp-r5-legacy"
+          }
+        ]
+      }
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-07T08:00:00Z",
+      "data_fim": "2026-09-07T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "data_inicio": "2026-09-07T08:00:00+00:00",
+      "data_fim": "2026-09-07T16:00:00+00:00",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "horas": 8.0
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/turnos",
+    "input": {
+      "data_inicio": "2026-09-09T08:00:00Z",
+      "data_fim": "2026-09-09T16:00:00Z",
+      "especialidade_id": 1,
+      "cobertura_minima": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "data_inicio": "2026-09-09T08:00:00+00:00",
+      "data_fim": "2026-09-09T16:00:00+00:00",
+      "especialidade_id": 1,
+      "cobertura_minima": 1,
+      "horas": 8.0
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/plantoes",
+    "input": {
+      "profissional_id": 1,
+      "turno_id": 1
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "turno_id": 1,
+      "profissional_id": 1,
+      "estado": "confirmado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": null,
+    "status": 200,
+    "body": {
+      "itens": [
+        {
+          "id": 1,
+          "data_inicio": "2026-09-07T08:00:00+00:00",
+          "data_fim": "2026-09-07T16:00:00+00:00",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "horas": 8.0
+        },
+        {
+          "id": 2,
+          "data_inicio": "2026-09-09T08:00:00+00:00",
+          "data_fim": "2026-09-09T16:00:00+00:00",
+          "especialidade_id": 1,
+          "cobertura_minima": 1,
+          "horas": 8.0
+        }
+      ],
+      "total": 2
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "OperationalError: (sqlite3.OperationalError) no such column: turnos.noturno\n[SQL: SELECT count(*) AS count_1 \nFROM turnos \nWHERE turnos.especialidade_id = ? AND turnos.noturno IS 0]\n[parameters: (1,)]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "method": "GET",
+    "path": "/turnos",
+    "input": null,
+    "params": {
+      "especialidade_id": 1,
+      "noturno": "false"
+    },
+    "status": 500,
+    "body": "Internal Server Error",
+    "asgi_error": "OperationalError: (sqlite3.OperationalError) no such column: turnos.noturno\n[SQL: SELECT count(*) AS count_1 \nFROM turnos \nWHERE turnos.especialidade_id = ? AND turnos.noturno IS 0]\n[parameters: (1,)]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)"
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r5@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 1,
+      "nome": "Teste auditoria",
+      "email": "controle-r5@example.org",
+      "carga_semanal": 40,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r5@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 409,
+    "body": {
+      "detail": "o email 'controle-r5@example.org' ja esta cadastrado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "inválido"
+    },
+    "params": null,
+    "status": 422,
+    "body": {
+      "detail": [
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "email"
+          ],
+          "msg": "Field required",
+          "input": "{'nome': 'inválido'}"
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "carga_semanal"
+          ],
+          "msg": "Field required",
+          "input": "{'nome': 'inválido'}"
+        }
+      ]
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "falha-r5@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 2,
+      "nome": "Teste auditoria",
+      "email": "falha-r5@example.org",
+      "carga_semanal": 40,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "controle-r5@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 409,
+    "body": {
+      "detail": "o email 'controle-r5@example.org' ja esta cadastrado"
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "inválido"
+    },
+    "params": null,
+    "status": 422,
+    "body": {
+      "detail": [
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "email"
+          ],
+          "msg": "Field required",
+          "input": "{'nome': 'inválido'}"
+        },
+        {
+          "type": "missing",
+          "loc": [
+            "body",
+            "carga_semanal"
+          ],
+          "msg": "Field required",
+          "input": "{'nome': 'inválido'}"
+        }
+      ]
+    },
+    "asgi_error": null
+  },
+  {
+    "method": "POST",
+    "path": "/profissionais",
+    "input": {
+      "nome": "Teste auditoria",
+      "email": "recuperacao-r5@example.org",
+      "carga_semanal": 40,
+      "ativo": true
+    },
+    "params": null,
+    "status": 201,
+    "body": {
+      "id": 3,
+      "nome": "Teste auditoria",
+      "email": "recuperacao-r5@example.org",
+      "carga_semanal": 40,
+      "ativo": true,
+      "horas_extras": 0.0,
+      "especialidades": []
+    },
+    "asgi_error": null
+  }
+]

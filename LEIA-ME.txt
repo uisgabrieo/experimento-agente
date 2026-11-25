@@ -1,0 +1,22 @@
+Evidências da versão V023 do TCC
+
+Coleta principal
+
+• artefatos/spec.md contém a especificação completa, com RF01 a RF38 e INV1 a INV8.
+• artefatos/evolucao-e1.md e evolucao-e2.md contêm os requisitos das evoluções.
+• metodologia/rastreabilidade.md relaciona requisitos, testes e invariantes.
+• manifesto-experimento.json, requirements-congelado.txt, pytest.ini e config/ registram versões e configurações.
+• coleta/logs/ contém os prompts preservados por repetição, etapa e tentativa. O número t diferencia chamadas interrompidas e retomadas.
+• coleta/estados.csv identifica os 40 estados pelo par repetição/etapa e informa o commit.
+• coleta/resultados.csv registra os indicadores. Em coleta/detalhes/ ficam os relatórios JSON e JUnit dos mesmos estados.
+• coleta/interacoes.csv reúne os registros operacionais de r1 a r5, com 40 chamadas concluídas e oito interrupções seguidas de retomada.
+• coleta/evolucoes.csv identifica as versões de origem e destino de E1 e E2 e informa os volumes de edição.
+• oracle/ e validacao_oraculo/ contêm a suíte, o oráculo externo e sua validação.
+
+Como conferir dois resultados
+
+1. R2–M1, seis mensagens visíveis do Pylint. Procure app=r2 e estado=M1 em coleta/resultados.csv, linha 11 contando o cabeçalho. Compare o campo pylint_total com coleta/detalhes/r2-M1.json. O campo pylint_por_simbolo registra duas mensagens de código duplicado e quatro de opção não reconhecida. As ocorrências suprimidas são registradas em campos próprios dos relatórios. O JUnit r2-M1-junit.xml reúne os 55 testes aprovados. O commit consta em coleta/estados.csv. As cópias r2-M0 e r2-M1 em codigo/ permitem examinar as alterações relativas à documentação e às diretivas locais.
+
+2. R1–E2, cadastro válido sob falha de auditoria. Em complementar/confirmacao1/results.json, localize e2, repetition=1, phase=fault e case=sucesso. http=500, professionals_added=1 e audit_added=0 documentam a resposta, a gravação do cadastro e a ausência da auditoria. O arquivo http_events.json da rodada registra o processamento do pedido. A confirmação da segunda rodada está em complementar/confirmacao2/. A linha r1–E2 em coleta/estados.csv identifica o commit abreviado 3637edc39ddc.
+
+O diretório codigo/ contém as cópias de código usado nesses exemplos e no caso de cobertura r4–M2 → r4–M3. Os identificadores completos estão em codigo/commits.csv. Os relatórios e os prompts foram copiados dos artefatos preservados. SHA256SUMS.txt permite conferir a integridade dos arquivos do pacote.
