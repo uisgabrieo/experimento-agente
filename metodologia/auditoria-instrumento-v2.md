@@ -88,7 +88,7 @@ variantes que cumprem a especificação e contra mutantes que a violam
   ciclo preservados nos logs citaram o RF34, com exceção dos de r5, cuja
   aplicação não importa.
 - Os agentes alternaram o formato da rota do RF36 entre lista e envelope em
-  r2, r3 e r4 para tentar satisfazer o teste. A oscilação de 52 para 54
+  r2, r3, r4 e r7 para tentar satisfazer o teste. A oscilação de 52 para 54
   aprovados em r2 e r3 era essa alternância, não perda de comportamento.
 - O dano é irreversível nos dados da coleta 1: reavaliar os commits corrige o
   que se sabe sobre cada estado, mas não reconstrói o código que o agente teria
@@ -260,14 +260,14 @@ cenários novos que expõem seus defeitos.
 
 | Defeito na versão 1 | Efeito observado | Correção |
 |---|---|---|
-| a instrução de E2 não trazia o texto de E1 | o agente removeu `noturno` como "fora da especificação" | E1 entra na instrução de E2 como alteração em vigor |
+| a instrução de E2 não trazia o texto de E1 | em r6, o agente removeu `noturno` como "fora da especificação" | E1 entra na instrução de E2 como alteração em vigor |
 | relatório chamava de "Regressoes" todo teste reprovado | o RF34 chegou como regressão desde M1 | "Reprovados" |
 | coleta impossível aparecia como "0 aprovados / 0" | r5: o agente nunca soube que a aplicação não importava | o erro de importação vai no relatório |
 | teto de E1/E2 reiniciava a cada retomada | com os logs sobrescritos, o número de invocações por mudança não pode ser reconstituído | progresso persistido em `coleta/progresso/` |
 | mensagem de retomada podia sugerir a repetição errada (`--inicio`) | r3 teve três inícios descartados, com M0 registrado em cada um | sugere a repetição em andamento |
 | sem `--continuar`, apagava área de trabalho e `resultados.csv` | risco de perda da coleta 1 | nada é apagado; pasta, sal e etiquetas próprios |
 | `interacoes.csv` sobrescrito; logs com nomes repetidos | registro parcial das invocações | gravação imediata, em modo de acréscimo; tentativa no nome do log |
-| invocação que falhava deixava suas edições na área de trabalho, e o ciclo era refeito sobre elas | em r3-M1, o relatório da chamada preservada não descrevia o estado anterior congelado | edições descartadas; a invocação é refeita |
+| invocação que falhava deixava suas edições na área de trabalho, e o ciclo era refeito sobre elas | em r3-M1, r6-M1 e r7-M2, o relatório da chamada preservada não descrevia o estado anterior congelado (por exemplo, r6-M1: 49 aprovados no relatório, 52 em M0) | edições descartadas; a invocação é refeita |
 | instrumentos rodavam na área do agente | banco e caches na pasta avaliada | cópia do commit em pasta temporária |
 
 ## 8. Validação do instrumento v2

@@ -47,3 +47,4 @@ app,5,M4,4,1,2026-10-15T14:07:16,correcao,30.67,0,sim,ciclo fixo 4/5,,6d2058c388
 app,5,M5,5,1,2026-10-15T14:12:57,correcao,243.5,0,sim,ciclo fixo 5/5,,de89b150206b,"claude-haiku-4-5-20251001,claude-opus-5",1.7993054999999996,40,15263,78494,1252139,20,success,17989
 app,5,E1,1,1,2026-10-15T14:16:44,evolucao-e1,140.22,0,sim,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",,9b9d2758178d,"claude-haiku-4-5-20251001,claude-opus-5",1.4903785,56,7818,60063,1374927,28,success,18079
 app,5,E2,1,1,2026-10-15T14:30:46,evolucao-e2,722.21,0,sim,"aceito: suite nova 100%, comportamento existente 100%, invariantes ok",,353c934b890b,"claude-haiku-4-5-20251001,claude-opus-5",5.987191499999998,106,64760,154712,5626853,102,success,19916
+app,6,M0,1,1,2026-10-15T14:33:07,geracao,2.72,1,nao,falha da invocacao,You've hit your session limit · resets 6:40pm (America/Sao_Paulo),,,0,0,0,0,0,1,success,17751
