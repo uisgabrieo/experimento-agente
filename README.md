@@ -51,6 +51,5 @@ git log --oneline --all
 | r3 | `execucoes-v2/r3-797466c277.bundle` |
 | r4 | `execucoes-v2/r4-4352363dbf.bundle` |
 | r5 | `execucoes-v2/r5-42033f96ae.bundle` |
-| r6 | `execucoes-v2/r6-aafe694e97.bundle` (interrompida antes de M0; fora da análise) |
 
-O `coleta/interacoes.csv` traz as 48 chamadas de r1 a r5 (40 concluídas e oito interrompidas) e, na última linha, a tentativa interrompida de r6, que ficou fora da análise.
+O `coleta/interacoes.csv` traz as 48 chamadas de r1 a r5 (40 concluídas e oito interrompidas).

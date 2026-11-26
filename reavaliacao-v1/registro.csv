@@ -39,17 +39,3 @@ repeticao,estado,etiqueta,commit,commit_em_estados_csv,commit_confere,coletados,
 5,M5,sed02162b8cdd,a4fc246e03e3,a4fc246e03e3,sim,0,55,nao,sim
 5,E1,s1a950c6f05d3,ff8f6e479c9a,ff8f6e479c9a,sim,0,64,nao,sim
 5,E2,sde4571631a7d,11deacd7e7d5,11deacd7e7d5,sim,0,80,nao,sim
-6,M0,s5d1457ad3af3,9d26e6f9977c,9d26e6f9977c,sim,55,55,sim,sim
-6,M1,scf1cf7df2c28,4811e24b2d90,4811e24b2d90,sim,55,55,sim,sim
-6,M2,s34a5c3461eb9,0572fe0f6ed6,0572fe0f6ed6,sim,55,55,sim,sim
-6,M3,s75f00e17aa9a,bb3964dc01bd,bb3964dc01bd,sim,55,55,sim,sim
-6,M4,sef1dd9682054,e3d0f885c1cc,e3d0f885c1cc,sim,55,55,sim,sim
-6,M5,sb6065d116fd2,64ea3ec130bc,64ea3ec130bc,sim,55,55,sim,sim
-6,E1,s61dbaa361b5a,6559057d4379,6559057d4379,sim,64,64,sim,sim
-6,E2,s84539832a1b6,56dfc751e396,56dfc751e396,sim,80,80,sim,sim
-7,M0,sba93a90289fc,ced22a013b37,ced22a013b37,sim,55,55,sim,sim
-7,M1,s7c8c450f7cca,e562271efed5,e562271efed5,sim,55,55,sim,sim
-7,M2,s23b1dd8e0791,a253f9b45c39,a253f9b45c39,sim,55,55,sim,sim
-7,M3,s015da2c90e0e,5e6bb4dbe660,5e6bb4dbe660,sim,55,55,sim,sim
-7,M4,se96fd2412002,f38df48a9244,f38df48a9244,sim,55,55,sim,sim
-7,M5,s4f8621268ff2,555bd3f2a6c2,555bd3f2a6c2,sim,55,55,sim,sim
