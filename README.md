@@ -2,8 +2,8 @@
 
 Material do Trabalho de Conclusão de Curso de Luís Gabriel Salvador Barros
 (Engenharia de Software, iCEV, 2026): o instrumento experimental e os dados
-da coleta 2 analisados no texto. É o pacote de evidências citado no texto
-como `Evidencias_TCC_V023`.
+da coleta 2 analisados no texto. É o repositório descrito no Apêndice A do
+trabalho.
 
 ## Desenho, em resumo
 
@@ -30,7 +30,7 @@ instrumento.
 | `simulacao/` | ensaio do orquestrador com agente simulado, antes da coleta |
 | `execucoes-v2/` | código produzido pelo agente: uma área por repetição, com todo o histórico Git |
 | `codigo/` | cópias do código dos estados citados no texto (r2-M0, r2-M1, r4-M2, r4-M3, r1-E2) e `commits.csv` com os hashes completos |
-| `complementar/` | testes complementares da Seção 2.12: `confirmacao1/` e `confirmacao2/` (resultados, eventos HTTP, ambiente e dependências) e `sources_manifest.json` |
+| `complementar/` | testes complementares da Seção 3.12: `confirmacao1/` e `confirmacao2/` (resultados, eventos HTTP, ambiente e dependências) e `sources_manifest.json` |
 | `LEIA-ME.txt` | roteiro para conferir dois resultados citados no texto |
 | `SHA256SUMS.txt` | SHA-256 de cada arquivo versionado |
 
