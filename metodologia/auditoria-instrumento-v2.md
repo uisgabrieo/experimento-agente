@@ -1,7 +1,7 @@
 # Auditoria do instrumento e versão 2
 
 Auditoria concluída em 12/10/2026 sobre o pacote congelado da coleta 1
-(etiqueta `EXPERIMENTO-V1-CONGELADO`, commit `54910fc`), os 54 commits
+(etiqueta `EXPERIMENTO-V1-CONGELADO`, commit `54910fc`), os commits
 preservados em `C:\execucoes` e os textos `spec.md`, `evolucao-e1.md` e
 `evolucao-e2.md`. Nenhuma chamada ao agente foi feita e nenhum dado da coleta 1
 foi alterado.
@@ -19,10 +19,10 @@ foi alterado.
   sem verificar o que afirmava (RF22); 6 verificavam só parte do que
   afirmavam; 39 estavam corretos. O oráculo tinha três defeitos, sem efeito
   nos dados. A medição aceitava configuração deixada pelo agente.
-- **Validação da versão 2.** Nos 46 estados da coleta 1 que carregam, a
-  suíte v2 e a suíte corrigida de 06/10 concordam em todos os testes comuns;
-  em relação à v1, os testes comuns só diferem no do RF34 (46 estados) e nos
-  do RF33 e do RF36 (os 25 estados em que a fila era uma lista).
+- **Validação da versão 2.** Nos estados da coleta 1 em que a aplicação
+  carrega, a suíte v2 e a suíte corrigida de 06/10 concordam em todos os
+  testes comuns; em relação à v1, os testes comuns só diferem no do RF34 e
+  nos do RF33 e do RF36 (os estados em que a fila era uma lista).
   Em 11 variantes que cumprem a especificação, a suíte v2 não reprova nenhuma
   (a de 06/10 reprovava 7; a v1, 8). Em 23 mutantes que violam uma cláusula,
   a suíte v2 detecta os 23 (a de 06/10, 15; a v1, 13).
@@ -78,15 +78,15 @@ variantes que cumprem a especificação e contra mutantes que a violam
 
 ### 2.4 Efeito na coleta 1
 
-- O teste do RF34 reprovou em todos os 46 estados em que a aplicação carrega.
-  Nos 46 relatórios JUnit canônicos: 25 vezes por `TypeError` ao ler
-  `["itens"]` (fila devolvida como lista) e 21 por "a inscricao deveria
-  constar na fila" (fila em envelope, sem a inscrição convocada). A chamada
-  de aceite nunca chegou a ser feita.
+- O teste do RF34 reprovou em todos os estados em que a aplicação carrega.
+  Nos relatórios JUnit canônicos, por `TypeError` ao ler `["itens"]` (fila
+  devolvida como lista) ou por "a inscricao deveria constar na fila" (fila
+  em envelope, sem a inscrição convocada). A chamada de aceite nunca chegou
+  a ser feita.
 - O relatório de cada ciclo levava ao agente a lista de testes reprovados com
-  o rótulo "Regressoes", embora o teste falhasse desde M0. Dos 83 relatórios
-  de ciclo preservados nos logs, 70 citaram o RF34; os 13 restantes são de
-  r5, cuja aplicação não importa.
+  o rótulo "Regressoes", embora o teste falhasse desde M0. Os relatórios de
+  ciclo preservados nos logs citaram o RF34, com exceção dos de r5, cuja
+  aplicação não importa.
 - Os agentes alternaram o formato da rota do RF36 entre lista e envelope em
   r2, r3 e r4 para tentar satisfazer o teste. A oscilação de 52 para 54
   aprovados em r2 e r3 era essa alternância, não perda de comportamento.
@@ -238,7 +238,7 @@ suíte auditada, nenhum comportamento da suíte base muda com E1 ou E2.
 | Defeito | Efeito possível | Correção | Efeito na coleta 1 |
 |---|---|---|---|
 | INV2 comparava só vizinhos na ordem de início | com plantões sobrepostos, um descanso curto podia ficar sem registro | cada plantão é comparado com o seguinte que começa depois do seu fim | nenhum: não houve sobreposição |
-| Data com fuso tinha o fuso descartado, sem conversão | deslocamento de horas na comparação | conversão para UTC antes de descartar o fuso | nenhum: nenhuma violação nos 46 estados avaliáveis, em nenhuma das versões |
+| Data com fuso tinha o fuso descartado, sem conversão | deslocamento de horas na comparação | conversão para UTC antes de descartar o fuso | nenhum: nenhuma violação nos estados avaliáveis, em nenhuma das versões |
 | Uma violação fazia falhar todos os testes seguintes | um defeito parecia dezenas de falhas | cada teste responde pelas violações que introduz | nenhum: não houve violação |
 
 Validação do oráculo: 42 cenários com conjunto exato de invariantes violadas
@@ -272,13 +272,13 @@ cenários novos que expõem seus defeitos.
 
 ## 8. Validação do instrumento v2
 
-**Estados reais.** Nos 46 estados da coleta 1 em que a aplicação carrega, a
+**Estados reais.** Nos estados da coleta 1 em que a aplicação carrega, a
 suíte v2 e a suíte corrigida em 06/10 deram o mesmo resultado em todos os
 testes que têm em comum. A única diferença está nos três testes substituídos.
-Em relação à v1, os testes comuns só diferem no do RF34 (reprovado pela v1 nos
-46 estados) e nos do RF33 e do RF36 (reprovados pela v1 nos 25 estados em que
-a fila era uma lista); dos testes substituídos, o de campos exatos reprovava
-na v1 nos 9 estados de E1 e E2 que tinham o campo `noturno`.
+Em relação à v1, os testes comuns só diferem no do RF34 (reprovado pela v1
+nesses estados) e nos do RF33 e do RF36 (reprovados pela v1 nos estados em
+que a fila era uma lista); dos testes substituídos, o de campos exatos
+reprovava na v1 nos estados de E1 e E2 que tinham o campo `noturno`.
 
 **Variantes que cumprem a especificação** (sobre o código de r3-E2, que passa
 80/80; nenhuma pode ser reprovada):
